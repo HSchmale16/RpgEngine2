@@ -1,0 +1,3 @@
+EXE := RpgGame
+SRC := 
+
