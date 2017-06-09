@@ -2,6 +2,10 @@
 #define ROOM__HPP
 
 #include "Entity.hpp"
+#include "Door.hpp"
+#include "Furniture.hpp"
+
+class Location;
 
 /**
  * \brief Defines a given spot a player can be in and operate on.

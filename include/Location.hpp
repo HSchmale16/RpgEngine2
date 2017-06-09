@@ -2,6 +2,7 @@
 #define LOCATION__HPP
 
 #include "Entity.hpp"
+#include "Room.hpp"
 
 /**
  * \brief Contains rooms in the location.

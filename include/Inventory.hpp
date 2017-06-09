@@ -20,12 +20,7 @@ class Inventory : public Entity {
         Inventory ();
     public :
         Item takeItem (std::string name);
-        /**
-         * \brief 	
-         * \param code (???)
-         * \return void
-         */
-        void addItem (ItemCode code);
+
         /**
          * \brief tests whether this inventory contains an item like itm.
          * \param itm (???)

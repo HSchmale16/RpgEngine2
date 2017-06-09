@@ -1,6 +1,13 @@
 #ifndef ENTITYBASE__HPP
 #define ENTITYBASE__HPP
 
+#include "../lib/json.hpp"
+#include <string>
+#include <vector>
+#include <cstdlib>
+
+using json = nlohmann::json;
+
 class EntityBase {
     // Attributes
     protected :
@@ -12,16 +19,18 @@ class EntityBase {
         /**
          * \brief default ctor
          */
-        Entity ();
-    public :
-        virtual void printLookText (std::ostream out) = 0;
-        std::string getName ();
+        EntityBase ();
+
         /**
          * \brief Loads from a json/
          * \param js (???) The json to load.
          * \return bool
          */
-        bool loadJson (json js);
+        virtual bool loadJson (json js);
+    public :
+        virtual void printLookText (std::ostream& out);
+        std::string getName ();
+        
 };
 
 #endif

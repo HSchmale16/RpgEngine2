@@ -2,6 +2,7 @@
 #define ITEMFACTORY__HPP
 
 #include "Item.hpp"
+#include <set>
 
 /**
  * \brief Generates new item objects from the defaults that are available.
@@ -11,21 +12,16 @@
 class ItemFactory {
     // Attributes
     private :
-        List<Item> m_validItems;
+        std::vector<Item> m_validItems;
         static std::set<std::string> m_validTypes;
     // Operations
     public :
-        ItemFactory (std::string itemFile);
+        ItemFactory (std::string itemDir);
         /**
          * \brief dtor
          */
         ~ItemFactory ();
-        /**
-         * \brief gets an item by the code
-         * \param code (???)
-         * \return Item
-         */
-        Item byCode (ItemCode code);
+
         /**
          * \brief decides whether the type listed is valid.
          * \param name (???)

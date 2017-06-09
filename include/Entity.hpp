@@ -6,13 +6,14 @@
 
 class Entity : public EntityBase {
     // Operations
-    public :
+    
+    public:
         /**
          * \brief Uses a given item on this instance.
          * \param itm (???)
          * \return void
          */
-        virtual void use (Item itm) = 0;
+        virtual void use (Item itm);
 };
 
 #endif

@@ -8,10 +8,12 @@ class Player : public Inventory {
     private :
         /// Contains player attributes like STR ATK DEX
         std::map<std::string,int> m_stats;
-    public :
         unsigned int m_curHealth;
-    // Operations
+    public :
+        // Operations
         Player ();
+
+        
 };
 
 #endif

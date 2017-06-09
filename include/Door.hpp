@@ -2,6 +2,7 @@
 #define DOOR__HPP
 
 #include "Entity.hpp"
+#include "Player.hpp"
 
 class Door : public Entity {
     // Attributes

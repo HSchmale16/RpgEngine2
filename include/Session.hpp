@@ -2,6 +2,7 @@
 #define SESSION__HPP
 
 #include "Player.hpp"
+#include "Room.hpp"
 
 class Session {
     // Attributes
