@@ -1,0 +1,21 @@
+{
+    "name": "test1",
+    "startRoom": "first room",
+    "rooms": [
+        {
+            "name": "room 1",
+            "doors": [
+
+            ],
+            "furniture": [
+                {
+                    "name": "table",
+                    "lookText": "A 4 legged table",
+                    "items": [
+                        
+                    ]
+                }
+            ]
+        }
+    ]
+}
