@@ -17,7 +17,6 @@ class Inventory : public Entity {
         int m_money = 0;
     // Operations
     protected :
-        Inventory ();
     public :
         Item takeItem (std::string name);
 

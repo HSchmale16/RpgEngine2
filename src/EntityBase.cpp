@@ -2,14 +2,10 @@
 #include "../include/Misc.h"
 
 EntityBase::EntityBase(json j) {
-    if(!j.is_object())
-        throw "All entities must be loaded a json object";
-    // attempt to load the name
-    JSON_ATTEMPT_READ_STR(m_name, j, "name");
-    // load the look texts
-    if(j.find("lookTexts") != j.end())
-        loadLookTexts(j["lookTexts"]);
+    loadJson(j);
 }
+
+EntityBase::EntityBase() { }
 
 void EntityBase::loadLookTexts(json ltexts) {
     for(const auto& e : ltexts) {
@@ -35,5 +31,11 @@ std::string EntityBase::getName() {
 }
 
 bool EntityBase::loadJson(json js) {
-    
+    if(!js.is_object())
+        throw "All entities must be loaded a json object";
+    // attempt to load the name
+    JSON_ATTEMPT_READ_STR(m_name, js, "name");
+    // load the look texts
+    if(js.find("lookTexts") != js.end())
+        loadLookTexts(js["lookTexts"]);
 }

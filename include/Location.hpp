@@ -11,16 +11,15 @@ class Location : public Entity {
     // Attributes
     private :
         std::vector<Room> rooms;
-    public :
-        /// name of the starting room. May not be empty
+        /// Name of starting room Must not be empty
         std::string m_startRoom;
+
+        void loadRooms(json js);
+    public :
     // Operations
-        /**
-         * \brief loads a location from an xml file.
-         * \return bool
-         */
-        bool loadFromFile ();
+        Location(std::string file);
         Room* getRoom (std::string name);
+        virtual bool loadJson(json js);
 };
 
 #endif

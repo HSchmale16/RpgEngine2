@@ -19,10 +19,9 @@ class EntityBase {
         /// Information that can be found by looking at it.
         std::vector<std::string> m_lookTexts;
     // Operations
-        /**
-         * \brief default ctor
-         */
         EntityBase (json j);
+        EntityBase ();
+
 
         /**
          * \brief Loads from a json/

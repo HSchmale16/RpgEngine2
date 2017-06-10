@@ -23,8 +23,7 @@ $(EXE): $(OBJ)
 depend: .depend
 
 .depend: $(SRC) $(HEADERS)
-	$(info Making the dependcy list)
-	@rm -f $@
-	@$(CXX) $(CXXFLAGS) -MM $^ > $@
+	rm -f $@
+	$(CXX) $(CXXFLAGS) -MM $^ > $@
 
 include .depend

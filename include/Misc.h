@@ -4,15 +4,16 @@
 #include <algorithm>
 #include <climits>
 #include <cstdlib>
+#include <fstream>
 
 #define JSON_ATTEMPT_READ_STR(var, jsonObj, keyname) \
-    if(jsonObj.find(keyname) != jsonObj.end() && j[keyname].is_string()) \
+    if(jsonObj.find(keyname) != jsonObj.end() && jsonObj[keyname].is_string()) \
         var = jsonObj[keyname]; \
     else \
         throw keyname " Must be a string or is not available";
 
 #define JSON_ATTEMPT_READ_NUM(var, jsonObj, keyname) \
-    if(jsonObj.find(keyname) != jsonObj.end() && j[keyname].is_number()) \
+    if(jsonObj.find(keyname) != jsonObj.end() && jsonObj[keyname].is_number()) \
         var = jsonObj[keyname]; \
     else \
         throw keyname " Must be a string or is not available";

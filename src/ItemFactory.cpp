@@ -27,7 +27,7 @@ void ItemFactory::loadItem(std::string file) {
     JSON_FROM_FILE(j, file);
     
     Item itm(j, this);
-    
+    m_validItems.push_back(itm);
     
 }
 

@@ -19,9 +19,10 @@ class Room : public Entity {
         std::vector<Door*> m_doors;
         /// pointers to Things in m_entities.
         std::vector<Furniture*> m_things;
-    public :
         /// The location with which this Room belongs to.
         Location* m_location = nullptr;
+    public :
+        
     // Operations
         Room (const Location* loc, json def);
         virtual ~Room ();

@@ -6,7 +6,6 @@
 
 class Entity : public EntityBase {
     // Operations
-    
     public:
         /**
          * \brief Uses a given item on this instance.
