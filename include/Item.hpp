@@ -16,11 +16,13 @@ class Item : public EntityBase {
         /// Money returned for selling to store.
         int m_sellPrice;
 
-        
+        ItemFactory* m_factory;
     public:
-        Item(json j);
+        Item(json j, ItemFactory* factory);
 
         std::string getType();
 };
+
+#include "ItemFactory.hpp"
 
 #endif

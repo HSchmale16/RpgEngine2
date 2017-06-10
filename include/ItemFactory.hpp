@@ -2,7 +2,6 @@
 #define ITEMFACTORY__HPP
 
 #include "Item.hpp"
-#include <set>
 
 /**
  * \brief Generates new item objects from the defaults that are available.
@@ -13,7 +12,7 @@ class ItemFactory {
     // Attributes
     private :
         std::vector<Item> m_validItems;
-        static std::set<std::string> m_validTypes;
+        static std::map<std::string,std::vector<std::string>> m_validTypes;
 
         void loadItem(std::string file);
 
@@ -27,7 +26,7 @@ class ItemFactory {
          * \param name (???)
          * \return bool
          */
-        bool validateType (std::string name);
+        bool validateType (std::string type);
 
 
         void listItems (std::ostream& out);

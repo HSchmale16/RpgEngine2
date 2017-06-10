@@ -1,6 +1,9 @@
 #include "../include/ItemFactory.hpp"
 #include "../lib/tinydir.h"
+#include "../include/Misc.h"
 #include <fstream>
+
+std::map<std::string,std::vector<std::string>> ItemFactory::m_validTypes = {};
 
 ItemFactory::ItemFactory (std::string itemDir) {
     this->loadValidItemTypes("config/itemtypes.json");
@@ -20,24 +23,31 @@ ItemFactory::ItemFactory (std::string itemDir) {
 }
 
 void ItemFactory::loadItem(std::string file) {
-    std::ifstream def(file);
-    if(!def)
-        throw "Can't access file";
     json j;
-    def >> j;
-    def.close();
+    JSON_FROM_FILE(j, file);
     
-    Item itm(j);
-    m_validItems.push_back(itm);
-    //TODO: Item validation
+    Item itm(j, this);
     
+    
+}
+
+bool ItemFactory::validateType(std::string type) {
+    return m_validTypes.count(type);
 }
 
 void ItemFactory::listItems(std::ostream& out) {
     for(auto& itm : m_validItems)
-        out << itm.getName() << " - " << itm.getType();
+        out << itm.getName() << " - " << itm.getType() << std::endl;
 }
 
 void ItemFactory::loadValidItemTypes(std::string itemTypesFile) {
-
+    json j;
+    JSON_FROM_FILE(j, itemTypesFile);
+    if(!j.is_object())
+        throw "ItemTypesFile must contain a json object";
+    for(json::iterator it = j.begin(); it != j.end(); ++it) {
+        std::vector<std::string> v;
+        //TODO: add loading of valid attributes for each type
+        m_validTypes.insert(std::make_pair((std::string)it.key(), v));
+    }
 }

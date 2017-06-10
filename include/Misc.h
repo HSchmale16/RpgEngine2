@@ -17,6 +17,14 @@
     else \
         throw keyname " Must be a string or is not available";
 
+#define JSON_FROM_FILE(jsonObj, file) \
+    {   std::ifstream def(file); \
+        if(!def) \
+            throw "Can't access json file"; \
+        def >> j; \
+        def.close(); }
+        
+
 template <typename I>
 I random_element(I begin, I end)
 {
