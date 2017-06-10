@@ -1,7 +1,6 @@
 #ifndef SESSION__HPP
 #define SESSION__HPP
 
-#include "Player.hpp"
 #include "Location.hpp"
 
 class Session {
@@ -12,7 +11,7 @@ class Session {
         /// The current location
         Location* m_location = nullptr;
         /// The player for this session.
-        Player m_player;
+        // TODO: Deal with player shit.
     // Operations
     public :
         Session (Location* loc);

@@ -2,7 +2,6 @@
 #define DOOR__HPP
 
 #include "Entity.hpp"
-#include "Player.hpp"
 
 class Room;
 
@@ -23,7 +22,7 @@ class Door : public Entity {
          * \param p (in)
          * \return bool
          */
-        bool unlock (const Player& p);
+        //bool unlock (const Player& p);
 };
 
 #include "Room.hpp"

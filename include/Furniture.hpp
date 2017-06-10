@@ -3,6 +3,8 @@
 
 #include "Inventory.hpp"
 
+class Room;
+
 /**
  * \brief Some interactable item in a room.
  *        
@@ -11,7 +13,9 @@
 class Furniture : public Inventory {
     // Operations
     public :
-        Furniture ();
+        Furniture (Room* r, json js);
 };
+
+#include "Room.hpp"
 
 #endif

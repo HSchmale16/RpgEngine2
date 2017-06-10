@@ -14,7 +14,7 @@ class Entity : public EntityBase {
          */
         virtual void use (const Item& itm);
 
-        virtual void dump(std::ostream& out);
+        
 };
 
 #endif

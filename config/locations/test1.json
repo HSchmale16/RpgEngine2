@@ -15,7 +15,9 @@
                 {
                     "name": "table",
                     "lookTexts": "A 4 legged table",
-                    "items": []
+                    "items": [
+                        "blue key"
+                    ]
                 }
             ]
         },

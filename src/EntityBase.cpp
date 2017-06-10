@@ -17,7 +17,7 @@ void EntityBase::printLookText(std::ostream& out) {
     out << std::endl;
 }
 
-std::string EntityBase::getName() {
+std::string EntityBase::getName() const {
     return m_name;
 }
 
@@ -38,4 +38,8 @@ void EntityBase::loadLookTexts(json ltexts) {
         else
             throw "All look texts must be a string";
     }        
+}
+
+void EntityBase::dump(std::ostream& out) {
+    out << this->getName() << std::endl;
 }

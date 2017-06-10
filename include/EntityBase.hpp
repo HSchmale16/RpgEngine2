@@ -31,8 +31,8 @@ class EntityBase {
         virtual bool loadJson (json js);
     public :
         virtual void printLookText (std::ostream& out);
-        std::string getName ();
-        
+        std::string getName () const;
+        virtual void dump(std::ostream& out);
 };
 
 #endif

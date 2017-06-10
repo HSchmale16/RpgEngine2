@@ -1,6 +1,7 @@
 #include "../include/ItemFactory.hpp"
 #include "../lib/tinydir.h"
 #include "../include/Misc.h"
+#include <algorithm>
 #include <fstream>
 
 std::map<std::string,std::vector<std::string>> ItemFactory::m_validTypes = {};
@@ -50,4 +51,11 @@ void ItemFactory::loadValidItemTypes(std::string itemTypesFile) {
         //TODO: add loading of valid attributes for each type
         m_validTypes.insert(std::make_pair((std::string)it.key(), v));
     }
+}
+
+Item ItemFactory::getByName(std::string name) {
+    auto it = std::find_if(m_validItems.begin(), m_validItems.end(),
+        [&name](Item const& item) {
+            return item.getName() == name;
+        });
 }

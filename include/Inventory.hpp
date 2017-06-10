@@ -13,11 +13,14 @@ class Inventory : public Entity {
     // Attributes
     protected :
         std::vector<Item> m_items;
-    public :
         int m_money = 0;
-    // Operations
-    protected :
+
+        virtual bool loadJson(json js);
     public :
+        Inventory(json js);
+
+        /** removes item from inventory and returns a copy
+         */
         Item takeItem (std::string name);
 
         /**
@@ -26,6 +29,8 @@ class Inventory : public Entity {
          * \return bool
          */
         bool contains (Item& itm);
+
+        bool contains (std::string name);
         /**
          * \brief Returns the current value of money and sets it to 0.
          * \return int
@@ -33,6 +38,8 @@ class Inventory : public Entity {
         int takeMoney ();
 
         int getMoney ();
+
+        virtual void dump(std::ostream& out);
 };
 
 #endif

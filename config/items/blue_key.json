@@ -1,0 +1,9 @@
+{
+    "name": "blue key",
+    "sellPrice": 10,
+    "buyPrice": 12,
+    "lookTexts": [
+        "This key is blue. It must go in a blue door"
+    ],
+    "type": "quest key"
+}
