@@ -21,5 +21,8 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "atomic": "cpp"
+    },
+    "files.exclude": {
+        "**/*.o": true
     }
 }
