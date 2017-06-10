@@ -7,6 +7,12 @@ Location::Location(std::string file) {
     loadJson(j);
 }
 
+Location::~Location() {
+    std::cout << m_rooms.size() << std::endl;
+    for(auto room : m_rooms) 
+        delete room;
+}
+
 bool Location::loadJson(json js) {
     EntityBase::loadJson(js);
     JSON_ATTEMPT_READ_STR(m_startRoom, js, "startRoom");
@@ -25,5 +31,13 @@ void Location::loadRooms(json js) {
         throw "Rooms must not be an empty array";
     for(auto room : js) {
         // TODO: Finish Loading Rooms
+        Room* r = new Room(this, room);
+        m_rooms.push_back(r);
+    }
+}
+
+void Location::dump(std::ostream& out) {
+    for(auto room : m_rooms) {
+        room->dump(out);
     }
 }

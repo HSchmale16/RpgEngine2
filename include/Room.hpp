@@ -20,12 +20,19 @@ class Room : public Entity {
         /// pointers to Things in m_entities.
         std::vector<Furniture*> m_things;
         /// The location with which this Room belongs to.
-        Location* m_location = nullptr;
+        const Location* m_location = nullptr;
+
+        void loadDoors(json& js);
+        void loadFurniture(json& js);
     public :
         
     // Operations
         Room (const Location* loc, json def);
         virtual ~Room ();
+
+        virtual bool loadJson(json js);
 };
+
+#include "Location.hpp"
 
 #endif

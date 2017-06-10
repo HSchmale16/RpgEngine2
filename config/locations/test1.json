@@ -5,15 +5,48 @@
         {
             "name": "room 1",
             "doors": [
-
+                {
+                    "name": "to room 2",
+                    "linkTo": "room 2",
+                    "lookTexts": "Takes you to the second room"
+                }
             ],
             "furniture": [
                 {
                     "name": "table",
-                    "lookText": "A 4 legged table",
-                    "items": [
-                        
-                    ]
+                    "lookTexts": "A 4 legged table",
+                    "items": []
+                }
+            ]
+        },
+        {
+            "name": "room 2",
+            "doors": [
+                {
+                    "name": "back to room 1",
+                    "lookTexts": "Takes you back to room 1",
+                    "linkTo": "room 1"
+                },
+                {
+                    "name": "to room 3",
+                    "linkTo": "room 3"
+                }
+            ]
+        },
+        {
+            "name": "room 3",
+            "doors": [
+                {
+                    "name": "back to room 2",
+                    "linkTo": "room 2",
+                    "lookTexts": "Takes you to the second room"
+                }
+            ],
+            "furniture": [
+                {
+                    "name": "table",
+                    "lookTexts": "A 4 legged table",
+                    "items": []
                 }
             ]
         }

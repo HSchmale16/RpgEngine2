@@ -7,15 +7,6 @@ EntityBase::EntityBase(json j) {
 
 EntityBase::EntityBase() { }
 
-void EntityBase::loadLookTexts(json ltexts) {
-    for(const auto& e : ltexts) {
-        if(e.is_string())
-            m_lookTexts.push_back(e);
-        else
-            throw "All look texts must be a string";
-    }        
-}
-
 void EntityBase::printLookText(std::ostream& out) {
     if(m_lookTexts.size() == 0)
         out << "Nothing distinct about this.";
@@ -38,4 +29,13 @@ bool EntityBase::loadJson(json js) {
     // load the look texts
     if(js.find("lookTexts") != js.end())
         loadLookTexts(js["lookTexts"]);
+}
+
+void EntityBase::loadLookTexts(json ltexts) {
+    for(const auto& e : ltexts) {
+        if(e.is_string())
+            m_lookTexts.push_back(e);
+        else
+            throw "All look texts must be a string";
+    }        
 }

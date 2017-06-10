@@ -13,6 +13,8 @@ class Entity : public EntityBase {
          * \return void
          */
         virtual void use (const Item& itm);
+
+        virtual void dump(std::ostream& out);
 };
 
 #endif
