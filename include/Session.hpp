@@ -7,8 +7,9 @@
 class Session {
     // Attributes
     private :
-        typedef bool (Session::*CommandFunc)(std::string);
+        typedef void (Session::*CommandFunc)(std::string);
 
+        bool m_quit = false;
         std::map<std::string,CommandFunc> m_actions;
         /// The current room of the given player
         Room * m_currentRoom = nullptr;
@@ -20,13 +21,14 @@ class Session {
     public :
         Session (Location* loc);
         ~Session();
-        bool parseCommand (std::string line);
+        bool parseCommand (std::string line, std::ostream& out);
+        bool quit() const;
     private :
-        bool handleTake (std::string);
-        bool handleLook (std::string);
-        bool handleHelp (std::string);
-        bool handleSave (std::string);
-        bool handleQuit (std::string);
+        void handleTake (std::string);
+        void handleLook (std::string);
+        void handleHelp (std::string);
+        void handleSave (std::string);
+        void handleQuit (std::string);
 };
 
 #endif

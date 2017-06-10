@@ -12,7 +12,9 @@ int main(int argc, char** argv) {
     Session s(&l);
     std::string line;
     while(getline(std::cin, line)) {
-        if(s.parseCommand(line));
+        s.parseCommand(line, std::cout);
+        if(s.quit())
+            break;
     }
     return 0;
 }
