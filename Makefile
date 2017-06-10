@@ -1,11 +1,14 @@
 EXE := RpgEngine.out
 SRC := $(wildcard *.cpp) $(wildcard */*.cpp)
+HEADERS := $(wildcard include/*)
 OBJDIR := build
 OBJ := $(SRC:.cpp=.o)
 CXX_FLAGS := --std=c++11
 
-all: $(EXE)
+.PHONY: all
+all: depend $(EXE)
 
+.PHONY: clean
 clean:
 	rm -rf $(OBJ)
 	rm -rf $(EXE)
@@ -15,3 +18,13 @@ $(EXE): $(OBJ)
 
 %.o: %.cpp
 	g++ -c $(CXX_FLAGS) -o $@ $<
+
+.PHONY: depend
+depend: .depend
+
+.depend: $(SRC) $(HEADERS)
+	$(info Making the dependcy list)
+	@rm -f $@
+	@$(CXX) $(CXXFLAGS) -MM $^ > $@
+
+include .depend

@@ -4,3 +4,6 @@
 # Compilation Products
 *.o
 *.out
+
+# Generated Depends For Make
+.depend
