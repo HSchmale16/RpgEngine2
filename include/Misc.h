@@ -24,7 +24,25 @@
             throw "Can't access json file"; \
         def >> j; \
         def.close(); }
-        
+
+#define JSON_GET_ITER_EXCEPT(jsonObj, var, key) \
+    auto var = jsonObj.find(key); \
+    if(var == jsonObj.end()) \
+        throw "Can't find " key " in object";
+
+/** Runs a function using the returned json from a key lookup if the key
+ * exists in the jsonObj
+ *
+ * If the key does not exist it does nothing.
+ */
+#define JSON_ATTEMPT_FUNC_OPT(jsonObj, key, action) \
+    do { \
+        auto tmp = jsonObj.find(key); \
+        if(tmp == jsonObj.end()) \
+            break; \
+        action(*tmp); \
+    } while(0);
+
 
 template <typename I>
 I random_element(I begin, I end)

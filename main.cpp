@@ -8,5 +8,6 @@ int main(int argc, char** argv) {
     ItemFactory ifact("config/items");
     ifact.listItems(std::cout);
     Location l("config/locations/test1.json");
+    l.dump(std::cout);
     return 0;
 }

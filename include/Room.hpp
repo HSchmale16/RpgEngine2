@@ -31,6 +31,7 @@ class Room : public Entity {
         virtual ~Room ();
 
         virtual bool loadJson(json js);
+        virtual void dump(std::ostream& out);
 };
 
 #include "Location.hpp"
