@@ -18,7 +18,7 @@ class Room : public Entity {
         /// contains pointers to the door entities
         std::vector<Door*> m_doors;
         /// pointers to Things in m_entities.
-        std::vector<Furniture*> m_things;
+        std::vector<Furniture*> m_furniture;
         /// The location with which this Room belongs to.
         const Location* m_location = nullptr;
 

@@ -1,7 +1,7 @@
 #include "../include/Inventory.hpp"
 
 Inventory::Inventory(json js) {
-
+    loadJson(js);
 }
 
 Item Inventory::takeItem(std::string name) {
@@ -31,6 +31,19 @@ void Inventory::dump(std::ostream& out) {
         itm.dump(out);
 }
 
+void Inventory::addItem(std::string name) {
+    ItemFactory ifact;
+    m_items.push_back(ifact.getByName(name));
+}
+
 bool Inventory::loadJson(json js) {
     Entity::loadJson(js);
+    auto it = js.find("items");
+    if(it == js.end())
+        return false;
+    for(auto& itmName : *it) {
+        if(!itmName.is_string())
+            throw "All items listed must be a string";
+        this->addItem(itmName);
+    }
 }

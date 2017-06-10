@@ -19,6 +19,10 @@ class Inventory : public Entity {
     public :
         Inventory(json js);
 
+        /** Adds an item using it's name string
+         */
+        void addItem(std::string name);
+
         /** removes item from inventory and returns a copy
          */
         Item takeItem (std::string name);

@@ -33,7 +33,15 @@ void Room::loadDoors(json& doors) {
 }
 
 void Room::loadFurniture(json& furniture) {
-    // TODO: Implement me, requires implementing furniture and inventory
+    if(!furniture.is_array())
+        throw "Furniture must be loaded as an array";
+    if(furniture.empty())
+        return;
+    for(auto& thing : furniture) {
+        Furniture* f = new Furniture(this, thing);
+        m_furniture.push_back(f);
+        m_entities.push_back(f);
+    }
 }
 
 void Room::dump(std::ostream& out) {

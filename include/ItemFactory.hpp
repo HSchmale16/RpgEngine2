@@ -11,7 +11,7 @@
 class ItemFactory {
     // Attributes
     private :
-        std::vector<Item> m_validItems;
+        static std::vector<Item> m_validItems;
         static std::map<std::string,std::vector<std::string>> m_validTypes;
 
         void loadItem(std::string file);
@@ -20,6 +20,7 @@ class ItemFactory {
     // Operations
     public :
         ItemFactory (std::string itemDir);
+        ItemFactory ();
 
         /**
          * \brief decides whether the type listed is valid.
@@ -28,7 +29,7 @@ class ItemFactory {
          */
         bool validateType (std::string type);
 
-        Item getByName(std::string name);
+        Item getByName (std::string name);
 
         void listItems (std::ostream& out);
 };

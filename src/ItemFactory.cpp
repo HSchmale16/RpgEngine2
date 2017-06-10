@@ -5,6 +5,8 @@
 #include <fstream>
 
 std::map<std::string,std::vector<std::string>> ItemFactory::m_validTypes = {};
+std::vector<Item> ItemFactory::m_validItems = {};
+
 
 ItemFactory::ItemFactory (std::string itemDir) {
     this->loadValidItemTypes("config/itemtypes.json");
@@ -23,13 +25,14 @@ ItemFactory::ItemFactory (std::string itemDir) {
     tinydir_close(&dir);
 }
 
+ItemFactory::ItemFactory() { }
+
 void ItemFactory::loadItem(std::string file) {
     json j;
     JSON_FROM_FILE(j, file);
     
     Item itm(j, this);
     m_validItems.push_back(itm);
-    
 }
 
 bool ItemFactory::validateType(std::string type) {
@@ -58,4 +61,5 @@ Item ItemFactory::getByName(std::string name) {
         [&name](Item const& item) {
             return item.getName() == name;
         });
+    return *it;
 }

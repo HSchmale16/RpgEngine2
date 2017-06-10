@@ -11,7 +11,9 @@ class Room;
  *        Defined in the furnitures tag of a room.
  */
 class Furniture : public Inventory {
-    // Operations
+    private :
+        // room that this belongs to.
+        Room* m_room;
     public :
         Furniture (Room* r, json js);
 };

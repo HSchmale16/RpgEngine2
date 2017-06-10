@@ -1,8 +1,11 @@
 #include "../include/EntityBase.hpp"
 #include "../include/Misc.h"
+#include <cassert>
 
 EntityBase::EntityBase(json j) {
     loadJson(j);
+    // The name must never be empty
+    assert(!m_name.empty());
 }
 
 EntityBase::EntityBase() { }
