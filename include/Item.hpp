@@ -19,6 +19,7 @@ class Item : public EntityBase {
         ItemFactory* m_factory;
     public:
         Item(json j, ItemFactory* factory);
+        Item(const Item& itm);
 
         std::string getType();
 };

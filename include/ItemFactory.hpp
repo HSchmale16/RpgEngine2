@@ -29,7 +29,7 @@ class ItemFactory {
          */
         bool validateType (std::string type);
 
-        Item getByName (std::string name);
+        const Item& getByName (std::string name);
 
         void listItems (std::ostream& out);
 };

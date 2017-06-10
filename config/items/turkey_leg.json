@@ -1,0 +1,9 @@
+{
+    "name": "turkey leg",
+    "sellPrice": 10,
+    "buyPrice": 12,
+    "lookTexts": [
+        "This is a turkey leg. It provides healing."
+    ],
+    "type": "quest key"
+}

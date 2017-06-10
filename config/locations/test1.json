@@ -14,9 +14,13 @@
             "furniture": [
                 {
                     "name": "table",
-                    "lookTexts": "A 4 legged table",
+                    "lookTexts": [
+                        "A 4 legged table"
+                    ],
                     "items": [
-                        "blue key"
+                        "blue key",
+                        "turkey leg",
+                        "turkey leg"
                     ]
                 }
             ]
@@ -41,13 +45,35 @@
                 {
                     "name": "back to room 2",
                     "linkTo": "room 2",
-                    "lookTexts": "Takes you to the second room"
+                    "lookTexts": ["Takes you to the second room"]
+                },
+                {
+                    "name": "to room 4",
+                    "linkTo": "room 4",
+                    "lookTexts": ["takes you to the fourth room"]
                 }
             ],
             "furniture": [
                 {
-                    "name": "table",
-                    "lookTexts": "A 4 legged table",
+                    "name": "chest",
+                    "lookTexts": "A simple chest",
+                    "items": []
+                }
+            ]
+        },
+        {
+            "name": "room 4",
+            "doors": [
+                {
+                    "name": "back to room 2",
+                    "linkTo": "room 2",
+                    "lookTexts": ["Takes you to the second room"]
+                }
+            ],
+            "furniture": [
+                {
+                    "name": "chest",
+                    "lookTexts": "A simple chest",
                     "items": []
                 }
             ]

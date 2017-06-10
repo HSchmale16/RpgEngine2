@@ -20,6 +20,7 @@ class EntityBase {
         std::vector<std::string> m_lookTexts;
     // Operations
         EntityBase (json j);
+        EntityBase (const EntityBase& eb);
         EntityBase ();
 
 

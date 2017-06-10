@@ -7,22 +7,28 @@
 #include <fstream>
 
 #define JSON_ATTEMPT_READ_STR(var, jsonObj, keyname) \
-    if(jsonObj.find(keyname) != jsonObj.end() && jsonObj[keyname].is_string()) \
-        var = jsonObj[keyname]; \
+    { \
+    auto it = jsonObj.find(keyname); \
+    if(it != jsonObj.end() && it->is_string()) \
+        var = *it; \
     else \
-        throw keyname " Must be a string or is not available";
+        throw keyname " Must be a string or is not available"; \
+    }
 
 #define JSON_ATTEMPT_READ_NUM(var, jsonObj, keyname) \
-    if(jsonObj.find(keyname) != jsonObj.end() && jsonObj[keyname].is_number()) \
-        var = jsonObj[keyname]; \
+    { \
+    auto it = jsonObj.find(keyname); \
+    if(it != jsonObj.end() && it->is_number()) \
+        var = *it; \
     else \
-        throw keyname " Must be a string or is not available";
+        throw keyname " Must be a string or is not available"; \
+    }
 
 #define JSON_FROM_FILE(jsonObj, file) \
     {   std::ifstream def(file); \
         if(!def) \
             throw "Can't access json file"; \
-        def >> j; \
+        def >> jsonObj; \
         def.close(); }
 
 #define JSON_GET_ITER_EXCEPT(jsonObj, var, key) \

@@ -8,6 +8,11 @@ EntityBase::EntityBase(json j) {
     assert(!m_name.empty());
 }
 
+EntityBase::EntityBase(const EntityBase& eb) {
+    this->m_lookTexts = eb.m_lookTexts;
+    this->m_name = eb.m_name;
+}
+
 EntityBase::EntityBase() { }
 
 void EntityBase::printLookText(std::ostream& out) {
