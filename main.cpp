@@ -9,5 +9,10 @@ int main(int argc, char** argv) {
     ifact.listItems(std::cout);
     Location l("config/locations/test1.json");
     l.dump(std::cout);
+    Session s(&l);
+    std::string line;
+    while(getline(std::cin, line)) {
+        if(s.parseCommand(line));
+    }
     return 0;
 }
