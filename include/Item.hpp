@@ -4,6 +4,8 @@
 #include "EntityBase.hpp"
 #include <map>
 
+class ItemFactory;
+
 class Item : public EntityBase {
     // Attributes
     private :
@@ -14,10 +16,11 @@ class Item : public EntityBase {
         /// Money returned for selling to store.
         int m_sellPrice;
 
+        
     public:
-        Item();
+        Item(json j);
 
-        virtual void printLookText(std::ostream& out);
+        std::string getType();
 };
 
 #endif

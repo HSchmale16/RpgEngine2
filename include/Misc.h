@@ -5,6 +5,18 @@
 #include <climits>
 #include <cstdlib>
 
+#define JSON_ATTEMPT_READ_STR(var, jsonObj, keyname) \
+    if(jsonObj.find(keyname) != jsonObj.end() && j[keyname].is_string()) \
+        var = jsonObj[keyname]; \
+    else \
+        throw keyname " Must be a string or is not available";
+
+#define JSON_ATTEMPT_READ_NUM(var, jsonObj, keyname) \
+    if(jsonObj.find(keyname) != jsonObj.end() && j[keyname].is_number()) \
+        var = jsonObj[keyname]; \
+    else \
+        throw keyname " Must be a string or is not available";
+
 template <typename I>
 I random_element(I begin, I end)
 {

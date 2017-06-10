@@ -1,6 +1,25 @@
 #include "../include/EntityBase.hpp"
 #include "../include/Misc.h"
 
+EntityBase::EntityBase(json j) {
+    if(!j.is_object())
+        throw "All entities must be loaded a json object";
+    // attempt to load the name
+    JSON_ATTEMPT_READ_STR(m_name, j, "name");
+    // load the look texts
+    if(j.find("lookTexts") != j.end())
+        loadLookTexts(j["lookTexts"]);
+}
+
+void EntityBase::loadLookTexts(json ltexts) {
+    for(const auto& e : ltexts) {
+        if(e.is_string())
+            m_lookTexts.push_back(e);
+        else
+            throw "All look texts must be a string";
+    }        
+}
+
 void EntityBase::printLookText(std::ostream& out) {
     if(m_lookTexts.size() == 0)
         out << "Nothing distinct about this.";

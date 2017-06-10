@@ -9,6 +9,9 @@
 using json = nlohmann::json;
 
 class EntityBase {
+    private :
+        void loadLookTexts(json ltexts);
+
     // Attributes
     protected :
         /// the name of the entity.
@@ -19,7 +22,7 @@ class EntityBase {
         /**
          * \brief default ctor
          */
-        EntityBase ();
+        EntityBase (json j);
 
         /**
          * \brief Loads from a json/

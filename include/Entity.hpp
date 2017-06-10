@@ -13,7 +13,7 @@ class Entity : public EntityBase {
          * \param itm (???)
          * \return void
          */
-        virtual void use (Item itm);
+        virtual void use (const Item& itm);
 };
 
 #endif

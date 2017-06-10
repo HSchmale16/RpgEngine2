@@ -32,6 +32,8 @@ class Inventory : public Entity {
          * \return int
          */
         int takeMoney ();
+
+        int getMoney ();
 };
 
 #endif

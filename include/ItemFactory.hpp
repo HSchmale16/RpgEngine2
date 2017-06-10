@@ -14,13 +14,13 @@ class ItemFactory {
     private :
         std::vector<Item> m_validItems;
         static std::set<std::string> m_validTypes;
+
+        void loadItem(std::string file);
+
+        void loadValidItemTypes(std::string itemTypesFile);
     // Operations
     public :
         ItemFactory (std::string itemDir);
-        /**
-         * \brief dtor
-         */
-        ~ItemFactory ();
 
         /**
          * \brief decides whether the type listed is valid.
@@ -28,6 +28,9 @@ class ItemFactory {
          * \return bool
          */
         bool validateType (std::string name);
+
+
+        void listItems (std::ostream& out);
 };
 
 #endif
