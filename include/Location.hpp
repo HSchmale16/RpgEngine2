@@ -23,6 +23,8 @@ class Location : public Entity {
         Room* getRoom (std::string name);
         virtual bool loadJson(json js);
         virtual void dump(std::ostream& out);
+        Room* getStartRoom();
+        Room* findByName(std::string name);
 };
 
 #endif

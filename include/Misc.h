@@ -5,6 +5,7 @@
 #include <climits>
 #include <cstdlib>
 #include <fstream>
+#include "EntityBase.hpp"
 
 #define JSON_ATTEMPT_READ_STR(var, jsonObj, keyname) \
     { \
@@ -63,4 +64,14 @@ I random_element(I begin, I end)
     return begin;
 }
 
+template<typename T>
+T* searchEntitiesByName(std::vector<T*>& ents, std::string name) {
+    //static_assert(std::is_base_of<T, EntityBase>::value);
+    auto it = std::find_if(ents.begin(), ents.end(), [&name](EntityBase const* ent) {
+        return name == ent->getName();
+    });
+    if(it == ents.end())
+        return nullptr;
+    return *it;
+}
 #endif // MISC_H_INC

@@ -14,7 +14,7 @@ class Room : public Entity {
     // Attributes
     private :
         /// contains all of the entities. 
-        std::vector<Entity*> m_entities;
+        std::vector<EntityBase*> m_entities;
         /// contains pointers to the door entities
         std::vector<Door*> m_doors;
         /// pointers to Things in m_entities.
@@ -25,11 +25,10 @@ class Room : public Entity {
         void loadDoors(json& js);
         void loadFurniture(json& js);
     public :
-        
-    // Operations
         Room (const Location* loc, json def);
         virtual ~Room ();
 
+        EntityBase* searchTarget(std::string target);
         virtual bool loadJson(json js);
         virtual void dump(std::ostream& out);
 };

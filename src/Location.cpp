@@ -8,7 +8,6 @@ Location::Location(std::string file) {
 }
 
 Location::~Location() {
-    std::cout << m_rooms.size() << std::endl;
     for(auto room : m_rooms) 
         delete room;
 }
@@ -40,4 +39,12 @@ void Location::dump(std::ostream& out) {
     for(auto room : m_rooms) {
         room->dump(out);
     }
+}
+
+Room* Location::findByName(std::string name) {
+    return searchEntitiesByName(m_rooms, name);
+}
+
+Room* Location::getStartRoom() {
+    return findByName(m_startRoom);
 }

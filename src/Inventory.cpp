@@ -47,7 +47,6 @@ bool Inventory::loadJson(json js) {
     for(json& itmName : *it) {
         if(!itmName.is_string())
             throw "All items listed must be a string";
-        std::cout << "ATTEMPT LOAD: " << itmName << std::endl;
         this->addItem(itmName);
     }
 }

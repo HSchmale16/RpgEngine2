@@ -9,9 +9,12 @@ Room::Room(const Location* loc, json def) : m_location(loc) {
 }
 
 Room::~Room() {
-    //std::cout << m_entities.size() << std::endl;
     for(auto ent : m_entities)
         delete ent;
+}
+
+EntityBase* Room::searchTarget(std::string target) {
+    return searchEntitiesByName(m_entities, target);
 }
 
 bool Room::loadJson(json js) {
@@ -47,6 +50,7 @@ void Room::loadFurniture(json& furniture) {
 
 void Room::dump(std::ostream& out) {
     Entity::dump(out);
-    for(auto e : m_entities)
-        e->dump(out);
+    for(auto* ent : m_entities) {
+        ent->dump(out);
+    }
 }

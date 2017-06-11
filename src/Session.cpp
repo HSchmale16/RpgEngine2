@@ -3,12 +3,16 @@
 
 Session::Session(Location* loc) {
     assert(loc != nullptr);
+    m_location = loc;
 
     m_actions.insert(std::make_pair("look", &Session::handleLook));
     m_actions.insert(std::make_pair("take", &Session::handleTake));
     m_actions.insert(std::make_pair("quit", &Session::handleQuit));
+    m_actions.insert(std::make_pair("exit", &Session::handleQuit));
     m_actions.insert(std::make_pair("help", &Session::handleHelp));
     m_actions.insert(std::make_pair("save", &Session::handleSave));
+
+    m_currentRoom = m_location->getStartRoom();
 }
 
 Session::~Session() { }

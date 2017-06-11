@@ -6,10 +6,8 @@
 int main(int argc, char** argv) {
     srand(time(nullptr));
     ItemFactory ifact("config/items");
-    ifact.listItems(std::cout);
     try {
         Location l("config/locations/test1.json");
-        l.dump(std::cout);
         Session s(&l);
         std::string line;
         while(getline(std::cin, line)) {
@@ -19,7 +17,6 @@ int main(int argc, char** argv) {
         }
     } catch(const char* chr) {
         std::cout << chr << std::endl;
-        return 0;
     }
     return 0;
 }
