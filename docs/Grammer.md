@@ -5,7 +5,7 @@ Defines the grammer for the commands.
 `look [room-target]`
 :   look at a target in the room
 
-`lookself [self-target`
+`lookself [self-target]`
 :   look at something in your inventory
 
 `looklocation`
