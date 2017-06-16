@@ -16,6 +16,7 @@ class Furniture : public Inventory {
         Room* m_room;
     public :
         Furniture (Room* r, json js);
+        ~Furniture();
 };
 
 #include "Room.hpp"
