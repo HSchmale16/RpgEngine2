@@ -13,7 +13,7 @@ class Inventory : public Entity {
     // Attributes
     protected :
         std::vector<Item*> m_items;
-        int m_money = 0;
+        uint64_t m_money = 0;
 
         virtual bool loadJson(json js);
     public :
@@ -43,9 +43,11 @@ class Inventory : public Entity {
          * \brief Returns the current value of money and sets it to 0.
          * \return int
          */
-        int takeMoney ();
+        uint64_t takeMoney ();
 
-        int getMoney ();
+        uint64_t getMoney ();
+
+        void addMoney(uint64_t amount);
 
         virtual void dump(std::ostream& out);
 };

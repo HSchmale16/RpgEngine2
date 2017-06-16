@@ -27,13 +27,13 @@ bool Inventory::contains(std::string name) {
     return false;
 }
 
-int Inventory::takeMoney() {
+uint64_t Inventory::takeMoney() {
     int m = m_money;
     m_money = 0;
     return m;
 }
 
-int Inventory::getMoney() {
+uint64_t Inventory::getMoney() {
     return m_money;
 }
 
@@ -49,6 +49,10 @@ void Inventory::addItem(std::string name) {
     m_items.push_back(item);
 }
 
+void Inventory::addMoney(uint64_t amount) {
+    m_money += amount;
+}
+
 bool Inventory::loadJson(json js) {
     Entity::loadJson(js);
     auto it = js.find("items");
@@ -57,8 +61,9 @@ bool Inventory::loadJson(json js) {
     if(!it->is_array())
         throw "Items must be listed in an array";
     for(json& itmName : *it) {
-        if(!itmName.is_string())
-            throw "All items listed must be a string";
-        this->addItem(itmName);
+        if(itmName.is_string())
+            this->addItem(itmName);
+        if(itmName.is_number())
+            this->addMoney(itmName);
     }
 }

@@ -57,7 +57,7 @@
                 {
                     "name": "chest",
                     "lookTexts": "A simple chest",
-                    "items": []
+                    "items": [45]
                 }
             ]
         },
