@@ -12,7 +12,8 @@ class Location : public Entity {
     private :
         std::vector<Room*> m_rooms;
         /// Name of starting room Must not be empty
-        std::string m_startRoom;
+        std::string m_startRoomString;
+        Room* m_startRoom;
 
         void loadRooms(json js);
     public :
@@ -20,6 +21,7 @@ class Location : public Entity {
         Location(std::string file);
         virtual ~Location();
 
+        Room* getStartRoom();
         Room* getRoom (std::string name);
         virtual void loadJson(json js);
         virtual void dump(std::ostream& out);

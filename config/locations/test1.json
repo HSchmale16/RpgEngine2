@@ -1,6 +1,6 @@
 {
     "name": "test1",
-    "startRoom": "first room",
+    "startRoom": "room 1",
     "rooms": [
         {
             "name": "room 1",

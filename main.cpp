@@ -9,10 +9,10 @@ int main(int argc, char** argv) {
     ItemFactory ifact("config/items");
     try {
         Location l("config/locations/test1.json");
-        Session s(&l);
+        Session s(&l, std::cout);
         std::string line;
         while(getline(std::cin, line)) {
-            s.parseCommand(line, std::cout);
+            s.parseCommand(line);
             if(s.quit())
                 break;
         }

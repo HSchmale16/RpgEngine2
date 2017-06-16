@@ -10,6 +10,7 @@ class Session {
         typedef void (Session::*CommandFunc)(std::string);
 
         bool m_quit = false;
+        std::ostream& m_outStream;
         std::map<std::string,CommandFunc> m_actions;
         /// The current room of the given player
         Room * m_currentRoom = nullptr;
@@ -19,9 +20,9 @@ class Session {
         // TODO: Deal with player shit.
     // Operations
     public :
-        Session (Location* loc);
+        Session (Location* loc, std::ostream& out);
         ~Session();
-        bool parseCommand (std::string line, std::ostream& out);
+        bool parseCommand (std::string line);
         bool quit() const;
     private :
         void handleTake (std::string);
