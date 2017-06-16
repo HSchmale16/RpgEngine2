@@ -8,7 +8,6 @@ Location::Location(std::string file) {
 }
 
 Location::~Location() {
-    std::cout << m_rooms.size() << std::endl;
     for(auto room : m_rooms) 
         delete room;
 }

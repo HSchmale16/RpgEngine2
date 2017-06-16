@@ -35,6 +35,9 @@ class Inventory : public Entity {
          */
         bool contains (Item& itm);
 
+        /**\brief tests whether it contains an item of name
+         * \return true if so.
+         */
         bool contains (std::string name);
         /**
          * \brief Returns the current value of money and sets it to 0.

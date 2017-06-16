@@ -57,7 +57,6 @@ void ItemFactory::loadValidItemTypes(std::string itemTypesFile) {
 }
 
 Item* ItemFactory::getByName(std::string name) {
-    std::cout << name << std::endl;
     auto it = std::find_if(m_validItems.begin(), m_validItems.end(),
         [&name](Item const& item) {
             return item.getName() == name;

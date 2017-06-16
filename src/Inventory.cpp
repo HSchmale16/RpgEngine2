@@ -6,19 +6,23 @@ Inventory::Inventory(json js) {
 
 
 Inventory::~Inventory() {
+    // clean up allocated items
     for(Item* itm : m_items) {
         delete itm;
     }
 }
 
+/// TODO: Implement
 Item Inventory::takeItem(std::string name) {
 
 }
 
+/// TODO: Implement
 bool Inventory::contains(Item& itm) {
     return false;
 }
 
+/// TODO: Implement
 bool Inventory::contains(std::string name) {
     return false;
 }
@@ -55,7 +59,6 @@ bool Inventory::loadJson(json js) {
     for(json& itmName : *it) {
         if(!itmName.is_string())
             throw "All items listed must be a string";
-        std::cout << "INVENTORY ATTEMPT LOAD: " << itmName << std::endl;
         this->addItem(itmName);
     }
 }
