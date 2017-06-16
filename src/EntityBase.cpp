@@ -16,6 +16,9 @@ EntityBase::EntityBase(const EntityBase& eb) {
 
 EntityBase::EntityBase() { }
 
+// DTOR
+EntityBase::~EntityBase() {}
+
 void EntityBase::printLookText(std::ostream& out) {
     if(m_lookTexts.size() == 0)
         out << "Nothing distinct about this.";

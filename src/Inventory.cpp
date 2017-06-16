@@ -41,7 +41,8 @@ void Inventory::dump(std::ostream& out) {
 
 void Inventory::addItem(std::string name) {
     ItemFactory ifact;
-    m_items.push_back(ifact.getByName(name));
+    Item* item = ifact.getByName(name);
+    m_items.push_back(item);
 }
 
 bool Inventory::loadJson(json js) {
