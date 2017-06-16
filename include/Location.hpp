@@ -21,7 +21,7 @@ class Location : public Entity {
         virtual ~Location();
 
         Room* getRoom (std::string name);
-        virtual bool loadJson(json js);
+        virtual void loadJson(json js);
         virtual void dump(std::ostream& out);
 };
 

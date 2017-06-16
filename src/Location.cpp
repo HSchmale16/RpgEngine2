@@ -12,7 +12,7 @@ Location::~Location() {
         delete room;
 }
 
-bool Location::loadJson(json js) {
+void Location::loadJson(json js) {
     EntityBase::loadJson(js);
     JSON_ATTEMPT_READ_STR(m_startRoom, js, "startRoom");
     assert(!m_startRoom.empty());

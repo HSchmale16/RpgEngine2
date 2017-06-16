@@ -13,8 +13,8 @@ Inventory::~Inventory() {
 }
 
 /// TODO: Implement
-Item Inventory::takeItem(std::string name) {
-
+Item* Inventory::takeItem(std::string name) {
+    return nullptr;
 }
 
 /// TODO: Implement
@@ -53,11 +53,11 @@ void Inventory::addMoney(uint64_t amount) {
     m_money += amount;
 }
 
-bool Inventory::loadJson(json js) {
+void Inventory::loadJson(json js) {
     Entity::loadJson(js);
     auto it = js.find("items");
     if(it == js.end())
-        return false;
+        return;
     if(!it->is_array())
         throw "Items must be listed in an array";
     for(json& itmName : *it) {

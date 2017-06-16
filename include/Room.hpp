@@ -30,7 +30,7 @@ class Room : public Entity {
         Room (const Location* loc, json def);
         virtual ~Room ();
 
-        virtual bool loadJson(json js);
+        virtual void loadJson(json js);
         virtual void dump(std::ostream& out);
 };
 

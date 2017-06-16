@@ -33,7 +33,7 @@ std::string EntityBase::getName() const {
     return m_name;
 }
 
-bool EntityBase::loadJson(json js) {
+void EntityBase::loadJson(json js) {
     if(!js.is_object())
         throw "All entities must be loaded a json object";
     // attempt to load the name

@@ -15,7 +15,7 @@ class Inventory : public Entity {
         std::vector<Item*> m_items;
         uint64_t m_money = 0;
 
-        virtual bool loadJson(json js);
+        virtual void loadJson(json js);
     public :
         Inventory(json js);
         virtual ~Inventory();
@@ -26,7 +26,7 @@ class Inventory : public Entity {
 
         /** removes item from inventory and returns a copy
          */
-        Item takeItem (std::string name);
+        Item* takeItem (std::string name);
 
         /**
          * \brief tests whether this inventory contains an item like itm.

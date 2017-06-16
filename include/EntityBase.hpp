@@ -34,9 +34,8 @@ class EntityBase {
         /**
          * \brief Loads from a json/
          * \param js (???) The json to load.
-         * \return bool
          */
-        virtual bool loadJson (json js);
+        virtual void loadJson (json js);
     public :
         virtual void printLookText (std::ostream& out);
         std::string getName () const;

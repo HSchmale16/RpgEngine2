@@ -9,7 +9,7 @@ Door::Door(Room* r, json js) {
     loadJson(js);
 }
 
-bool Door::loadJson(json js) {
+void Door::loadJson(json js) {
     Entity::loadJson(js);
     JSON_ATTEMPT_READ_STR(m_linkTo, js, "linkTo");
     /// TODO: Add locking
