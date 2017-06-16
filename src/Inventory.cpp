@@ -63,7 +63,7 @@ bool Inventory::loadJson(json js) {
     for(json& itmName : *it) {
         if(itmName.is_string())
             this->addItem(itmName);
-        if(itmName.is_number())
+        else if(itmName.is_number())
             this->addMoney(itmName);
     }
 }
