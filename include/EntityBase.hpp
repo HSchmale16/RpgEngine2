@@ -9,7 +9,7 @@
 
 using json = nlohmann::json;
 
-
+typedef std::vector<std::string> StringVector;
 /** This is an abstract base class for all entities
  */
 class EntityBase {
@@ -23,7 +23,7 @@ class EntityBase {
         /// the name of the entity.
         std::string m_name;
         /// Information that can be found by looking at it.
-        std::vector<std::string> m_lookTexts;
+        StringVector m_lookTexts;
 
         // CTOR Are protected because this is an abstract class
         EntityBase (json j);

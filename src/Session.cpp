@@ -26,14 +26,17 @@ Session::~Session() { }
 
 bool Session::parseCommand(std::string line) {
     std::stringstream sstr(line);
-    std::string word, rem;
+    std::string word, tmp;
+    StringVector sv;
+    sv.reserve(10);
     sstr >> word;
-    getline(sstr, rem);
+    while(sstr >> tmp)
+        sv.push_back(tmp);
     if(!m_actions.count(word)) {
         m_outStream << "I don't know how to " << word << std::endl;
         return false;
     }
-    (this->*m_actions[word])(rem);
+    (this->*m_actions[word])(sv);
     return true;
 }
 
@@ -41,22 +44,22 @@ bool Session::quit() const {
     return m_quit;
 }
 
-void Session::handleLook(std::string target) {
+void Session::handleLook(StringVector target) {
 
 }
 
-void Session::handleTake(std::string rem) {
+void Session::handleTake(StringVector rem) {
 
 }
 
-void Session::handleHelp(std::string) {
+void Session::handleHelp(StringVector) {
 
 }
 
-void Session::handleQuit(std::string) {
+void Session::handleQuit(StringVector) {
     m_quit = true;
 }
 
-void Session::handleSave(std::string) {
+void Session::handleSave(StringVector) {
 
 }

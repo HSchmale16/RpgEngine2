@@ -7,7 +7,7 @@
 class Session {
     // Attributes
     private :
-        typedef void (Session::*CommandFunc)(std::string);
+        typedef void (Session::*CommandFunc)(StringVector);
 
         bool m_quit = false;
         std::ostream& m_outStream;
@@ -25,11 +25,11 @@ class Session {
         bool parseCommand (std::string line);
         bool quit() const;
     private :
-        void handleTake (std::string);
-        void handleLook (std::string);
-        void handleHelp (std::string);
-        void handleSave (std::string);
-        void handleQuit (std::string);
+        void handleTake (StringVector);
+        void handleLook (StringVector);
+        void handleHelp (StringVector);
+        void handleSave (StringVector);
+        void handleQuit (StringVector);
 };
 
 #endif
