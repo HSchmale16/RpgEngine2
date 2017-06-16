@@ -44,8 +44,21 @@ bool Session::quit() const {
     return m_quit;
 }
 
-void Session::handleLook(StringVector target) {
-
+void Session::handleLook(StringVector pred) {
+    for(auto& s : pred)
+        std::cerr << s << std::endl;
+    Entity* target = nullptr;
+    if(pred.empty())
+        target = m_currentRoom;
+    else if(pred[0] == "location")
+        target = m_location;
+    else if(pred[0] == "self") {
+        // search player inventory
+    } else {
+        // search the room around
+    }
+    assert(target != nullptr);
+    target->printLookText(m_outStream);
 }
 
 void Session::handleTake(StringVector rem) {

@@ -1,6 +1,7 @@
 {
     "name": "test1",
     "startRoom": "room 1",
+    "lookTexts": "This is a test location. Test1",
     "rooms": [
         {
             "name": "room 1",
