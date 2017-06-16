@@ -4,6 +4,13 @@ Inventory::Inventory(json js) {
     loadJson(js);
 }
 
+
+Inventory::~Inventory() {
+    for(Item* itm : m_items) {
+        delete itm;
+    }
+}
+
 Item Inventory::takeItem(std::string name) {
 
 }
@@ -29,7 +36,7 @@ int Inventory::getMoney() {
 void Inventory::dump(std::ostream& out) {
     Entity::dump(out);
     for(auto& itm : m_items)
-        itm.dump(out);
+        itm->dump(out);
 }
 
 void Inventory::addItem(std::string name) {
@@ -47,7 +54,7 @@ bool Inventory::loadJson(json js) {
     for(json& itmName : *it) {
         if(!itmName.is_string())
             throw "All items listed must be a string";
-        std::cout << "ATTEMPT LOAD: " << itmName << std::endl;
+        std::cout << "INVENTORY ATTEMPT LOAD: " << itmName << std::endl;
         this->addItem(itmName);
     }
 }

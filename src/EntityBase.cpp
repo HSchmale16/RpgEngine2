@@ -1,6 +1,7 @@
 #include "../include/EntityBase.hpp"
 #include "../include/Misc.h"
 #include <cassert>
+#include <typeinfo>
 
 EntityBase::EntityBase(json j) {
     loadJson(j);
@@ -49,5 +50,6 @@ void EntityBase::loadLookTexts(json ltexts) {
 }
 
 void EntityBase::dump(std::ostream& out) {
-    out << this->getName() << std::endl;
+    out << typeid(*this).name() << " \"" << this->getName() << '"' 
+        << std::endl;
 }

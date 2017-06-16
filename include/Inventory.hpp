@@ -12,12 +12,13 @@
 class Inventory : public Entity {
     // Attributes
     protected :
-        std::vector<Item> m_items;
+        std::vector<Item*> m_items;
         int m_money = 0;
 
         virtual bool loadJson(json js);
     public :
         Inventory(json js);
+        virtual ~Inventory();
 
         /** Adds an item using it's name string
          */
