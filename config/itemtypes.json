@@ -1,6 +1,6 @@
 {
-    "key": [],
-    "quest key": [],
+    "key": null,
+    "quest key": null,
     "sword": ["ATK"],
     "food": ["RGN", "RES"]
 }

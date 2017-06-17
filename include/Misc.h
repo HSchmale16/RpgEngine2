@@ -5,6 +5,7 @@
 #include <climits>
 #include <cstdlib>
 #include <fstream>
+#include <sstream>
 #include "EntityBase.hpp"
 
 #define JSON_ATTEMPT_READ_STR(var, jsonObj, keyname) \
@@ -50,6 +51,14 @@
         action(*tmp); \
     } while(0);
 
+#define JSON_ATTEMPT_FUNC_EX(jsonObj, key, action) \
+    do { \
+        auto tmp = jsonObj.find(key); \
+        if(tmp == jsonObj.end()) \
+            throw "Failed to find requested key for DO FUNC JSON"; \
+        action(*tmp); \
+    } while(0);
+
 
 template <typename I>
 I random_element(I begin, I end)
@@ -74,4 +83,13 @@ T* searchEntitiesByName(std::vector<T*>& ents, std::string name) {
         return nullptr;
     return *it;
 }
+
+inline void splitOnWords(const std::string& str, StringVector& sv) {
+    sv.clear();
+    std::stringstream sstr(str);
+    std::string tmp;
+    while(sstr >> tmp)
+        sv.push_back(tmp);
+}
+
 #endif // MISC_H_INC

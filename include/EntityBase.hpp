@@ -16,8 +16,13 @@ class EntityBase {
     private :
         static uint64_t m_nextSerial;
         uint64_t m_serialNumber;
+        StringVector m_keywords;
+
         void loadLookTexts(json ltexts);
 
+        void setName(std::string name);
+
+        void setSerial();
     // Attributes
     protected :
         /// the name of the entity.
@@ -28,6 +33,10 @@ class EntityBase {
         // CTOR Are protected because this is an abstract class
         EntityBase (json j);
         EntityBase (const EntityBase& eb);
+
+        /** Default CTOR to allow one to call up the json load overloads on
+         * their own terms.
+         */
         EntityBase ();
 
         /**
@@ -40,6 +49,7 @@ class EntityBase {
         virtual void printLookText (std::ostream& out);
         std::string getName () const;
         virtual void dump(std::ostream& out);
+        uint64_t getSerialNumber();
 };
 
 #endif
