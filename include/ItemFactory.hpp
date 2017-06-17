@@ -29,7 +29,9 @@ class ItemFactory {
          */
         bool validateType (std::string type);
 
-        const Item& getByName (std::string name);
+        /**\return copy of item requested, null if not found.
+         */
+        Item* getByName (std::string name);
 
         void listItems (std::ostream& out);
 };

@@ -17,7 +17,7 @@ EntityBase* Room::searchTarget(std::string target) {
     return searchEntitiesByName(m_entities, target);
 }
 
-bool Room::loadJson(json js) {
+void Room::loadJson(json js) {
     Entity::loadJson(js);
     JSON_GET_ITER_EXCEPT(js, doors, "doors");
     loadDoors(*doors);

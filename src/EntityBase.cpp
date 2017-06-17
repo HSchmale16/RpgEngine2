@@ -1,6 +1,7 @@
 #include "../include/EntityBase.hpp"
 #include "../include/Misc.h"
 #include <cassert>
+#include <typeinfo>
 
 EntityBase::EntityBase(json j) {
     loadJson(j);
@@ -14,6 +15,9 @@ EntityBase::EntityBase(const EntityBase& eb) {
 }
 
 EntityBase::EntityBase() { }
+
+// DTOR
+EntityBase::~EntityBase() {}
 
 void EntityBase::printLookText(std::ostream& out) {
     if(m_lookTexts.size() == 0)
@@ -29,7 +33,7 @@ std::string EntityBase::getName() const {
     return m_name;
 }
 
-bool EntityBase::loadJson(json js) {
+void EntityBase::loadJson(json js) {
     if(!js.is_object())
         throw "All entities must be loaded a json object";
     // attempt to load the name
@@ -49,5 +53,6 @@ void EntityBase::loadLookTexts(json ltexts) {
 }
 
 void EntityBase::dump(std::ostream& out) {
-    out << this->getName() << std::endl;
+    out << typeid(*this).name() << " \"" << this->getName() << '"' 
+        << std::endl;
 }

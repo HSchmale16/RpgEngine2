@@ -12,12 +12,13 @@
 class Inventory : public Entity {
     // Attributes
     protected :
-        std::vector<Item> m_items;
-        int m_money = 0;
+        std::vector<Item*> m_items;
+        uint64_t m_money = 0;
 
-        virtual bool loadJson(json js);
+        virtual void loadJson(json js);
     public :
         Inventory(json js);
+        virtual ~Inventory();
 
         /** Adds an item using it's name string
          */
@@ -25,7 +26,7 @@ class Inventory : public Entity {
 
         /** removes item from inventory and returns a copy
          */
-        Item takeItem (std::string name);
+        Item* takeItem (std::string name);
 
         /**
          * \brief tests whether this inventory contains an item like itm.
@@ -34,14 +35,19 @@ class Inventory : public Entity {
          */
         bool contains (Item& itm);
 
+        /**\brief tests whether it contains an item of name
+         * \return true if so.
+         */
         bool contains (std::string name);
         /**
          * \brief Returns the current value of money and sets it to 0.
          * \return int
          */
-        int takeMoney ();
+        uint64_t takeMoney ();
 
-        int getMoney ();
+        uint64_t getMoney ();
+
+        void addMoney(uint64_t amount);
 
         virtual void dump(std::ostream& out);
 };

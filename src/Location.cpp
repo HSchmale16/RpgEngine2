@@ -1,5 +1,6 @@
 #include "../include/Location.hpp"
 #include "../include/Misc.h"
+#include <algorithm>
 
 Location::Location(std::string file) {
     json j;
@@ -12,15 +13,17 @@ Location::~Location() {
         delete room;
 }
 
-bool Location::loadJson(json js) {
+void Location::loadJson(json js) {
     EntityBase::loadJson(js);
-    JSON_ATTEMPT_READ_STR(m_startRoom, js, "startRoom");
-    assert(!m_startRoom.empty());
+    JSON_ATTEMPT_READ_STR(m_startRoomString, js, "startRoom");
+    assert(!m_startRoomString.empty());
 
     auto rooms = js.find("rooms");
     if(rooms == js.end())
         throw "Missing rooms from location file";
     loadRooms(*rooms);
+
+    m_startRoom = getRoom(m_startRoomString);
 }
 
 void Location::loadRooms(json js) {
@@ -35,16 +38,23 @@ void Location::loadRooms(json js) {
     }
 }
 
+Room* Location::getStartRoom() {
+    assert(m_startRoom != nullptr);
+    return m_startRoom;
+}
+
+Room* Location::getRoom(std::string name) {
+    auto it = std::find_if(m_rooms.begin(), m_rooms.end(),
+        [&name](Room* const& r) {
+            return name == r->getName();
+        });
+    if(it == m_rooms.end())
+        throw "Requested room not found";
+    return *it;
+}
+
 void Location::dump(std::ostream& out) {
     for(auto room : m_rooms) {
         room->dump(out);
     }
-}
-
-Room* Location::findByName(std::string name) {
-    return searchEntitiesByName(m_rooms, name);
-}
-
-Room* Location::getStartRoom() {
-    return findByName(m_startRoom);
 }

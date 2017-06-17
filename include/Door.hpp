@@ -13,7 +13,7 @@ class Door : public Entity {
         bool m_isLocked = false;
         Room* m_room;
     protected :
-        virtual bool loadJson(json js);
+        virtual void loadJson(json js);
     public :
         Door(Room* r, json js);
 

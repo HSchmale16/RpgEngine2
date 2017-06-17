@@ -56,12 +56,12 @@ void ItemFactory::loadValidItemTypes(std::string itemTypesFile) {
     }
 }
 
-const Item& ItemFactory::getByName(std::string name) {
+Item* ItemFactory::getByName(std::string name) {
     auto it = std::find_if(m_validItems.begin(), m_validItems.end(),
         [&name](Item const& item) {
             return item.getName() == name;
         });
     if(it == m_validItems.end())
         throw "Can't find requested item";
-    return *it;
+    return new Item(*it);
 }

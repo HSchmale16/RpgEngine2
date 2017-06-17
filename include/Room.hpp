@@ -29,7 +29,7 @@ class Room : public Entity {
         virtual ~Room ();
 
         EntityBase* searchTarget(std::string target);
-        virtual bool loadJson(json js);
+        virtual void loadJson(json js);
         virtual void dump(std::ostream& out);
 };
 

@@ -1,6 +1,7 @@
 {
     "name": "test1",
-    "startRoom": "first room",
+    "startRoom": "room 1",
+    "lookTexts": "This is a test location. Test1",
     "rooms": [
         {
             "name": "room 1",
@@ -57,7 +58,7 @@
                 {
                     "name": "chest",
                     "lookTexts": "A simple chest",
-                    "items": []
+                    "items": [45]
                 }
             ]
         },

@@ -3,7 +3,7 @@ SRC := $(wildcard *.cpp) $(wildcard */*.cpp)
 HEADERS := $(wildcard include/*)
 OBJDIR := build
 OBJ := $(SRC:.cpp=.o)
-CXX_FLAGS := --std=c++11
+CXX_FLAGS := -g --std=c++11 -Wall -Werror
 
 .PHONY: all
 all: depend $(EXE)

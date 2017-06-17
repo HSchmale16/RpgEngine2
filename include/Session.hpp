@@ -7,9 +7,10 @@
 class Session {
     // Attributes
     private :
-        typedef void (Session::*CommandFunc)(std::string);
+        typedef void (Session::*CommandFunc)(StringVector);
 
         bool m_quit = false;
+        std::ostream& m_outStream;
         std::map<std::string,CommandFunc> m_actions;
         /// The current room of the given player
         Room * m_currentRoom = nullptr;
@@ -19,16 +20,16 @@ class Session {
         // TODO: Deal with player shit.
     // Operations
     public :
-        Session (Location* loc);
+        Session (Location* loc, std::ostream& out);
         ~Session();
-        bool parseCommand (std::string line, std::ostream& out);
+        bool parseCommand (std::string line);
         bool quit() const;
     private :
-        void handleTake (std::string);
-        void handleLook (std::string);
-        void handleHelp (std::string);
-        void handleSave (std::string);
-        void handleQuit (std::string);
+        void handleTake (StringVector);
+        void handleLook (StringVector);
+        void handleHelp (StringVector);
+        void handleSave (StringVector);
+        void handleQuit (StringVector);
 };
 
 #endif
