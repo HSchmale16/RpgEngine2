@@ -6,11 +6,9 @@
 uint64_t EntityBase::m_nextSerial = 0;
 
 EntityBase::EntityBase(json j) {
-    setSerial();
     loadJson(j);
     // The name must never be empty
     assert(!m_name.empty());
-    std::cerr << "EB BY JSON: " << getSerialNumber() << std::endl;
 }
 
 EntityBase::EntityBase(const EntityBase& eb) {
@@ -18,13 +16,9 @@ EntityBase::EntityBase(const EntityBase& eb) {
     this->m_name = eb.m_name;
     this->m_keywords = eb.m_keywords;
     this->setSerial();
-    std::cerr << "EB_BY_COPY: " << getSerialNumber() << std::endl;
 }
 
-EntityBase::EntityBase() {
-    std::cerr << "EB_BY_DEF: " << getSerialNumber() << std::endl;
-    setSerial();
-}
+EntityBase::EntityBase() {}
 
 // DTOR
 EntityBase::~EntityBase() {}
@@ -60,6 +54,8 @@ void EntityBase::loadJson(json js) {
     // load the look texts
     if(js.find("lookTexts") != js.end())
         loadLookTexts(js["lookTexts"]);
+    
+    this->setSerial();
 }
 
 void EntityBase::loadLookTexts(json ltexts) {

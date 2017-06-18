@@ -1,0 +1,9 @@
+{
+    "name": "Bronze Sword",
+    "sellPrice": 10,
+    "buyPrice": 12,
+    "lookTexts": [
+        "A normal regular sword"
+    ],
+    "type": "sword"
+}

@@ -6,7 +6,9 @@
 /**
  * \brief Generates new item objects from the defaults that are available.
  *        
- *        Allows for the location files to define items by a code rather than listing all of their attributes.
+ *        Allows for the location files to define items by a code or string
+ *        rather than listing all of their attributes. Also better validation
+ *        is added by restricting the items to being defined in a directory.
  */
 class ItemFactory {
     // Attributes

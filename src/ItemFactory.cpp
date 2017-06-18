@@ -17,7 +17,7 @@ ItemFactory::ItemFactory (std::string itemDir) {
     while(dir.has_next) {
         tinydir_file file;
         tinydir_readfile(&dir, &file);
-        if(file.is_reg) {
+        if(file.is_reg && strcmp(file.extension, "json") == 0) {
             this->loadItem(file.path);
         }
         tinydir_next(&dir);

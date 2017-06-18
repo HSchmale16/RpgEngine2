@@ -23,7 +23,7 @@
     if(it != jsonObj.end() && it->is_number()) \
         var = *it; \
     else \
-        throw keyname " Must be a string or is not available"; \
+        throw keyname " must be a number"; \
     }
 
 #define JSON_FROM_FILE(jsonObj, file) \

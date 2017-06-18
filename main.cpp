@@ -5,10 +5,10 @@
 
 int main(int argc, char** argv) {
     srand(time(nullptr));
-    // load up the items into static memory
-    ItemFactory ifact("config/items");
-    ifact.listItems(std::cout);
     try {
+        // load up the items into static memory
+        ItemFactory ifact("config/items");
+        ifact.listItems(std::cout);
         Location l("config/locations/test1.json");
         l.dump(std::cout);
         Session s(&l, std::cout);
