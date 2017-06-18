@@ -123,12 +123,15 @@ private:
     void performOperation(ValueStack& stack, StackItem::Type type) {
         assert(type != StackItem::VARIABLE && type != StackItem::CONSTANT);
         assert(stack.size() > 1);
+
+        // load operands
         int64_t op1, op2;
         op1 = stack.back();
         stack.pop_back();
         op2 = stack.back();
         stack.pop_back();
 
+        // place result
         switch(type) {
         case StackItem::ADDITION:
             stack.push_back(op2 + op1);
@@ -158,6 +161,11 @@ public:
     ~RpnCalculator() {}
 
     void loadOperations(std::string operations) {
+        // clear old ops and required variables
+        m_opStack.clear();
+        m_requiredVars.clear();
+
+        // load new ops
         std::stringstream sstr(operations);
         std::string str;
         while(sstr >> str) {
@@ -169,7 +177,6 @@ public:
         if(!validateVariableMap(vars))
             throw "RPNCALCULATOR Invalid Variable Map";
         ValueStack valueStack;
-        valueStack.reserve(m_opStack.size());
         for(auto& si : m_opStack) {
             //printStack(valueStack, std::cerr);
             switch(si.type) {
@@ -191,7 +198,6 @@ public:
         for(auto& i : m_opStack)
             i.dump(out);   
     }
-
 };
 
 

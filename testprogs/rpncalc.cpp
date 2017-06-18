@@ -14,15 +14,11 @@ std::string loadFile(std::string file) {
 
 int main(int argc, char** argv) {
     try {
-        if(argc < 2)
-            throw "FILE ARG REQUIRED";
-        std::string operation = loadFile(argv[1]);
         RpnCalculator c;
-        std::cout << sizeof c << std::endl;
-        c.loadOperations(operation);
-        c.dump(std::cerr);
-        VariableMap m;
-        m.insert(std::make_pair("VAR", 3));
+        c.loadOperations("4 5 +");
+        VariableMap m = {
+            {"VAR", 3}
+        };
         
         int64_t n = c.getResult(m);
         std::cout << "RESULT = " << n << std::endl;
