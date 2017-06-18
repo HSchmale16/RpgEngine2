@@ -28,9 +28,12 @@ class Room : public Entity {
         Room (const Location* loc, json def);
         virtual ~Room ();
 
-        EntityBase* searchTarget(std::string target);
+        Door* searchDoorKeywords(StringVector kws);
+
+
         virtual void loadJson(json js);
         virtual void dump(std::ostream& out);
+        virtual void printLookText(std::ostream& out);
 };
 
 #include "Location.hpp"

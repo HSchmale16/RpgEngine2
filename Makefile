@@ -5,6 +5,7 @@ OBJDIR := build
 OBJ := $(SRC:.cpp=.o)
 CXX_FLAGS := -g --std=c++11 -Wall -Werror
 
+
 .PHONY: all
 all: depend $(EXE)
 
@@ -14,7 +15,7 @@ clean:
 	rm -rf $(EXE)
 
 $(EXE): $(OBJ)
-	g++ $(CXX_FLAGS) -o $@ $^
+	g++ $(CXX_FLAGS) -o $@ $^ $(LD_FLAGS)
 
 %.o: %.cpp
 	g++ -c $(CXX_FLAGS) -o $@ $<

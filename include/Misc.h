@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
+#include <map>
 #include "EntityBase.hpp"
 
 #define JSON_ATTEMPT_READ_STR(var, jsonObj, keyname) \
@@ -82,6 +83,12 @@ T* searchEntitiesByName(std::vector<T*>& ents, std::string name) {
     if(it == ents.end())
         return nullptr;
     return *it;
+}
+
+template<typename T>
+T* searchEntitiesByKeywords(std::vector<T*>& ents, StringVector kws) {
+    std::map<int,T*> scores;
+    return nullptr;
 }
 
 inline void splitOnWords(const std::string& str, StringVector& sv) {

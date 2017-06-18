@@ -38,7 +38,9 @@
         "ratio": "cpp",
         "sstream": "cpp",
         "streambuf": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "bitset": "cpp",
+        "variant": "cpp"
     },
     "files.exclude": {
         "**/*.o": true

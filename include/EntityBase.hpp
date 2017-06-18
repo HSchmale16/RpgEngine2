@@ -6,6 +6,7 @@
 #include <vector>
 #include <cstdlib>
 #include <cstdint>
+#include <hunspell/hunspell.hxx>
 
 using json = nlohmann::json;
 

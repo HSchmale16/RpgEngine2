@@ -8,9 +8,9 @@ int main(int argc, char** argv) {
     try {
         // load up the items into static memory
         ItemFactory ifact("config/items");
-        ifact.listItems(std::cout);
+        //ifact.listItems(std::cout);
         Location l("config/locations/test1.json");
-        l.dump(std::cout);
+        //l.dump(std::cout);
         Session s(&l, std::cout);
         std::string line;
         while(getline(std::cin, line)) {

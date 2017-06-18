@@ -56,7 +56,7 @@ void Session::handleLook(StringVector pred) {
     else if(pred[0] == "self") {
         // search player inventory
     } else {
-        // search the room around
+        // search around the room
     }
     assert(target != nullptr);
     target->printLookText(m_outStream);

@@ -13,10 +13,6 @@ Room::~Room() {
         delete ent;
 }
 
-EntityBase* Room::searchTarget(std::string target) {
-    return searchEntitiesByName(m_entities, target);
-}
-
 void Room::loadJson(json js) {
     Entity::loadJson(js);
     JSON_GET_ITER_EXCEPT(js, doors, "doors");
@@ -52,5 +48,12 @@ void Room::dump(std::ostream& out) {
     Entity::dump(out);
     for(auto* ent : m_entities) {
         ent->dump(out);
+    }
+}
+
+void Room::printLookText(std::ostream& out) {
+    for(auto* ent : m_entities) {
+        out << ent->getName() << " - ";
+        ent->printLookText(out);
     }
 }

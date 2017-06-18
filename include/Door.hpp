@@ -11,6 +11,8 @@ class Door : public Entity {
         /// The name of the room it links to
         std::string m_linkTo;
         bool m_isLocked = false;
+
+        /// Parent
         Room* m_room;
     protected :
         virtual void loadJson(json js);
