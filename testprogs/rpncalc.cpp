@@ -18,11 +18,16 @@ int main(int argc, char** argv) {
             throw "FILE ARG REQUIRED";
         std::string operation = loadFile(argv[1]);
         RpnCalculator c;
+        std::cout << sizeof c << std::endl;
         c.loadOperations(operation);
         c.dump(std::cerr);
         VariableMap m;
-        c.getResult(m);
+        m.insert(std::make_pair("VAR", 3));
+        
+        int64_t n = c.getResult(m);
+        std::cout << "RESULT = " << n << std::endl;
     } catch (const char* c) {
+        std::cerr << std::endl;
         std::cerr << c << std::endl;
         return 1;
     }
