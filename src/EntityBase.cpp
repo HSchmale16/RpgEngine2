@@ -79,13 +79,12 @@ uint64_t EntityBase::getSerialNumber() {
 
 uint64_t EntityBase::getSearchScore(const StringVector& kws) {
     uint64_t sum = 0;
-    for(size_t i = 0; i < kws.size(); ++i) {
-        if(i >= m_keywords.size() || i >= kws.size()) {
-            // factor to account for the wrong length of args vs actual keys for this
-            sum *= 10;
-            break;
+    for(auto& kw : kws) {
+        std::vector<uint64_t> scores;
+        for(auto& mkw : m_keywords) {
+            scores.push_back(levenshtein(mkw.c_str(), kw.c_str()));
         }
-        sum += levenshtein(m_keywords[i].c_str(), kws[i].c_str());
+        sum += *std::min(scores.begin(), scores.end());
     }
     return sum;
 }

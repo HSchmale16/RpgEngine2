@@ -7,12 +7,12 @@
             "name": "room 1",
             "doors": [
                 {
-                    "name": "to room 2",
+                    "name": "Rusty New Door",
                     "linkTo": "room 2",
                     "lookTexts": "Takes you to the second room"
                 },
                 {
-                    "name": "to room 3",
+                    "name": "Old Locked Door",
                     "linkTo": "room 3",
                     "lookTexts": [
                         "An old door",
