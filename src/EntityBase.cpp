@@ -1,5 +1,6 @@
 #include "../include/EntityBase.hpp"
 #include "../include/Misc.h"
+#include "../lib/levenshtein.h"
 #include <cassert>
 #include <typeinfo>
 
@@ -74,4 +75,14 @@ void EntityBase::dump(std::ostream& out) {
 
 uint64_t EntityBase::getSerialNumber() {
     return m_serialNumber;
+}
+
+uint64_t EntityBase::getSearchScore(const StringVector& kws) {
+    uint64_t sum = 0;
+    for(size_t i = 0; i < kws.size(); ++i) {
+        if(i >= m_keywords.size() || i >= kws.size())
+            break;
+        sum += levenshtein(m_keywords[i].c_str(), kws[i].c_str());
+    }
+    return sum;
 }

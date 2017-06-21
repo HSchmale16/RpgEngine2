@@ -6,6 +6,7 @@
  * Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
  */
 
+#include "levenshtein.h"
 #include <string.h>
 #include <stdlib.h>
 

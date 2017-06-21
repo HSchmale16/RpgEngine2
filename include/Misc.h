@@ -85,9 +85,12 @@ T* searchEntitiesByName(std::vector<T*>& ents, std::string name) {
 }
 
 template<typename T>
-T* searchEntitiesByKeywords(std::vector<T*>& ents, StringVector kws) {
-    std::map<int,T*> scores;
-    return nullptr;
+T* searchEntitiesByKeywords(std::vector<T*>& ents, StringVector& kws) {
+    std::map<uint64_t,T*> scores;
+    for(auto* ent : ents) {
+        scores.insert(std::make_pair(ent->getSearchScore(kws), ent));
+    }
+    return scores.begin()->second;
 }
 
 inline void splitOnWords(const std::string& str, StringVector& sv) {

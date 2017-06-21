@@ -57,3 +57,7 @@ void Room::printLookText(std::ostream& out) {
         ent->printLookText(out);
     }
 }
+
+Entity* Room::searchRoomByKeywords(StringVector& kws) {
+    return searchEntitiesByKeywords(m_entities, kws);
+}

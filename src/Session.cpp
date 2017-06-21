@@ -46,8 +46,6 @@ bool Session::quit() const {
 }
 
 void Session::handleLook(StringVector pred) {
-    for(auto& s : pred)
-        std::cerr << s << std::endl;
     Entity* target = nullptr;
     if(pred.empty())
         target = m_currentRoom;
@@ -57,6 +55,7 @@ void Session::handleLook(StringVector pred) {
         // search player inventory
     } else {
         // search around the room
+        target = m_currentRoom->searchRoomByKeywords(pred);
     }
     assert(target != nullptr);
     target->printLookText(m_outStream);

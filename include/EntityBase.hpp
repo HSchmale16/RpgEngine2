@@ -17,6 +17,8 @@ class EntityBase {
     private :
         static uint64_t m_nextSerial;
         uint64_t m_serialNumber;
+
+        /// the name broken up into keywords
         StringVector m_keywords;
 
         void loadLookTexts(json ltexts);
@@ -51,6 +53,8 @@ class EntityBase {
         std::string getName () const;
         virtual void dump(std::ostream& out);
         uint64_t getSerialNumber();
+
+        uint64_t getSearchScore(const StringVector& kws);
 };
 
 #endif

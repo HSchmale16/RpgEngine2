@@ -14,7 +14,7 @@ class Room : public Entity {
     // Attributes
     private :
         /// contains all of the entities. 
-        std::vector<EntityBase*> m_entities;
+        std::vector<Entity*> m_entities;
         /// contains pointers to the door entities
         std::vector<Door*> m_doors;
         /// pointers to Things in m_entities.
@@ -34,6 +34,10 @@ class Room : public Entity {
         virtual void loadJson(json js);
         virtual void dump(std::ostream& out);
         virtual void printLookText(std::ostream& out);
+
+        /** Searches the entities in the room for a keyword match
+         */
+        Entity* searchRoomByKeywords(StringVector& kws);
 };
 
 #include "Location.hpp"

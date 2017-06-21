@@ -40,7 +40,8 @@
         "streambuf": "cpp",
         "system_error": "cpp",
         "bitset": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "cassert": "cpp"
     },
     "files.exclude": {
         "**/*.o": true
