@@ -97,9 +97,9 @@ private:
     }
 
     void parsePushString(std::string& str) {
-        const std::regex is_constant("[0-9]+");
-        const std::regex is_variable("[A-Za-z_]+");
-        const std::regex is_operator("[\\+\\-\\*\\/]");
+        static const std::regex is_constant("[0-9]+");
+        static const std::regex is_variable("[A-Za-z_]+");
+        static const std::regex is_operator("[\\+\\-\\*\\/]");
         if(std::regex_match(str, is_constant)) {
             pushConstant(stod(str));
         } else if (std::regex_match(str, is_variable)) {
@@ -144,6 +144,8 @@ private:
             break;
         case StackItem::DIVISION:
             stack.push_back(op2 / op1);
+            break;
+        default:
             break;
         }
     }
@@ -196,7 +198,7 @@ public:
 
     void dump(std::ostream& out) {
         for(auto& i : m_opStack)
-            i.dump(out);   
+            i.dump(out);  
     }
 };
 
