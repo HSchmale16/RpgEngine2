@@ -58,9 +58,20 @@ A rpn calculator can be found [here][rpn-calc-example]. Except these files can
 have variables. These calculators are strictly integer based.
 
 A very basic example might look like the below for calculating how much damage a user
-does with meelee damage.
+does with melee damage.
 
     STR ATK * WEP_MOD 100 / 1 +
 
 [rpn-calc-example]: http://www.meta-calculator.com/learning-lab/reverse-polish-notation-calculator.php
 [wiki-rpn]: https://en.wikipedia.org/wiki/Reverse_Polish_notation
+
+# Requirements
+Certain things can have requirements to interact with them in a certain way. For instance, doors
+can require either a key or a certain skill levels. As such the requirement engine is rather
+powerful.
+
+Requirements are organized as so:
+
+* RequirementSet
+    * RequirementGroup
+        * Requirementg
