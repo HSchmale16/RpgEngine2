@@ -1,5 +1,5 @@
 EXE := RpgEngine.out
-SRC := $(wildcard *.cpp) $(wildcard */*.cpp)
+SRC := $(wildcard *.cpp) $(wildcard src/*.cpp)
 HEADERS := $(wildcard include/*)
 OBJDIR := build
 OBJ := $(SRC:.cpp=.o)
@@ -25,6 +25,6 @@ depend: .depend
 
 .depend: $(SRC) $(HEADERS)
 	rm -f $@
-	$(CXX) $(CXXFLAGS) -MM $^ > $@
+	$(CXX) $(CXX_FLAGS) -MM $^ > $@
 
 include .depend
