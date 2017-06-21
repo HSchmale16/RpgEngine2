@@ -62,8 +62,7 @@
 
 
 template <typename I>
-I random_element(I begin, I end)
-{
+I random_element(I begin, I end) {
     const unsigned long n = std::distance(begin, end);
     const unsigned long divisor = ((long)RAND_MAX + 1) / n;
 
