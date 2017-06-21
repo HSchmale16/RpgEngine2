@@ -79,9 +79,9 @@ uint64_t EntityBase::getSerialNumber() {
 
 uint64_t EntityBase::getSearchScore(const StringVector& kws) {
     uint64_t sum = 0;
-    for(auto& kw : kws) {
+    for (auto& kw : kws) {
         std::vector<uint64_t> scores;
-        for(auto& mkw : m_keywords) {
+        for (auto& mkw : m_keywords) {
             scores.push_back(levenshtein(mkw.c_str(), kw.c_str()));
         }
         sum += *std::min(scores.begin(), scores.end());
