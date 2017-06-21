@@ -10,6 +10,14 @@
                     "name": "to room 2",
                     "linkTo": "room 2",
                     "lookTexts": "Takes you to the second room"
+                },
+                {
+                    "name": "to room 3",
+                    "linkTo": "room 3",
+                    "lookTexts": [
+                        "An old door",
+                        "Probably takes you to the third room"
+                    ]
                 }
             ],
             "furniture": [
