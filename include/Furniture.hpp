@@ -8,7 +8,7 @@ class Room;
 /**
  * \brief Some interactable item in a room.
  *        
- *        Defined in the furnitures tag of a room.
+ *  Defined in the furnitures slot of a room.
  */
 class Furniture : public Inventory {
     private :

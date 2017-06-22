@@ -2,6 +2,7 @@
 #define DOOR__HPP
 
 #include "Entity.hpp"
+#include "Player.hpp"
 
 class Room;
 
@@ -24,9 +25,9 @@ class Door : public Entity {
         /**
          * \brief attempts to unlock the door using passed players inventory aand stats.
          * \param p (in)
-         * \return bool
+         * \return true if p can open
          */
-        //bool unlock (const Player& p);
+        bool unlock (const Player& p);
 };
 
 #include "Room.hpp"

@@ -5,7 +5,6 @@
 
 class Player : public Inventory {
 public:
-    
 };
 
 #endif // PLAYER_HPP

@@ -6,6 +6,9 @@
 
 /**
  * \brief Contains rooms in the location.
+ * \author Henry J Schmale
+ *
+ * Will probably eventually belong to a world object in order to allow world fragements
  */
 class Location : public Entity {
     // Attributes
@@ -15,6 +18,9 @@ class Location : public Entity {
         std::string m_startRoomString;
         Room* m_startRoom;
 
+        /**\brief loads the room json
+         * expects the json to an array of objects
+         */
         void loadRooms(json js);
     public :
     // Operations
