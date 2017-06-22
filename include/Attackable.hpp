@@ -16,7 +16,7 @@ protected:
     Attackable();
 
 public:
-    ~Attackable();
+    virtual ~Attackable();
 
     uint64_t getMaxHealth();
     uint64_t getCurrentHealth();
