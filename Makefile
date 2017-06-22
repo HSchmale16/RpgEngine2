@@ -30,6 +30,6 @@ depend: .depend
 
 .depend: $(C_SRC) $(CXX_SRC) $(HEADERS)
 	rm -f $@
-	$(CXX) $(CXX_FLAGS) -MM $^ > $@
+	$(CXX) $(CXX_FLAGS) -MT $^ > $@
 
 include .depend

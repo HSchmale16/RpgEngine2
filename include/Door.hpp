@@ -19,6 +19,8 @@ class Door : public Entity {
     public :
         Door(Room* r, json js);
 
+        std::string getLinkTo();
+
         /**
          * \brief attempts to unlock the door using passed players inventory aand stats.
          * \param p (in)

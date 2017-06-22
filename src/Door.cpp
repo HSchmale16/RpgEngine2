@@ -14,3 +14,7 @@ void Door::loadJson(json js) {
     JSON_ATTEMPT_READ_STR(m_linkTo, js, "linkTo");
     /// TODO: Add locking
 }
+
+std::string Door::getLinkTo() {
+    return m_linkTo;
+}

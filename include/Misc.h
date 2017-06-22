@@ -85,12 +85,12 @@ T* searchEntitiesByName(std::vector<T*>& ents, std::string name) {
 }
 
 template<typename T>
-T* searchEntitiesByKeywords(std::vector<T*>& ents, StringVector& kws) {
+std::pair<uint64_t,T*> searchEntitiesByKeywords(std::vector<T*>& ents, StringVector& kws) {
     std::map<uint64_t,T*> scores;
     for(auto* ent : ents) {
         scores.insert(std::make_pair(ent->getSearchScore(kws), ent));
     }
-    return scores.begin()->second;
+    return *scores.begin();
 }
 
 inline void splitOnWords(const std::string& str, StringVector& sv) {
@@ -100,5 +100,19 @@ inline void splitOnWords(const std::string& str, StringVector& sv) {
     while(sstr >> tmp)
         sv.push_back(tmp);
 }
+
+/** Returns true for the affirmative
+ */
+inline bool promptYesNo(std::string q, std::ostream& out, std::istream& in) {
+    std::string answer;
+    do {
+        out << q;
+        getline(in, answer);
+        out << answer << std::endl;
+    } while (answer[0] != 'y' && answer[0] != 'n');
+    return answer[0] == 'y';
+}
+
+#define DO_YOU_MEAN(x) "Do you mean \"" + x + "\"? (y/n) "
 
 #endif // MISC_H_INC

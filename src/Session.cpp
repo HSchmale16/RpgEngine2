@@ -1,4 +1,5 @@
 #include "../include/Session.hpp"
+#include "../include/Misc.h"
 #include <sstream>
 
 Session::Session(Location* loc, std::ostream& out) : m_outStream(out) {
@@ -12,10 +13,13 @@ Session::Session(Location* loc, std::ostream& out) : m_outStream(out) {
     m_actions.insert(std::make_pair("look", &Session::handleLook));
     m_actions.insert(std::make_pair("examine", &Session::handleLook));
 
+    m_actions.insert(std::make_pair("go", &Session::handleGo));
+
     m_actions.insert(std::make_pair("take", &Session::handleTake));
 
     m_actions.insert(std::make_pair("quit", &Session::handleQuit));
     m_actions.insert(std::make_pair("exit", &Session::handleQuit));
+    
     m_actions.insert(std::make_pair("help", &Session::handleHelp));
 
     m_actions.insert(std::make_pair("save", &Session::handleSave));
@@ -55,18 +59,26 @@ void Session::handleLook(StringVector pred) {
         // search player inventory
     } else {
         // search around the room
-        target = m_currentRoom->searchRoomByKeywords(pred);
+        Room::EntityScore es = m_currentRoom->searchRoomByKeywords(pred);
+        if(es.first == 0 ||
+                promptYesNo(DO_YOU_MEAN(es.second->getName()), std::cout,
+                std::cin)) {
+            target = es.second;
+        } else
+            return;
     }
     assert(target != nullptr);
     target->printLookText(m_outStream);
 }
 
-void Session::handleTake(StringVector rem) {
+void Session::handleGo(StringVector rem) {
+    
+}
 
+void Session::handleTake(StringVector rem) {
 }
 
 void Session::handleHelp(StringVector) {
-
 }
 
 void Session::handleQuit(StringVector) {
@@ -74,5 +86,4 @@ void Session::handleQuit(StringVector) {
 }
 
 void Session::handleSave(StringVector) {
-
 }

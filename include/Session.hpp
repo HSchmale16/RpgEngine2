@@ -25,11 +25,13 @@ class Session {
         bool parseCommand (std::string line);
         bool quit() const;
     private :
+        // HANDLERS
         void handleTake (StringVector);
         void handleLook (StringVector);
         void handleHelp (StringVector);
         void handleSave (StringVector);
         void handleQuit (StringVector);
+        void handleGo   (StringVector);
 };
 
 #endif

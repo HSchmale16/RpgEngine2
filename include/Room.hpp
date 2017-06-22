@@ -35,9 +35,15 @@ class Room : public Entity {
         virtual void dump(std::ostream& out);
         virtual void printLookText(std::ostream& out);
 
+        typedef std::pair<uint64_t,Entity*> EntityScore;
         /** Searches the entities in the room for a keyword match
          */
-        Entity* searchRoomByKeywords(StringVector& kws);
+        EntityScore searchRoomByKeywords(StringVector& kws);
+
+        typedef std::pair<uint64_t,Door*> DoorScore;
+        /** Searches the doors in the room
+         */
+        DoorScore searchDoorByKeywords(StringVector& kws);
 };
 
 #include "Location.hpp"
