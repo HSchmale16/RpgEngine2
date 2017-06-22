@@ -1,38 +1,29 @@
-EXE := RpgEngine.out
-CXX_FLAGS := -g --std=c++17 -Wall -Werror
-C_FLAGS = -D_GNU_SOURCE -std=c99
+EXE 		:= RpgEngine.out
+CXX_FLAGS 	:= -g --std=c++17 -Wall -Werror
+C_FLAGS 	:= -D_GNU_SOURCE -std=c99
 
 CXX_SRC := $(wildcard *.cpp) $(wildcard src/*.cpp) 
 C_SRC 	:= $(wildcard lib/*.c)
 HEADERS := $(wildcard include/*)
-OBJDIR := build
-OBJ := $(CXX_SRC:.cpp=.o) $(C_SRC:.c=.o)
 
-
-
+OBJ := $(CXX_SRC:.cpp=.cpp.o) $(C_SRC:.c=.c.o)
 
 .PHONY: all
-all: depend $(EXE)
+all: $(EXE)
 
 .PHONY: clean
 clean:
 	rm -rf $(OBJ)
 	rm -rf $(EXE)
+	rm -f $(OBJ:.o=.d)
 
 $(EXE): $(OBJ)
 	g++ $(CXX_FLAGS) -o $@ $^ $(LD_FLAGS)
 
-%.o: %.cpp
-	$(CXX) -c $(CXX_FLAGS) -o $@ $<
+%.cpp.o: %.cpp
+	$(CXX) $(CXX_FLAGS) -MM -MF $(patsubst %.o,%.d,$@)  -c -o $@ $<
 
-%.o: %.c
-	$(CC) $(C_FLAGS) -c -o $@ $<
+%.c.o: %.c
+	$(CC) $(C_FLAGS) -c -MM -MF $(patsubst %.o,%.d,$@) -o $@ $<
 
-.PHONY: depend
-depend: .depend
-
-.depend: $(C_SRC) $(CXX_SRC) $(HEADERS)
-	rm -f $@
-	$(CXX) $(CXX_FLAGS) -MM $^ > $@
-
-include .depend
+-include $(OBJ:.o=.d)

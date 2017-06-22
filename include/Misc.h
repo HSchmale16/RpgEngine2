@@ -123,6 +123,4 @@ inline void lower_str(std::string& str) {
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
 }
 
-#define DO_YOU_MEAN(x) "Do you mean \"" + x + "\"? (y/n) "
-
 #endif // MISC_H_INC

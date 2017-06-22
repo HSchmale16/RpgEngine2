@@ -2,6 +2,11 @@
 #include "../include/Misc.h"
 #include <sstream>
 
+/* Builds a do you mean string. As macro because it should be lined
+ */
+#define DO_YOU_MEAN(x) "Do you mean \"" + x + "\"? (y/n) "
+
+
 Session::Session(Location* loc, std::ostream& out) : m_outStream(out) {
     assert(loc != nullptr);
     m_location = loc;
