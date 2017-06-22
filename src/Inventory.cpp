@@ -4,6 +4,7 @@ Inventory::Inventory(json js) {
     loadJson(js);
 }
 
+Inventory::Inventory() { }
 
 Inventory::~Inventory() {
     // clean up allocated items

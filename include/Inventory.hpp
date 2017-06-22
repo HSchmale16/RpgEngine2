@@ -17,7 +17,13 @@ class Inventory : public Entity {
 
         virtual void loadJson(json js);
     public :
+        /** Allows an inventory to be filled using a json array
+         */
         Inventory(json js);
+        
+        /** Constructs an empty inventory
+         */
+        Inventory();
         virtual ~Inventory();
 
         /** Adds an item using it's name string
