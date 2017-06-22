@@ -30,6 +30,7 @@ Session::Session(Location* loc, std::ostream& out) : m_outStream(out) {
 Session::~Session() { }
 
 bool Session::parseCommand(std::string line) {
+    lower_str(line);
     std::stringstream sstr(line);
     std::string word, tmp;
     StringVector sv;
@@ -63,6 +64,7 @@ void Session::handleLook(StringVector pred) {
         if(es.first == 0 ||
                 promptYesNo(DO_YOU_MEAN(es.second->getName()), std::cout,
                 std::cin)) {
+            std::cerr << es.first << std::endl;
             target = es.second;
         } else
             return;
@@ -72,7 +74,13 @@ void Session::handleLook(StringVector pred) {
 }
 
 void Session::handleGo(StringVector rem) {
-    
+    Room::DoorScore ds = m_currentRoom->searchDoorByKeywords(rem);
+    if(ds.first == 0 || promptYesNo(
+            DO_YOU_MEAN(ds.second->getName()), std::cout, std::cin)) {
+        assert(ds.second != nullptr);
+        m_currentRoom = m_location->getRoom(ds.second->getLinkTo());
+        assert(m_currentRoom != nullptr);
+    }
 }
 
 void Session::handleTake(StringVector rem) {

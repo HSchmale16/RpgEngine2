@@ -29,7 +29,10 @@ void EntityBase::setSerial() {
 }
 
 void EntityBase::setName(std::string name) {
+    m_keywords.clear();
     splitOnWords(name, m_keywords);
+    for(auto& k : m_keywords)
+        lower_str(k);
     m_name = name;
 }
 
@@ -69,14 +72,19 @@ void EntityBase::loadLookTexts(json ltexts) {
 }
 
 void EntityBase::dump(std::ostream& out) {
-    out << typeid(*this).name() << " " << m_serialNumber << " \"" << this->getName() << '"' 
-        << std::endl;
+    out << typeid(*this).name() << " " << m_serialNumber << " \"" 
+        << this->getName() << '"' << std::endl;
 }
 
 uint64_t EntityBase::getSerialNumber() {
     return m_serialNumber;
 }
 
+/** Performs a score calculation to determine how close this entity is to the
+ *  target entity description. Just as in golf a lower score is better here.
+ *  This is only good for small values of N, as it is O(n^4) with the levenshtein
+ *  stuff.
+ */
 uint64_t EntityBase::getSearchScore(const StringVector& kws) {
     uint64_t sum = 0;
     for (auto& kw : kws) {
@@ -84,7 +92,7 @@ uint64_t EntityBase::getSearchScore(const StringVector& kws) {
         for (auto& mkw : m_keywords) {
             scores.push_back(levenshtein(mkw.c_str(), kw.c_str()));
         }
-        sum += *std::min(scores.begin(), scores.end());
+        sum += *std::min_element(scores.begin(), scores.end());
     }
     return sum;
 }

@@ -1,6 +1,12 @@
 #ifndef MISC_H_INC
 #define MISC_H_INC
 
+/**\file Misc.h
+ * \author Henry J Schmale
+ * Contains random and useful functions for various things. Think of it as 
+ * this and that.
+ */
+
 #include <algorithm>
 #include <climits>
 #include <cstdlib>
@@ -111,6 +117,10 @@ inline bool promptYesNo(std::string q, std::ostream& out, std::istream& in) {
         out << answer << std::endl;
     } while (answer[0] != 'y' && answer[0] != 'n');
     return answer[0] == 'y';
+}
+
+inline void lower_str(std::string& str) {
+    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
 }
 
 #define DO_YOU_MEAN(x) "Do you mean \"" + x + "\"? (y/n) "

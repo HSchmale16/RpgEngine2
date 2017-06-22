@@ -1,11 +1,14 @@
 EXE := RpgEngine.out
+CXX_FLAGS := -g --std=c++17 -Wall -Werror
+C_FLAGS = -D_GNU_SOURCE -std=c99
+
 CXX_SRC := $(wildcard *.cpp) $(wildcard src/*.cpp) 
 C_SRC 	:= $(wildcard lib/*.c)
 HEADERS := $(wildcard include/*)
 OBJDIR := build
 OBJ := $(CXX_SRC:.cpp=.o) $(C_SRC:.c=.o)
-CXX_FLAGS := -g --std=c++17 -Wall -Werror
-C_FLAGS = -D_GNU_SOURCE -std=c99
+
+
 
 
 .PHONY: all
@@ -30,6 +33,6 @@ depend: .depend
 
 .depend: $(C_SRC) $(CXX_SRC) $(HEADERS)
 	rm -f $@
-	$(CXX) $(CXX_FLAGS) -MT $^ > $@
+	$(CXX) $(CXX_FLAGS) -MM $^ > $@
 
 include .depend
