@@ -12,9 +12,16 @@ Door::Door(Room* r, json js) {
 void Door::loadJson(json js) {
     Entity::loadJson(js);
     JSON_ATTEMPT_READ_STR(m_linkTo, js, "linkTo");
-    /// TODO: Add locking
+    /// TODO: Add locking load
 }
 
 std::string Door::getLinkTo() {
     return m_linkTo;
+}
+
+bool Door::unlock(const Player& p) {
+    if(m_isUnlocked)
+        return true;
+    // TODO: Add requirements checking
+    return false;
 }

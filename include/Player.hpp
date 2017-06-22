@@ -5,6 +5,8 @@
 
 class Player : public Inventory {
 public:
+    Player();
+    virtual ~Player();
 };
 
 #endif // PLAYER_HPP
