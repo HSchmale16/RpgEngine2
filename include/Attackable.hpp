@@ -10,16 +10,16 @@
  */
 class Attackable {
 private:
-    uint64_t m_currentHealth;
-    uint64_t m_maxHealth;
+    uint16_t m_currentHealth;
+    uint16_t m_maxHealth;
 protected:
     Attackable();
 
 public:
     virtual ~Attackable();
 
-    uint64_t getMaxHealth();
-    uint64_t getCurrentHealth();
+    uint16_t getMaxHealth();
+    uint16_t getCurrentHealth();
 };
 
 

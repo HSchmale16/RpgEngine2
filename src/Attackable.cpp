@@ -1,9 +1,9 @@
 #include "../include/Attackable.hpp"
 
-uint64_t Attackable::getCurrentHealth() {
+uint16_t Attackable::getCurrentHealth() {
     return m_currentHealth;
 }
 
-uint64_t Attackable::getMaxHealth() {
+uint16_t Attackable::getMaxHealth() {
     return m_maxHealth;
 }
