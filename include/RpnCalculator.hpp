@@ -41,7 +41,7 @@ private:
         }
 
         // var
-        StackItem(std::string& var) {
+        StackItem(const std::string& var) {
             type = VARIABLE;
             value = var;
         }
@@ -179,7 +179,7 @@ public:
         if(!validateVariableMap(vars))
             throw "RPNCALCULATOR Invalid Variable Map";
         ValueStack valueStack;
-        for(auto& si : m_opStack) {
+        for(const auto& si : m_opStack) {
             //printStack(valueStack, std::cerr);
             switch(si.type) {
             case StackItem::CONSTANT:
