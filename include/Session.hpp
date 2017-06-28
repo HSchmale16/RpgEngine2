@@ -7,7 +7,7 @@
 class Session {
     // Attributes
     private :
-        typedef void (Session::*CommandFunc)(StringVector);
+        typedef void (Session::*CommandFunc)(const StringVector&);
 
         bool m_quit = false;
         std::ostream& m_outStream;
@@ -26,12 +26,15 @@ class Session {
         bool quit() const;
     private :
         // HANDLERS
-        void handleTake (StringVector);
-        void handleLook (StringVector);
-        void handleHelp (StringVector);
-        void handleSave (StringVector);
-        void handleQuit (StringVector);
-        void handleGo   (StringVector);
+        void handleTake (const StringVector&);
+        void handleLook (const StringVector&);
+        void handleHelp (const StringVector&);
+        void handleSave (const StringVector&);
+        void handleQuit (const StringVector&);
+        void handleGo   (const StringVector&);
+
+        // HELPERS
+        Entity* help_selectRoomEntity(StringVector&);
 };
 
 #endif

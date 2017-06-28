@@ -81,7 +81,8 @@ I random_element(I begin, I end) {
 
 template<typename T>
 T* searchEntitiesByName(std::vector<T*>& ents, std::string name) {
-    //static_assert(std::is_base_of<T, EntityBase>::value);
+    static_assert(std::is_base_of<EntityBase, T>::value);
+
     auto it = std::find_if(ents.begin(), ents.end(), [&name](EntityBase const* ent) {
         return name == ent->getName();
     });
@@ -91,7 +92,9 @@ T* searchEntitiesByName(std::vector<T*>& ents, std::string name) {
 }
 
 template<typename T>
-std::pair<uint64_t,T*> searchEntitiesByKeywords(std::vector<T*>& ents, StringVector& kws) {
+std::pair<uint64_t,T*> searchEntitiesByKeywords(std::vector<T*>& ents, const StringVector& kws) {
+    static_assert(std::is_base_of<EntityBase, T>::value);
+
     std::map<uint64_t,T*> scores;
     for(auto* ent : ents) {
         scores.insert(std::make_pair(ent->getSearchScore(kws), ent));

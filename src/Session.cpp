@@ -55,7 +55,7 @@ bool Session::quit() const {
     return m_quit;
 }
 
-void Session::handleLook(StringVector pred) {
+void Session::handleLook(const StringVector& pred) {
     Entity* target = nullptr;
     if(pred.empty())
         target = m_currentRoom;
@@ -78,7 +78,7 @@ void Session::handleLook(StringVector pred) {
     target->printLookText(m_outStream);
 }
 
-void Session::handleGo(StringVector rem) {
+void Session::handleGo(const StringVector& rem) {
     Room::DoorScore ds = m_currentRoom->searchDoorByKeywords(rem);
     if(ds.first == 0 || promptYesNo(
             DO_YOU_MEAN(ds.second->getName()), std::cout, std::cin)) {
@@ -88,15 +88,15 @@ void Session::handleGo(StringVector rem) {
     }
 }
 
-void Session::handleTake(StringVector rem) {
+void Session::handleTake(const StringVector& rem) {
 }
 
-void Session::handleHelp(StringVector) {
+void Session::handleHelp(const StringVector&) {
 }
 
-void Session::handleQuit(StringVector) {
+void Session::handleQuit(const StringVector&) {
     m_quit = true;
 }
 
-void Session::handleSave(StringVector) {
+void Session::handleSave(const StringVector&) {
 }

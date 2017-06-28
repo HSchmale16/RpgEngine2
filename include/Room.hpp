@@ -28,9 +28,6 @@ class Room : public Entity {
         Room (const Location* loc, json def);
         virtual ~Room ();
 
-        Door* searchDoorKeywords(StringVector kws);
-
-
         virtual void loadJson(json js);
         virtual void dump(std::ostream& out);
         virtual void printLookText(std::ostream& out);
@@ -38,12 +35,12 @@ class Room : public Entity {
         typedef std::pair<uint64_t,Entity*> EntityScore;
         /** Searches the entities in the room for a keyword match
          */
-        EntityScore searchRoomByKeywords(StringVector& kws);
+        EntityScore searchRoomByKeywords(const StringVector& kws);
 
         typedef std::pair<uint64_t,Door*> DoorScore;
         /** Searches the doors in the room
          */
-        DoorScore searchDoorByKeywords(StringVector& kws);
+        DoorScore searchDoorByKeywords(const StringVector& kws);
 };
 
 #include "Location.hpp"

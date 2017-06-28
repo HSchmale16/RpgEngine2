@@ -58,10 +58,10 @@ void Room::printLookText(std::ostream& out) {
     }
 }
 
-Room::EntityScore Room::searchRoomByKeywords(StringVector& kws) {
+Room::EntityScore Room::searchRoomByKeywords(const StringVector& kws) {
     return searchEntitiesByKeywords(m_entities, kws);
 }
 
-Room::DoorScore Room::searchDoorByKeywords(StringVector& kws) {
+Room::DoorScore Room::searchDoorByKeywords(const StringVector& kws) {
     return searchEntitiesByKeywords(m_doors, kws);
 }
