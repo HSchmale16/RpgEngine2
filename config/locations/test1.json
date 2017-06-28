@@ -5,6 +5,7 @@
     "rooms": [
         {
             "name": "room 1",
+            "lookTexts": "This is the first room",
             "doors": [
                 {
                     "name": "Rusty New Door",

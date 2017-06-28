@@ -31,6 +31,7 @@ void EntityBase::setSerial() {
 void EntityBase::setName(std::string name) {
     m_keywords.clear();
     splitOnWords(name, m_keywords);
+    // modify strings in vector in place by reference
     for(auto& k : m_keywords)
         lower_str(k);
     m_name = name;

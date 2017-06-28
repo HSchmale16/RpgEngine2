@@ -1,5 +1,6 @@
 #include "../include/Room.hpp"
 #include "../include/Misc.h"
+#include "../lib/rang.hpp"
 
 Room::Room(const Location* loc, json def) : m_location(loc) {
     assert(m_location != nullptr);
@@ -52,8 +53,10 @@ void Room::dump(std::ostream& out) {
 }
 
 void Room::printLookText(std::ostream& out) {
+    using namespace rang;
+    Entity::printLookText(out);
     for(auto* ent : m_entities) {
-        out << ent->getName() << " - ";
+        out << style::bold << ent->getName() << style::reset << " - ";
         ent->printLookText(out);
     }
 }

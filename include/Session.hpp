@@ -2,6 +2,7 @@
 #define SESSION__HPP
 
 #include "Location.hpp"
+#include "Player.hpp"
 #include <map>
 
 class Session {
@@ -17,13 +18,14 @@ class Session {
         /// The current location
         Location* m_location = nullptr;
         /// The player for this session.
+        Player m_player;
         // TODO: Deal with player shit.
     // Operations
     public :
         Session (Location* loc, std::ostream& out);
         ~Session();
         bool parseCommand (std::string line);
-        bool quit() const;
+        bool quit () const;
     private :
         // HANDLERS
         void handleTake (const StringVector&);
@@ -34,7 +36,8 @@ class Session {
         void handleGo   (const StringVector&);
 
         // HELPERS
-        Entity* help_selectRoomEntity(StringVector&);
+        void setConsolePrint();
+        void resetConsoleDefaults();
 };
 
 #endif

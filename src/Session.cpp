@@ -1,5 +1,6 @@
 #include "../include/Session.hpp"
 #include "../include/Misc.h"
+#include "../lib/rang.hpp"
 #include <sstream>
 
 /* Builds a do you mean string. As macro because it should be lined
@@ -15,21 +16,17 @@ Session::Session(Location* loc, std::ostream& out) : m_outStream(out) {
     m_currentRoom = m_location->getStartRoom();
 
     // add valid actions
-    m_actions.insert(std::make_pair("look", &Session::handleLook));
-    m_actions.insert(std::make_pair("examine", &Session::handleLook));
+    m_actions.insert(std::make_pair("look",     &Session::handleLook));
+    m_actions.insert(std::make_pair("examine",  &Session::handleLook));
+    m_actions.insert(std::make_pair("go",       &Session::handleGo));
+    m_actions.insert(std::make_pair("take",     &Session::handleTake));
+    m_actions.insert(std::make_pair("quit",     &Session::handleQuit));
+    m_actions.insert(std::make_pair("exit",     &Session::handleQuit));
+    m_actions.insert(std::make_pair("help",     &Session::handleHelp));
+    m_actions.insert(std::make_pair("save",     &Session::handleSave));
 
-    m_actions.insert(std::make_pair("go", &Session::handleGo));
-
-    m_actions.insert(std::make_pair("take", &Session::handleTake));
-
-    m_actions.insert(std::make_pair("quit", &Session::handleQuit));
-    m_actions.insert(std::make_pair("exit", &Session::handleQuit));
-    
-    m_actions.insert(std::make_pair("help", &Session::handleHelp));
-
-    m_actions.insert(std::make_pair("save", &Session::handleSave));
-
-    m_currentRoom = m_location->getStartRoom();
+    // reset the client console
+    resetConsoleDefaults();
 }
 
 Session::~Session() { }
@@ -37,17 +34,21 @@ Session::~Session() { }
 bool Session::parseCommand(std::string line) {
     lower_str(line);
     std::stringstream sstr(line);
-    std::string word, tmp;
+    std::string command, tmp;
     StringVector sv;
     sv.reserve(10);
-    sstr >> word;
+    sstr >> command;
     while(sstr >> tmp)
         sv.push_back(tmp);
-    if(!m_actions.count(word)) {
-        m_outStream << "I don't know how to " << word << std::endl;
+
+    if(!m_actions.count(command)) {
+        m_outStream << "I don't know how to " << command << std::endl;
         return false;
     }
-    (this->*m_actions[word])(sv);
+
+    setConsolePrint();
+    (this->*m_actions[command])(sv);
+    resetConsoleDefaults();
     return true;
 }
 
@@ -99,4 +100,15 @@ void Session::handleQuit(const StringVector&) {
 }
 
 void Session::handleSave(const StringVector&) {
+}
+
+// HELPERS
+void Session::setConsolePrint() {
+    using namespace rang;
+    m_outStream << style::reset << fg::reset << bg::reset;
+}
+
+void Session::resetConsoleDefaults() {
+    using namespace rang;
+    m_outStream << style::reset << fg::reset << bg::reset;
 }
