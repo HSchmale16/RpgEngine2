@@ -49,7 +49,11 @@ class EntityBase {
         virtual void loadJson (json js);
     public :
         virtual ~EntityBase();
+
+
         virtual void printLookText (std::ostream& out);
+        virtual void printBasicLookText (std::ostream& out);
+
         std::string getName () const;
         virtual void dump(std::ostream& out);
         uint64_t getSerialNumber();

@@ -1,4 +1,5 @@
 #include "../include/Inventory.hpp"
+#include "../lib/rang.hpp"
 
 Inventory::Inventory(json js) {
     loadJson(js);
@@ -8,9 +9,8 @@ Inventory::Inventory() { }
 
 Inventory::~Inventory() {
     // clean up allocated items
-    for(Item* itm : m_items) {
+    for(Item* itm : m_items)
         delete itm;
-    }
 }
 
 /// TODO: Implement
@@ -66,5 +66,14 @@ void Inventory::loadJson(json js) {
             this->addItem(itmName);
         else if(itmName.is_number())
             this->addMoney(itmName);
+    }
+}
+
+void Inventory::printLookText(std::ostream& out) {
+    using namespace rang;
+    Entity::printLookText(out);
+    for(auto* i : m_items) {
+        out << style::bold << i->getName() << style::reset << " - ";
+        i->printLookText(out);
     }
 }

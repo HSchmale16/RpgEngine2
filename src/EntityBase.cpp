@@ -47,6 +47,10 @@ void EntityBase::printLookText(std::ostream& out) {
     out << std::endl;
 }
 
+void EntityBase::printBasicLookText(std::ostream& out) {
+    EntityBase::printLookText(out);
+}
+
 std::string EntityBase::getName() const {
     return m_name;
 }

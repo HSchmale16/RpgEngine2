@@ -56,6 +56,7 @@ class Inventory : public Entity {
         void addMoney(uint64_t amount);
 
         virtual void dump(std::ostream& out);
+        virtual void printLookText(std::ostream& out);
 };
 
 #endif

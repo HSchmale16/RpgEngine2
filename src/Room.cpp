@@ -57,7 +57,7 @@ void Room::printLookText(std::ostream& out) {
     Entity::printLookText(out);
     for(auto* ent : m_entities) {
         out << style::bold << ent->getName() << style::reset << " - ";
-        ent->printLookText(out);
+        ent->printBasicLookText(out);
     }
 }
 
