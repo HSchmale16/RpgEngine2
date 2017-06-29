@@ -1,6 +1,7 @@
 {
     "key": null,
     "quest key": null,
-    "sword": ["ATK"],
-    "food": ["RGN", "RES"]
+    "sword": ["attack"],
+    "belt": ["strength","luck"],
+    "food": ["health"]
 }
