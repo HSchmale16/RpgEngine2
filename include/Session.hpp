@@ -38,6 +38,9 @@ class Session {
         // HELPERS
         void setConsolePrint();
         void resetConsoleDefaults();
+
+        template<typename T>
+        bool matchOrPrompt(const std::pair<uint64_t,T*>& x);
 };
 
 #endif

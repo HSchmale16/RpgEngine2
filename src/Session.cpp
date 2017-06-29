@@ -56,6 +56,16 @@ bool Session::quit() const {
     return m_quit;
 }
 
+template<typename T>
+bool Session::matchOrPrompt(const std::pair<uint64_t,T*>& x) {
+    static_assert(std::is_base_of<EntityBase, T>::value);
+    assert(x.second != nullptr);
+    return x.first == 0 ||
+        promptYesNo(
+            DO_YOU_MEAN(x.second->getName()),
+            m_outStream, std::cin);
+}
+
 void Session::handleLook(const StringVector& pred) {
     Entity* target = nullptr;
     if(pred.empty())
@@ -67,9 +77,7 @@ void Session::handleLook(const StringVector& pred) {
     } else {
         // search around the room
         Room::EntityScore es = m_currentRoom->searchRoomByKeywords(pred);
-        if(es.first == 0 ||
-                promptYesNo(DO_YOU_MEAN(es.second->getName()), std::cout,
-                std::cin)) {
+        if(matchOrPrompt(es)) {
             target = es.second;
         } else
             return;
@@ -80,14 +88,11 @@ void Session::handleLook(const StringVector& pred) {
 
 void Session::handleGo(const StringVector& rem) {
     Room::DoorScore ds = m_currentRoom->searchDoorByKeywords(rem);
-    if(ds.first == 0 || promptYesNo(
-            DO_YOU_MEAN(ds.second->getName()), std::cout, std::cin)) {
-        assert(ds.second != nullptr);
-
+    if(matchOrPrompt(ds)) {
         m_currentRoom = m_location->getRoom(ds.second->getLinkTo());
-        m_currentRoom->handleEnter(this);
-
         assert(m_currentRoom != nullptr);
+
+        m_currentRoom->handleEnter(this);
     }
 }
 
