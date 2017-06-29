@@ -1,9 +1,9 @@
 {
-    "name": "turkey leg",
+    "name": "canned peas",
     "sellPrice": 10,
     "buyPrice": 12,
     "lookTexts": [
-        "This is a turkey leg. It provides healing."
+        "This is a can of peas. You can eat it to restore health"
     ],
     "type": "food",
     "attrib": {

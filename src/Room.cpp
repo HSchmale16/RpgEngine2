@@ -61,6 +61,10 @@ void Room::printLookText(std::ostream& out) {
     }
 }
 
+void Room::handleEnter(Session* s) {
+    
+}
+
 Room::EntityScore Room::searchRoomByKeywords(const StringVector& kws) {
     return searchEntitiesByKeywords(m_entities, kws);
 }

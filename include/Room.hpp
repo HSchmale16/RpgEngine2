@@ -6,6 +6,7 @@
 #include "Furniture.hpp"
 
 class Location;
+class Session;
 
 /**
  * \brief Defines a given spot a player can be in and operate on.
@@ -32,6 +33,8 @@ class Room : public Entity {
         virtual void dump(std::ostream& out);
         virtual void printLookText(std::ostream& out);
 
+        void handleEnter(Session* s);
+
         typedef std::pair<uint64_t,Entity*> EntityScore;
         /** Searches the entities in the room for a keyword match
          */
@@ -44,5 +47,6 @@ class Room : public Entity {
 };
 
 #include "Location.hpp"
+#include "Session.hpp"
 
 #endif

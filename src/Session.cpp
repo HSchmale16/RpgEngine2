@@ -70,7 +70,6 @@ void Session::handleLook(const StringVector& pred) {
         if(es.first == 0 ||
                 promptYesNo(DO_YOU_MEAN(es.second->getName()), std::cout,
                 std::cin)) {
-            std::cerr << es.first << std::endl;
             target = es.second;
         } else
             return;
@@ -84,7 +83,10 @@ void Session::handleGo(const StringVector& rem) {
     if(ds.first == 0 || promptYesNo(
             DO_YOU_MEAN(ds.second->getName()), std::cout, std::cin)) {
         assert(ds.second != nullptr);
+
         m_currentRoom = m_location->getRoom(ds.second->getLinkTo());
+        m_currentRoom->handleEnter(this);
+
         assert(m_currentRoom != nullptr);
     }
 }
