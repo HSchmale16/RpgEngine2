@@ -11,6 +11,8 @@
 using json = nlohmann::json;
 
 typedef std::vector<std::string> StringVector;
+typedef std::pair<StringVector,StringVector> StringVectorPair;
+
 /** This is an abstract base class for all entities
  */
 class EntityBase {

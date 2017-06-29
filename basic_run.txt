@@ -2,4 +2,9 @@ save
 look
 look tab
 y
+look rusty new door
+go
+go rusty new door
+look
+save
 quit

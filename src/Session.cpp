@@ -1,6 +1,7 @@
 #include "../include/Session.hpp"
 #include "../include/Misc.h"
 #include "../lib/rang.hpp"
+#include <exception>
 #include <sstream>
 
 /* Builds a do you mean string. As macro because it should be lined
@@ -87,6 +88,10 @@ void Session::handleLook(const StringVector& pred) {
 }
 
 void Session::handleGo(const StringVector& rem) {
+    if(rem.empty()) {
+        m_outStream << rang::fg::red << "Go Where?" << rang::fg::reset << std::endl;
+        return;
+    }
     Room::DoorScore ds = m_currentRoom->searchDoorByKeywords(rem);
     if(matchOrPrompt(ds)) {
         m_currentRoom = m_location->getRoom(ds.second->getLinkTo());
@@ -96,7 +101,18 @@ void Session::handleGo(const StringVector& rem) {
     }
 }
 
+StringVectorPair spliceOnWord(const StringVector& v, std::string word) {
+    auto it = std::find(v.begin(), v.end(), word);
+    if(it == v.end())
+        throw "missing clause";
+    return std::make_pair(
+        StringVector(v.begin(), it),
+        StringVector(std::next(it), v.end())
+    );
+}
+
 void Session::handleTake(const StringVector& rem) {
+    StringVectorPair sp = spliceOnWord(rem, "from");
 }
 
 void Session::handleHelp(const StringVector&) {
