@@ -2,8 +2,9 @@
 #define PLAYER__HPP
 
 #include "Inventory.hpp"
+#include "Attackable.hpp"
 
-class Player : public Inventory {
+class Player : public Inventory, Attackable {
 public:
     Player();
     virtual ~Player();
