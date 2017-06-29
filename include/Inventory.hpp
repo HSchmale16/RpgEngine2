@@ -30,21 +30,16 @@ class Inventory : public Entity {
          */
         void addItem(std::string name);
 
-        /** removes item from inventory and returns a copy
-         */
-        Item* takeItem (std::string name);
-
-        /**
-         * \brief tests whether this inventory contains an item like itm.
-         * \param itm (???)
-         * \return bool
-         */
-        bool contains (Item& itm);
-
         /**\brief tests whether it contains an item of name
          * \return true if so.
          */
         bool contains (std::string name);
+
+        typedef std::pair<uint64_t,Item*> ItemScore;
+        ItemScore getItemPtrByKeywords(const StringVector& keys);
+
+        void removeItemByPtr(Item* itm);
+
         /**
          * \brief Returns the current value of money and sets it to 0.
          * \return int

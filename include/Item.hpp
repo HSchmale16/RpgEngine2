@@ -6,17 +6,17 @@
 
 class ItemFactory;
 
+typedef std::map<std::string,int16_t> AttributeMap;
+
 class Item : public EntityBase {
     // Attributes
     private :
         std::string m_type;
-        std::map<std::string,int> m_attributes;
+        AttributeMap m_attributes;
         /// Price to buy from a store
-        int m_buyPrice;
+        uint32_t m_buyPrice;
         /// Money returned for selling to store.
-        int m_sellPrice;
-
-        ItemFactory* m_factory;
+        uint32_t m_sellPrice;
     public:
         Item(json j, ItemFactory* factory);
         Item(const Item& itm);

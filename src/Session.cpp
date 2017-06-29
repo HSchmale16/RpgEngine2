@@ -113,6 +113,7 @@ StringVectorPair spliceOnWord(const StringVector& v, std::string word) {
 
 void Session::handleTake(const StringVector& rem) {
     StringVectorPair sp = spliceOnWord(rem, "from");
+    
 }
 
 void Session::handleHelp(const StringVector&) {

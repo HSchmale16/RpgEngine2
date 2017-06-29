@@ -14,28 +14,8 @@ Inventory::~Inventory() {
 }
 
 /// TODO: Implement
-Item* Inventory::takeItem(std::string name) {
-    return nullptr;
-}
-
-/// TODO: Implement
-bool Inventory::contains(Item& itm) {
-    return false;
-}
-
-/// TODO: Implement
 bool Inventory::contains(std::string name) {
     return false;
-}
-
-uint64_t Inventory::takeMoney() {
-    int m = m_money;
-    m_money = 0;
-    return m;
-}
-
-uint64_t Inventory::getMoney() {
-    return m_money;
 }
 
 void Inventory::dump(std::ostream& out) {
@@ -48,6 +28,22 @@ void Inventory::addItem(std::string name) {
     ItemFactory ifact;
     Item* item = ifact.getByName(name);
     m_items.push_back(item);
+}
+
+
+
+// ////////////////////////////////////////////
+// MONEY MANAGEMENT STUFF
+// ////////////////////////////////////////////
+
+uint64_t Inventory::takeMoney() {
+    int m = m_money;
+    m_money = 0;
+    return m;
+}
+
+uint64_t Inventory::getMoney() {
+    return m_money;
 }
 
 void Inventory::addMoney(uint64_t amount) {
