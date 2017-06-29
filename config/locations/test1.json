@@ -13,6 +13,11 @@
                     "lookTexts": "Takes you to the second room"
                 },
                 {
+                    "name": "Rusty Old Door",
+                    "linkTo": "room 4",
+                    "lookTexts": "test for 2 entities with same keyword in names"
+                },
+                {
                     "name": "Old Locked Door",
                     "linkTo": "room 3",
                     "lookTexts": [
