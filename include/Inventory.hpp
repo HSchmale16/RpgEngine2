@@ -10,7 +10,7 @@
  *        
  *        All things that can be taken from must inherit from this.
  */
-class Inventory : public Entity {
+class Inventory : public virtual Entity {
     // Attributes
     protected :
         std::list<Item*> m_items;

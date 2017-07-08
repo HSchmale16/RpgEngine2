@@ -4,17 +4,9 @@
 #include "Item.hpp"
 #include "EntityBase.hpp"
 
-class Entity : public EntityBase {
+class Entity : public virtual EntityBase {
     // Operations
     public:
-        /**
-         * \brief Uses a given item on this instance.
-         * \param itm (???)
-         * \return void
-         */
-        virtual void use (const Item& itm);
-
-        
 };
 
 #endif
