@@ -1,6 +1,6 @@
-#include "../include/EntityBase.hpp"
-#include "../include/Misc.h"
-#include "../lib/levenshtein.h"
+#include "EntityBase.hpp"
+#include "Misc.h"
+#include "levenshtein.h"
 #include <cassert>
 #include <typeinfo>
 
@@ -85,6 +85,12 @@ uint64_t EntityBase::getSerialNumber() {
     return m_serialNumber;
 }
 
+struct CompareBySize {
+    bool operator()(const StringVector& a, const StringVector& b) {
+        return a.size() < b.size();
+    }
+};
+
 /** Performs a score calculation to determine how close this entity is to the
  *  target entity description. Just as in golf a lower score is better here.
  *  This is only good for small values of N, as it is O(n^4) with the levenshtein
@@ -92,10 +98,11 @@ uint64_t EntityBase::getSerialNumber() {
  */
 uint64_t EntityBase::getSearchScore(const StringVector& kws) {
     uint64_t sum = 0;
-    for (auto& kw : kws) {
+    auto kwSize = std::minmax(kws, m_keywords, CompareBySize());
+    for (auto& kw1 : kwSize.second) {
         std::vector<uint64_t> scores;
-        for (auto& mkw : m_keywords) {
-            scores.push_back(levenshtein(mkw.c_str(), kw.c_str()));
+        for (auto& kw2 : kwSize.first) {
+            scores.push_back(levenshtein(kw1.c_str(), kw2.c_str()));
         }
         sum += *std::min_element(scores.begin(), scores.end());
     }

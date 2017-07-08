@@ -42,7 +42,8 @@
         "bitset": "cpp",
         "variant": "cpp",
         "cassert": "cpp",
-        "cmakeccompilerid.c": "cpp"
+        "cmakeccompilerid.c": "cpp",
+        "levenshtein.c": "cpp"
     },
     "files.exclude": {
         "**/*.o": true,
