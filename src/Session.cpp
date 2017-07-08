@@ -101,7 +101,7 @@ void Session::handleGo(const StringVector& rem) {
     }
 }
 
-StringVectorPair spliceOnWord(const StringVector& v, std::string word) {
+StringVectorPair splitOnWord(const StringVector& v, std::string word) {
     auto it = std::find(v.begin(), v.end(), word);
     if(it == v.end())
         throw "missing clause";
@@ -112,8 +112,16 @@ StringVectorPair spliceOnWord(const StringVector& v, std::string word) {
 }
 
 void Session::handleTake(const StringVector& rem) {
-    StringVectorPair sp = spliceOnWord(rem, "from");
-    
+    StringVectorPair sp;
+    try {
+        sp = splitOnWord(rem, "from");
+    } catch(const char* ex) {
+        m_outStream << rang::fg::red << rang::style::bold
+            << "missing from clause in take: take <item> from <furniture>"
+            << std::endl;
+        resetConsoleDefaults();
+        return;
+    }
 }
 
 void Session::handleHelp(const StringVector&) {
