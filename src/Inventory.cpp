@@ -30,6 +30,12 @@ void Inventory::addItem(std::string name) {
     m_items.push_back(item);
 }
 
+void Inventory::addItem(Item* item) {
+    assert(item != nullptr);
+    item->getName();
+    m_items.push_back(item);
+}
+
 Item* Inventory::removeItemByPointer(Item* item) {
     auto it = std::find(m_items.begin(), m_items.end(), item);
     if(it != m_items.end()) {
