@@ -3,6 +3,7 @@
 
 #include "Item.hpp"
 #include "Entity.hpp"
+#include <list>
 
 /**
  * \brief Provides base class for something that has an inventory.
@@ -12,7 +13,7 @@
 class Inventory : public Entity {
     // Attributes
     protected :
-        std::vector<Item*> m_items;
+        std::list<Item*> m_items;
         uint64_t m_money = 0;
 
         virtual void loadJson(json js);
@@ -30,6 +31,11 @@ class Inventory : public Entity {
          */
         void addItem(std::string name);
 
+        /** add an item by the pointer
+         *  The given pointer better not be in stack space.
+         */
+        void addItem(Item* item);
+
         /**\brief tests whether it contains an item of name
          * \return true if so.
          */
@@ -38,7 +44,14 @@ class Inventory : public Entity {
         typedef std::pair<uint64_t,Item*> ItemScore;
         ItemScore getItemPtrByKeywords(const StringVector& keys);
 
-        void removeItemByPtr(Item* itm);
+        /** \returns passed item pointer on successful remove, otherwise nullptr
+         */
+        Item* removeItemByPointer(Item* item);
+
+        /** Returns number of items in this inventory
+         */
+        size_t getItemCount() const;
+
 
         /**
          * \brief Returns the current value of money and sets it to 0.

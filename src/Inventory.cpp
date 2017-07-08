@@ -25,12 +25,23 @@ void Inventory::dump(std::ostream& out) {
 }
 
 void Inventory::addItem(std::string name) {
-    ItemFactory ifact;
-    Item* item = ifact.getByName(name);
+    ItemFactory itemFactory;
+    Item* item = itemFactory.getByName(name);
     m_items.push_back(item);
 }
 
+Item* Inventory::removeItemByPointer(Item* item) {
+    auto it = std::find(m_items.begin(), m_items.end(), item);
+    if(it != m_items.end()) {
+        m_items.erase(it);
+        return item;
+    }
+    return nullptr;
+}
 
+size_t Inventory::getItemCount() const {
+    return m_items.size();
+}
 
 // ////////////////////////////////////////////
 // MONEY MANAGEMENT STUFF

@@ -23,7 +23,7 @@ class EntityBase {
         /// the name broken up into keywords
         StringVector m_keywords;
 
-        void loadLookTexts(json ltexts);
+        void loadLookTexts(json looktexts);
 
         void setName(std::string name);
 

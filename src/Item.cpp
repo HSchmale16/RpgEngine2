@@ -13,7 +13,6 @@ Item::Item(json j, ItemFactory* factory) : EntityBase(j) {
 
 Item::Item(const Item& itm) : EntityBase(itm) {
     this->m_type = itm.m_type;
-    this->m_attributes = itm.m_attributes;
     this->m_buyPrice = itm.m_buyPrice;
     this->m_sellPrice = itm.m_sellPrice;
 }

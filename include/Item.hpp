@@ -6,13 +6,10 @@
 
 class ItemFactory;
 
-typedef std::map<std::string,int16_t> AttributeMap;
-
 class Item : public EntityBase {
     // Attributes
     private :
         std::string m_type;
-        AttributeMap m_attributes;
         /// Price to buy from a store
         uint32_t m_buyPrice;
         /// Money returned for selling to store.
