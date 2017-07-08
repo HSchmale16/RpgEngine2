@@ -1,5 +1,6 @@
-#include "../include/Inventory.hpp"
-#include "../lib/rang.hpp"
+#include "Inventory.hpp"
+#include "Misc.h"
+#include "rang.hpp"
 
 Inventory::Inventory(json js) {
     loadJson(js);
@@ -36,7 +37,24 @@ void Inventory::addItem(Item* item) {
     m_items.push_back(item);
 }
 
+void Inventory::takeItem(Inventory* from, Item* targetItem) {
+    assert(from != nullptr);
+    assert(targetItem != nullptr);
+
+    Item* tmp = from->removeItemByPointer(targetItem);
+    assert(tmp != nullptr);
+
+    this->addItem(targetItem);
+}
+
+
+Inventory::ItemScore Inventory::getItemPtrByKeywords(const StringVector& kws) {
+    return searchEntitiesByKeywords(m_items, kws);
+}
+
 Item* Inventory::removeItemByPointer(Item* item) {
+    assert(item != nullptr);
+
     auto it = std::find(m_items.begin(), m_items.end(), item);
     if(it != m_items.end()) {
         m_items.erase(it);

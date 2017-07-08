@@ -62,7 +62,7 @@ void Room::printLookText(std::ostream& out) {
 }
 
 void Room::handleEnter(Session* s) {
-    
+    /// TODO: handle details based on session, like causing a combat scenario to occur, like there's a boss
 }
 
 Room::EntityScore Room::searchRoomByKeywords(const StringVector& kws) {
@@ -71,4 +71,8 @@ Room::EntityScore Room::searchRoomByKeywords(const StringVector& kws) {
 
 Room::DoorScore Room::searchDoorByKeywords(const StringVector& kws) {
     return searchEntitiesByKeywords(m_doors, kws);
+}
+
+Room::FurnitureScore Room::searchFurnitureByKeywords(const StringVector& kws) {
+    return searchEntitiesByKeywords(m_furniture, kws);
 }

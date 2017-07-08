@@ -11,5 +11,9 @@ file(GLOB_RECURSE USR_SRC "src/*" main.cpp)
 file(GLOB_RECURSE LIB_SRC "lib/*")
 set(SOURCE_FILES ${USR_SRC} ${LIB_SRC})
 
+# Add the include directories)
+include_directories(include)
+include_directories(lib)
 
+# Create my executable
 add_executable(RpgEngine.out ${SOURCE_FILES})

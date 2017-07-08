@@ -41,7 +41,8 @@
         "system_error": "cpp",
         "bitset": "cpp",
         "variant": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "cmakeccompilerid.c": "cpp"
     },
     "files.exclude": {
         "**/*.o": true,

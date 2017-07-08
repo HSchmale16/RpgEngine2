@@ -11,9 +11,17 @@
  *        All things that can be taken from must inherit from this.
  */
 class Inventory : public virtual Entity {
-    // Attributes
+    private: 
+        /** add an item by the pointer
+         *  The given pointer better not be in stack space.
+         */
+        void addItem(Item* item);
+
+        /** \returns passed item pointer on successful remove, otherwise nullptr
+         */
+        Item* removeItemByPointer(Item* item);
     protected :
-        std::list<Item*> m_items;
+        std::vector<Item*> m_items;
         uint64_t m_money = 0;
 
         virtual void loadJson(json js);
@@ -31,10 +39,9 @@ class Inventory : public virtual Entity {
          */
         void addItem(std::string name);
 
-        /** add an item by the pointer
-         *  The given pointer better not be in stack space.
+        /** Takes item from target and moves it to self
          */
-        void addItem(Item* item);
+        void takeItem(Inventory* from, Item* targetItem);
 
         /**\brief tests whether it contains an item of name
          * \return true if so.
@@ -43,10 +50,6 @@ class Inventory : public virtual Entity {
 
         typedef std::pair<uint64_t,Item*> ItemScore;
         ItemScore getItemPtrByKeywords(const StringVector& keys);
-
-        /** \returns passed item pointer on successful remove, otherwise nullptr
-         */
-        Item* removeItemByPointer(Item* item);
 
         /** Returns number of items in this inventory
          */

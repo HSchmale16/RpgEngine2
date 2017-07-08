@@ -8,6 +8,19 @@
  */
 #define DO_YOU_MEAN(x) "Do you mean \"" + x + "\"? (y/n) "
 
+StringVectorPair splitOnWord(const StringVector& v, std::string word) {
+    auto it = std::find(v.begin(), v.end(), word);
+    if(it == v.end())
+        throw "missing clause";
+    return std::make_pair(
+        StringVector(v.begin(), it),
+        StringVector(std::next(it), v.end())
+    );
+}
+
+//////////////////////////////////////////////
+// SESSION IMPL
+//////////////////////////////////////////////
 
 Session::Session(Location* loc, std::ostream& out) : m_outStream(out) {
     assert(loc != nullptr);
@@ -101,20 +114,18 @@ void Session::handleGo(const StringVector& rem) {
     }
 }
 
-StringVectorPair splitOnWord(const StringVector& v, std::string word) {
-    auto it = std::find(v.begin(), v.end(), word);
-    if(it == v.end())
-        throw "missing clause";
-    return std::make_pair(
-        StringVector(v.begin(), it),
-        StringVector(std::next(it), v.end())
-    );
-}
-
 void Session::handleTake(const StringVector& rem) {
     StringVectorPair sp;
     try {
-        sp = splitOnWord(rem, "from");
+        sp = splitOnWord(rem, "from"); // item <FROM> furniture
+        Room::FurnitureScore fs = m_currentRoom->searchFurnitureByKeywords(sp.second);
+        if(matchOrPrompt(fs)) {
+            Inventory::ItemScore is = fs.second->getItemPtrByKeywords(sp.first);
+            if(matchOrPrompt(is)) {
+                // take and place in player inventory
+                m_player.takeItem(fs.second, is.second);
+            }
+        }
     } catch(const char* ex) {
         m_outStream << rang::fg::red << rang::style::bold
             << "missing from clause in take: take <item> from <furniture>"

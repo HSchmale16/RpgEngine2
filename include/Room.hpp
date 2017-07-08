@@ -44,6 +44,9 @@ class Room : public Entity {
         /** Searches the doors in the room
          */
         DoorScore searchDoorByKeywords(const StringVector& kws);
+
+        typedef std::pair<uint64_t,Furniture*> FurnitureScore;
+        FurnitureScore searchFurnitureByKeywords(const StringVector& kws);
 };
 
 #include "Location.hpp"
