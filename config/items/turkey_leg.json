@@ -6,7 +6,7 @@
         "This is a turkey leg. It provides healing."
     ],
     "type": "food",
-    "attrib": {
+    "attributes": {
         "health": "+10"
     }
 }

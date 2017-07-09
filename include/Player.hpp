@@ -4,7 +4,7 @@
 #include "Inventory.hpp"
 #include "Attackable.hpp"
 
-class Player : public Inventory, public Attackable {
+class Player : public virtual Inventory, public virtual Attackable {
 public:
     Player();
     virtual ~Player();

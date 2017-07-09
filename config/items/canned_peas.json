@@ -6,7 +6,7 @@
         "This is a can of peas. You can eat it to restore health"
     ],
     "type": "food",
-    "attrib": {
+    "attributes": {
         "health": "+10"
     }
 }

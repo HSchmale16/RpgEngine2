@@ -34,6 +34,7 @@ class EntityBase {
         std::string m_name;
         /// Information that can be found by looking at it.
         StringVector m_lookTexts;
+        AttributeMap m_attributes;
 
         // CTOR Are protected because this is an abstract class
         EntityBase (json j);
@@ -49,6 +50,11 @@ class EntityBase {
          * \param js (???) The json to load.
          */
         virtual void loadJson (json js);
+
+        /**
+         * Loads attributes from json
+         */
+        void loadAttributes(json js);
     public :
         virtual ~EntityBase();
 

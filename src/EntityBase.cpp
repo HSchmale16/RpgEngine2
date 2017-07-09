@@ -61,10 +61,16 @@ void EntityBase::loadJson(json js) {
     // attempt to load the name
     JSON_ATTEMPT_FUNC_EX(js, "name", this->setName);
     // load the look texts
-    if(js.find("lookTexts") != js.end())
-        loadLookTexts(js["lookTexts"]);
-    
+    JSON_ATTEMPT_FUNC_OPT(js, "lookTexts", loadLookTexts);
+    JSON_ATTEMPT_FUNC_OPT(js, "attributes", loadAttributes);
+
     this->setSerial();
+}
+
+void EntityBase::loadAttributes(json js) {
+    if(!js.is_object())
+        throw "Attributes are loaded from an object";
+    
 }
 
 void EntityBase::loadLookTexts(json ltexts) {

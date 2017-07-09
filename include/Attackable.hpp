@@ -4,11 +4,12 @@
 #include <map>
 #include <string>
 #include <cstdint>
+#include "EntityBase.hpp"
 
 /** Interface to allow an entity to become attackable
  * \author Henry J Schmale
  */
-class Attackable {
+class Attackable : public virtual EntityBase {
 private:
     uint16_t m_currentHealth;
     uint16_t m_maxHealth;

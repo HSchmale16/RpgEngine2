@@ -6,7 +6,7 @@
         "A weightlifting belt providing a strength buff"
     ],
     "type": "belt",
-    "attribs": {
+    "attributes": {
         "strength": "+3"
     }
 }

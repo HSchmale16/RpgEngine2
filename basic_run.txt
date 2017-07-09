@@ -3,6 +3,10 @@ look
 look tab
 y
 look rusty new door
+look table
+inventory
+take turkey leg from table
+inventory
 go
 go rusty new door
 look
