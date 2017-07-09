@@ -67,6 +67,16 @@ size_t Inventory::getItemCount() const {
     return m_items.size();
 }
 
+void Inventory::printInventory(std::ostream& out) {
+    if(m_items.size() == 0) {
+        out << "Inventory is empty" << std::endl;
+        return;
+    }
+    for(auto& item : m_items) {
+        item->printDetailed(out);
+    }
+}
+
 // ////////////////////////////////////////////
 // MONEY MANAGEMENT STUFF
 // ////////////////////////////////////////////

@@ -19,6 +19,8 @@ class Item : public EntityBase {
         Item(const Item& itm);
 
         std::string getType();
+
+        void printDetailed(std::ostream& out);
 };
 
 #include "ItemFactory.hpp"

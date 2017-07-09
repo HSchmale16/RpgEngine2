@@ -34,6 +34,7 @@ class Session {
         void handleSave (const StringVector&);
         void handleQuit (const StringVector&);
         void handleGo   (const StringVector&);
+        void handleInventory (const StringVector&);
 
         // HELPERS
         void setConsolePrint();

@@ -55,7 +55,6 @@ class Inventory : public virtual Entity {
          */
         size_t getItemCount() const;
 
-
         /**
          * \brief Returns the current value of money and sets it to 0.
          * \return int
@@ -68,6 +67,8 @@ class Inventory : public virtual Entity {
 
         virtual void dump(std::ostream& out);
         virtual void printLookText(std::ostream& out);
+
+        void printInventory(std::ostream& out);
 };
 
 #endif

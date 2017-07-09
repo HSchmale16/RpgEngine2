@@ -30,14 +30,15 @@ Session::Session(Location* loc, std::ostream& out) : m_outStream(out) {
     m_currentRoom = m_location->getStartRoom();
 
     // add valid actions
-    m_actions.insert(std::make_pair("look",     &Session::handleLook));
-    m_actions.insert(std::make_pair("examine",  &Session::handleLook));
-    m_actions.insert(std::make_pair("go",       &Session::handleGo));
-    m_actions.insert(std::make_pair("take",     &Session::handleTake));
-    m_actions.insert(std::make_pair("quit",     &Session::handleQuit));
-    m_actions.insert(std::make_pair("exit",     &Session::handleQuit));
-    m_actions.insert(std::make_pair("help",     &Session::handleHelp));
-    m_actions.insert(std::make_pair("save",     &Session::handleSave));
+    m_actions.insert(std::make_pair("look",         &Session::handleLook));
+    m_actions.insert(std::make_pair("examine",      &Session::handleLook));
+    m_actions.insert(std::make_pair("go",           &Session::handleGo));
+    m_actions.insert(std::make_pair("take",         &Session::handleTake));
+    m_actions.insert(std::make_pair("quit",         &Session::handleQuit));
+    m_actions.insert(std::make_pair("exit",         &Session::handleQuit));
+    m_actions.insert(std::make_pair("help",         &Session::handleHelp));
+    m_actions.insert(std::make_pair("save",         &Session::handleSave));
+    m_actions.insert(std::make_pair("inventory",    &Session::handleInventory));
 
     // reset the client console
     resetConsoleDefaults();
@@ -143,6 +144,10 @@ void Session::handleQuit(const StringVector&) {
 }
 
 void Session::handleSave(const StringVector&) {
+}
+
+void Session::handleInventory(const StringVector&) {
+    m_player.printInventory(m_outStream);
 }
 
 // HELPERS

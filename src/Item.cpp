@@ -20,3 +20,8 @@ Item::Item(const Item& itm) : EntityBase(itm) {
 std::string Item::getType() {
     return m_type;
 }
+
+void Item::printDetailed(std::ostream& out) {
+    out << getName() << std::endl;
+    printLookText(out);
+}
