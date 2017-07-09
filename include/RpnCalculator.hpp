@@ -12,14 +12,15 @@
 #include <cassert>
 #include <iostream>
 #include <cstdint>
+#include "EntityBase.hpp"
 
-typedef std::map<std::string,int64_t> VariableMap;
+typedef std::map<std::string,AttributeInteger> VariableMap;
 
 /** A simple RPN calculator that supports variables passed in using an std::map
  */
 class RpnCalculator {
 private:
-    typedef std::vector<int64_t> ValueStack;
+    typedef std::vector<AttributeInteger> ValueStack;
 
     /* Defines an operation or constant in the operation stack
      */
@@ -32,10 +33,10 @@ private:
             MULTIPLY = '*',     // *
             DIVISION = '/'      // /
         } type;
-        std::variant<std::string,int64_t> value;
+        std::variant<std::string,AttributeInteger> value;
 
         // constants
-        StackItem(int64_t n) {
+        StackItem(AttributeInteger n) {
             type = CONSTANT;
             value = n;
         }
@@ -64,7 +65,7 @@ private:
 
         void dump(std::ostream& out) {
             if(type == CONSTANT) {
-                out << "CONST = " << std::get<int64_t>(value) << std::endl;
+                out << "CONST = " << std::get<AttributeInteger>(value) << std::endl;
             } else if(type == VARIABLE) {
                 out << "VARIA = " << std::get<std::string>(value) << std::endl;
             } else {
@@ -79,7 +80,7 @@ private:
     // vars that must be in the variable map for this to execute
     std::set<std::string> m_requiredVars;
 
-    void pushConstant(int64_t n) {
+    void pushConstant(AttributeInteger n) {
         StackItem si(n);
         m_opStack.push_back(si);
     }
@@ -125,7 +126,7 @@ private:
         assert(stack.size() > 1);
 
         // load operands
-        int64_t op1, op2;
+        AttributeInteger op1, op2;
         op1 = stack.back();
         stack.pop_back();
         op2 = stack.back();
@@ -148,7 +149,8 @@ private:
         default:
             break;
         }
-    }
+    }#include <hunspell/hunspell.hxx>
+
 
     void printStack(ValueStack& stack, std::ostream& out) {
         out << "=====" << std::endl;
@@ -175,7 +177,7 @@ public:
         }
     }
 
-    int64_t getResult(VariableMap& vars) {
+    AttributeInteger getResult(VariableMap& vars) {
         if(!validateVariableMap(vars))
             throw "RPNCALCULATOR Invalid Variable Map";
         ValueStack valueStack;
@@ -183,7 +185,7 @@ public:
             //printStack(valueStack, std::cerr);
             switch(si.type) {
             case StackItem::CONSTANT:
-                valueStack.push_back(std::get<int64_t>(si.value));
+                valueStack.push_back(std::get<AttributeInteger>(si.value));
                 break;
             case StackItem::VARIABLE:
                 valueStack.push_back(vars[std::get<std::string>(si.value)]);

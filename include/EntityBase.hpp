@@ -1,17 +1,18 @@
 #ifndef ENTITYBASE__HPP
 #define ENTITYBASE__HPP
 
-#include "../lib/json.hpp"
+#include "json.hpp"
 #include <string>
 #include <vector>
 #include <cstdlib>
 #include <cstdint>
-#include <hunspell/hunspell.hxx>
 
 using json = nlohmann::json;
 
+typedef int32_t AttributeInteger;
 typedef std::vector<std::string> StringVector;
 typedef std::pair<StringVector,StringVector> StringVectorPair;
+typedef std::map<std::string,AttributeInteger> AttributeMap;
 
 /** This is an abstract base class for all entities
  */
@@ -28,7 +29,6 @@ class EntityBase {
         void setName(std::string name);
 
         void setSerial();
-    // Attributes
     protected :
         /// the name of the entity.
         std::string m_name;
