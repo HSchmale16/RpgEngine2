@@ -11,16 +11,17 @@
  */
 class Attackable : public virtual EntityBase {
 private:
-    uint16_t m_currentHealth;
-    uint16_t m_maxHealth;
+    const AttributeInteger DEFAULT_HEALTH;
+    const AttributeInteger DEFAULT_BASE_ATTACK;
 protected:
-    Attackable();
+    Attackable(AttributeInteger defHealth);
+    Attackable(AttributeInteger defHealth, AttributeInteger baseAttack);
 
 public:
     virtual ~Attackable();
 
-    uint16_t getMaxHealth();
-    uint16_t getCurrentHealth();
+    AttributeInteger getMaxHealth();
+    AttributeInteger getCurrentHealth();
 };
 
 
