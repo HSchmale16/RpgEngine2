@@ -14,9 +14,9 @@ Attackable::Attackable(AttributeInteger defHealth, AttributeInteger baseAttack)
 Attackable::~Attackable() { }
 
 AttributeInteger Attackable::getCurrentHealth() {
-    return 0;
+    return m_attributes["health"];
 }
 
 AttributeInteger Attackable::getMaxHealth() {
-    return 0;
+    return m_attributes["max health"];
 }
