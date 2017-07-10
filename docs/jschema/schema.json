@@ -1,7 +1,33 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
-        "items_strings" : {
+        "requirementGroupItem": {
+            "type": "object",
+            "properties": {
+                "requirementType": {
+                    "type": "string",
+                    "enum": [
+                        "item",
+                        "attribute"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "min": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "max": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "requirementGroup": {
+            "type": "array"
+        },
+        "requirements": {
             "type": "array"
         }
     }
