@@ -19,7 +19,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
 set(CMAKE_BUILD_TYPE Debug)
 
 # Find the source files
-file(GLOB_RECURSE USR_SRC "src/*" main.cpp)
+file(GLOB_RECURSE USR_SRC "src/*")
 file(GLOB_RECURSE LIB_SRC "lib/*")
 set(SOURCE_FILES ${USR_SRC} ${LIB_SRC})
 
@@ -28,4 +28,9 @@ include_directories(include)
 include_directories(lib)
 
 # Create my executable
-add_executable(RpgEngine.out ${SOURCE_FILES})
+add_executable(RpgEngine.out main.cpp)
+add_library(RpgEngine SHARED ${SOURCE_FILES})
+add_executable(RequirementsEngineTest testprogs/RequirementsEngineTest.cpp)
+
+# Link in RpgEngine Library to targets
+target_link_libraries(RpgEngine.out RpgEngine)

@@ -4,6 +4,7 @@
 # Compilation Products
 *.o
 *.out
+lib*.so
 
 # Generated Depends For Make
 *.depend
