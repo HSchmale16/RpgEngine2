@@ -95,11 +95,13 @@ uint64_t EntityBase::getSerialNumber() {
     return m_serialNumber;
 }
 
-struct CompareBySize {
-    bool operator()(const StringVector& a, const StringVector& b) {
-        return a.size() < b.size();
-    }
-};
+AttributeInteger EntityBase::getAttribute(string attrib, 
+                                          AttributeInteger defValue) {
+    auto it = m_attributes.find(attrib);
+    if(it == m_attributes.end())
+        return defValue;
+    return it->second;
+}
 
 /** Performs a score calculation to determine how close this entity is to the
  *  target entity description. Just as in golf a lower score is better here.

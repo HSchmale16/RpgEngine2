@@ -8,11 +8,21 @@
 #include <cstdint>
 
 using json = nlohmann::json;
+using string = std::string;
 
 typedef int32_t AttributeInteger;
-typedef std::vector<std::string> StringVector;
+typedef std::vector<string> StringVector;
 typedef std::pair<StringVector,StringVector> StringVectorPair;
-typedef std::map<std::string,AttributeInteger> AttributeMap;
+typedef std::map<string,AttributeInteger> AttributeMap;
+
+struct CompareBySize {
+    bool operator()(const StringVector& a, const StringVector& b) {
+        return a.size() < b.size();
+    }
+    bool operator()(const AttributeMap& a, const AttributeMap& b) {
+        return a.size() < b.size();
+    }
+};
 
 /** This is an abstract base class for all entities
  */
@@ -24,14 +34,16 @@ class EntityBase {
         /// the name broken up into keywords
         StringVector m_keywords;
 
+        /// the name of the entity.
+        std::string m_name;
+
         void loadLookTexts(json looktexts);
 
         void setName(std::string name);
 
         void setSerial();
     protected :
-        /// the name of the entity.
-        std::string m_name;
+        
         /// Information that can be found by looking at it.
         StringVector m_lookTexts;
         AttributeMap m_attributes;
@@ -61,11 +73,24 @@ class EntityBase {
 
         virtual void printLookText (std::ostream& out);
         virtual void printBasicLookText (std::ostream& out);
+        virtual void dump(std::ostream& out);
 
         std::string getName () const;
-        virtual void dump(std::ostream& out);
         uint64_t getSerialNumber();
 
+        /**
+         * \brief Gets the value of a given attribute
+         * \return the value of given attribute, otherwise defValue
+         * \param defValue default return value if not found
+         * \param attrib name of attribute to request
+         */
+        AttributeInteger getAttribute(string attrib,
+                                      AttributeInteger defValue = 0);
+        /** 
+         *  \brief Calculate name similarity to kws,
+         *  \return 0 if a perfect match for given keywords, otherwise a
+         *  higher value as it gets worse
+         */
         uint64_t getSearchScore(const StringVector& kws);
 };
 
