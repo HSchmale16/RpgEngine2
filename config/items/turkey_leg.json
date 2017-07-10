@@ -7,6 +7,6 @@
     ],
     "type": "food",
     "attributes": {
-        "health": "+10"
+        "health": 10
     }
 }

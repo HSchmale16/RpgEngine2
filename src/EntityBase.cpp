@@ -8,7 +8,7 @@ uint64_t EntityBase::m_nextSerial = 0;
 
 EntityBase::EntityBase(json j) {
     loadJson(j);
-    // The name must never be empty
+    // The name must never be empty and once it's set it can't be changed
     assert(!m_name.empty());
 }
 
@@ -70,7 +70,11 @@ void EntityBase::loadJson(json js) {
 void EntityBase::loadAttributes(json js) {
     if(!js.is_object())
         throw "Attributes are loaded from an object";
-    
+    for(json::iterator it = js.begin(); it != js.end(); ++it) {
+        if(!it.value().is_number())
+            throw "All attributes are integer based";
+        m_attributes.insert(std::make_pair(it.key(), it.value()));
+    }
 }
 
 void EntityBase::loadLookTexts(json ltexts) {

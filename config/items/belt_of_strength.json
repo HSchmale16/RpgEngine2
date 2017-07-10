@@ -7,6 +7,7 @@
     ],
     "type": "belt",
     "attributes": {
-        "strength": "+3"
+        "strength": 3,
+        "dexterity": -1
     }
 }

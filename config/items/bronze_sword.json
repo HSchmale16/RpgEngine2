@@ -5,5 +5,8 @@
     "lookTexts": [
         "A normal regular sword"
     ],
+    "attributes": {
+        "base attack": 3
+    },
     "type": "sword"
 }
