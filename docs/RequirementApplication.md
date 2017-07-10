@@ -17,7 +17,7 @@ to satisfy it.
 
 # Possible things that could be required to interact
 
-* An item,
+* Target has a specific item by name in inventory,
 
         {
             "requirementType": "item",
@@ -34,4 +34,4 @@ to satisfy it.
             "max" : "<<< maximum value of attribute >>>"  // optional
         }
 
-# 
+# Structure of Classes used to implement requirements

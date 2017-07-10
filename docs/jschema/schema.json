@@ -22,7 +22,11 @@
                     "type": "integer",
                     "minimum": 0
                 }
-            }
+            },
+            "required": [
+                "requirementType",
+                "name"
+            ]
         },
         "requirementGroup": {
             "type": "array"
