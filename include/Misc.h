@@ -126,4 +126,10 @@ inline void lower_str(std::string& str) {
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
 }
 
+/** from: https://stackoverflow.com/a/16388610
+ */
+constexpr unsigned int str2int(const char* str, int h = 0) {
+    return !str[h] ? 5381 : (str2int(str, h+1) * 33) ^ str[h];
+}
+
 #endif // MISC_H_INC

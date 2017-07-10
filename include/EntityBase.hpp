@@ -76,7 +76,7 @@ class EntityBase {
         virtual void dump(std::ostream& out);
 
         std::string getName () const;
-        uint64_t getSerialNumber();
+        uint64_t getSerialNumber() const;
 
         /**
          * \brief Gets the value of a given attribute

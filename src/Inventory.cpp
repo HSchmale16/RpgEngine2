@@ -15,8 +15,10 @@ Inventory::~Inventory() {
 }
 
 /// TODO: Implement
-bool Inventory::contains(std::string name) {
-    return false;
+bool Inventory::contains(std::string name) const{
+    return std::find_if(m_items.begin(), m_items.end(), [&](Item* const& item) {
+        return item->getName() == name;
+    }) != m_items.end();
 }
 
 void Inventory::dump(std::ostream& out) {

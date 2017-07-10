@@ -14,6 +14,9 @@ private:
     AttributeInteger    m_max;
 
     void setType(string type);
+
+    bool testAttribute(const EntityBase& eb);
+    bool testInventory(const Inventory& i);
 public:
     RequirementsItem(string type, string name, AttributeInteger min = 0, 
                      AttributeInteger max = 0);

@@ -46,7 +46,7 @@ class Inventory : public virtual Entity {
         /**\brief tests whether it contains an item of name
          * \return true if so.
          */
-        bool contains (std::string name);
+        bool contains (std::string name) const;
 
         typedef std::pair<uint64_t,Item*> ItemScore;
         ItemScore getItemPtrByKeywords(const StringVector& keys);

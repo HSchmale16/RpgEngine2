@@ -91,7 +91,7 @@ void EntityBase::dump(std::ostream& out) {
         << this->getName() << '"' << std::endl;
 }
 
-uint64_t EntityBase::getSerialNumber() {
+uint64_t EntityBase::getSerialNumber() const {
     return m_serialNumber;
 }
 
