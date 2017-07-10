@@ -27,10 +27,13 @@ set(SOURCE_FILES ${USR_SRC} ${LIB_SRC})
 include_directories(include)
 include_directories(lib)
 
-# Create my executable
-add_executable(RpgEngine.out main.cpp)
+# Create a library from source, as it will allow easier updating of the core
 add_library(RpgEngine SHARED ${SOURCE_FILES})
-add_executable(RequirementsEngineTest testprogs/RequirementsEngineTest.cpp)
 
-# Link in RpgEngine Library to targets
+# Primary Executable
+add_executable(RpgEngine.out main.cpp)
 target_link_libraries(RpgEngine.out RpgEngine)
+
+# Executable to fiddle with the requirements engine
+add_executable(RequirementsEngineTest.out testprogs/RequirementsEngineTest.cpp)
+target_link_libraries(RequirementsEngineTest.out RpgEngine)
