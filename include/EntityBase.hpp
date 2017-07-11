@@ -85,7 +85,7 @@ class EntityBase {
          * \param attrib name of attribute to request
          */
         AttributeInteger getAttribute(string attrib,
-                                      AttributeInteger defValue = 0);
+                                      AttributeInteger defValue = 0) const;
         /** 
          *  \brief Calculate name similarity to kws,
          *  \return 0 if a perfect match for given keywords, otherwise a

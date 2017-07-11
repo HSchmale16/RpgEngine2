@@ -67,6 +67,11 @@
     } while(0);
 
 
+template<typename T>
+inline bool between_inc(T x, T min, T max) {
+    return (x >= min) && (x <= max);
+}
+
 template <typename I>
 I random_element(I begin, I end) {
     const unsigned long n = std::distance(begin, end);
@@ -128,7 +133,7 @@ inline void lower_str(std::string& str) {
 
 /** from: https://stackoverflow.com/a/16388610
  */
-constexpr unsigned int str2int(const char* str, int h = 0) {
+constexpr uint32_t str2int(const char* str, size_t h = 0) {
     return !str[h] ? 5381 : (str2int(str, h+1) * 33) ^ str[h];
 }
 

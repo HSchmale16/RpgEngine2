@@ -96,7 +96,7 @@ uint64_t EntityBase::getSerialNumber() const {
 }
 
 AttributeInteger EntityBase::getAttribute(string attrib, 
-                                          AttributeInteger defValue) {
+                                          AttributeInteger defValue) const {
     auto it = m_attributes.find(attrib);
     if(it == m_attributes.end())
         return defValue;
