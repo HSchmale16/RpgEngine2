@@ -4,7 +4,7 @@
 #include "Item.hpp"
 #include "EntityBase.hpp"
 
-class Entity : public EntityBase {
+class Entity : public virtual EntityBase {
     // Operations
     public:
 };
