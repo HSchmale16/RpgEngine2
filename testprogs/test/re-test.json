@@ -1,22 +1,72 @@
 {
-    "requirements": [
-
-    ],
-    "players": [
+  "requirementGroups": {
+    "lockpicking and item": [
+      [
         {
-            "name": "p1",
-            "attributes": {
-                "lockpicking": 5
-            },
-            "items": [
-
-            ]
+          "requirementType": "item",
+          "name": "lockpick"
         },
         {
-            "name": "p2",
-            "items": [
-                
-            ]
+          "requirementType": "attribute",
+          "name": "lockpicking",
+          "min": 5
         }
+      ]
+    ],
+    "just an item": [
+      {
+        "requirementType": "item",
+        "name": "lockpick"
+      }
+    ],
+    "break it down with strength": [
+      {
+        "requirementType": "attribute",
+        "name": "strength",
+        "min": 20
+      }
+    ],
+    "either break it or pick it": [
+      {
+        "requirementType": "attribute",
+        "name": "strength",
+        "min": 20
+      },
+      [
+        {
+          "requirementType": "item",
+          "name": "lockpick"
+        },
+        {
+          "requirementType": "attribute",
+          "name": "lockpicking",
+          "min": 5
+        }
+      ]
     ]
+  },
+  "players": [
+    {
+      "name": "p1",
+      "attributes": {
+        "lockpicking": 5
+      },
+      "items": [
+        "lockpick",
+        "turkey leg"
+      ]
+    },
+    {
+      "name": "p2",
+      "items": [
+        "canned peas"
+      ]
+    },
+    {
+      "name": "strong man",
+      "attributes": {
+        "strength": 50
+      }
+    }
+  ]
 }
