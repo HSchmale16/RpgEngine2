@@ -79,7 +79,7 @@ void RequirementEngine::RequirementGroup::addRequirementItem(json js) {
     assert(js.is_object());
 
     string type, name;
-    JSON_ATTEMPT_READ_STR(type, js, "type");
+    JSON_ATTEMPT_READ_STR(type, js, "requirementType");
     JSON_ATTEMPT_READ_STR(name, js, "name");
 
     AttributeInteger min, max;
@@ -93,13 +93,35 @@ bool RequirementEngine::RequirementGroup::valid(const Inventory& i) {
     return false;
 }
 
-
+bool RequirementEngine::RequirementGroup::valid(const EntityBase& eb) {
+    return false;
+}
 
 /////////////////////////////////////////////////////////////////
 // Requirement Engine
 
 RequirementEngine::RequirementEngine(json js) {
-    assert(js.is_array());
+    if(js.is_object() || js.is_array())
+        addGroup(js);
+    else
+        throw "RequirementEngine must be array or object";
 }
 
 RequirementEngine::~RequirementEngine() {}
+
+void RequirementEngine::addGroup(json js) {
+    if(js.is_object()) {
+        m_groups.push_back(RequirementGroup(js));
+    } else if(js.is_array()) {
+        for(auto rg : js)
+            m_groups.push_back(RequirementGroup(rg));
+    }
+}
+
+bool RequirementEngine::valid(const Inventory& i) {
+    return false;
+}
+
+bool RequirementEngine::valid(const EntityBase& eb) {
+    return false;
+}

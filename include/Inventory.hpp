@@ -10,7 +10,7 @@
  *        
  *        All things that can be taken from must inherit from this.
  */
-class Inventory : public virtual Entity {
+class Inventory : public Entity {
     private: 
         /** add an item by the pointer
          *  The given pointer better not be in stack space.

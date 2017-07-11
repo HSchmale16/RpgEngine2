@@ -6,7 +6,7 @@
 
 class ItemFactory;
 
-class Item : public virtual EntityBase {
+class Item : public EntityBase {
     // Attributes
     private :
         std::string m_type;

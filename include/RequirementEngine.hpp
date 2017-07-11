@@ -43,6 +43,8 @@ private:
     };
 
     std::vector<RequirementGroup> m_groups;
+
+    void addGroup(json js);
 public:
     RequirementEngine(json js);
     ~RequirementEngine();

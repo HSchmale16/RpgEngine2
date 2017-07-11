@@ -9,7 +9,7 @@
 /** Interface to allow an entity to become attackable
  * \author Henry J Schmale
  */
-class Attackable : public virtual EntityBase {
+class Attackable : public EntityBase {
 private:
     const AttributeInteger DEFAULT_HEALTH;
     const AttributeInteger DEFAULT_BASE_ATTACK;
