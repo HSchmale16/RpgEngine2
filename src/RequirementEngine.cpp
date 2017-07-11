@@ -19,6 +19,7 @@ RequirementItem::RequirementItem(string type, string name)
 RequirementItem::RequirementItem(string type, string name,
                 AttributeInteger min, AttributeInteger max)
 : m_name(name), m_min(min), m_max(max) {
+    assert(!m_name.empty());
     setType(type);
 }
 
@@ -44,7 +45,8 @@ bool RequirementItem::testAttribute(const EntityBase& eb) {
     return between_inc(i, m_min, m_max);
 }
 
-bool RequirementItem::valid(const EntityBase& eb) {
+bool RequirementItem::valid(const Ent
+ityBase& eb) {
     if(m_type == RI_TYPE_ITEM)
         return false;
     return testAttribute(eb);
@@ -62,17 +64,43 @@ bool RequirementItem::valid(const Inventory& i) {
 // Requirement Group
 
 RequirementEngine::RequirementGroup::RequirementGroup(json js) {
-
+    if(js.is_object()) {
+        addRequirementItem(js);
+    } else if(js.is_array()) {
+        for(auto rg : js)
+            addRequirementItem(rg);
+    } else {
+        throw "RequirementGroups must be either an object or an array";
+    }
 }
 
-RequirementEngine::RequirementGroup::~RequirementGroup() {
+RequirementEngine::RequirementGroup::~RequirementGroup() {}
 
+void RequirementEngine::RequirementGroup::addRequirementItem(json js) {
+    assert(js.is_object());
+
+    string type, name;
+    JSON_ATTEMPT_READ_STR(type, js, "type");
+    JSON_ATTEMPT_READ_STR(name, js, "name");
+
+    AttributeInteger min, max;
+    JSON_READ_NUM_DEF(min, js, "min", ATTRIB_INT_MIN);
+    JSON_READ_NUM_DEF(max, js, "max", ATTRIB_INT_MIN);
+
+    m_requirements.push_back(RequirementItem(type, name, min, max));
 }
-
 
 bool RequirementEngine::RequirementGroup::valid(const Inventory& i) {
     return false;
 }
 
+
+
 /////////////////////////////////////////////////////////////////
 // Requirement Engine
+
+RequirementEngine::RequirementEngine(json js) {
+    assert(js.is_array());
+}
+
+RequirementEngine::~RequirementEngine() {}

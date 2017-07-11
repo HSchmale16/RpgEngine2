@@ -3,5 +3,6 @@
     "quest key": null,
     "sword": ["attack"],
     "belt": ["strength","luck"],
-    "food": ["health"]
+    "food": ["health"],
+    "tool": []
 }

@@ -1,0 +1,22 @@
+{
+    "requirements": [
+
+    ],
+    "players": [
+        {
+            "name": "p1",
+            "attributes": {
+                "lockpicking": 5
+            },
+            "items": [
+
+            ]
+        },
+        {
+            "name": "p2",
+            "items": [
+                
+            ]
+        }
+    ]
+}

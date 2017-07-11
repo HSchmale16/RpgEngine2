@@ -24,6 +24,15 @@
         throw keyname " Must be a string or is not available"; \
     }
 
+#define JSON_READ_NUM_DEF(var, jsonObj, keyname, def) \
+    { \
+        auto it = jsonObj.find(keyname); \
+        if(it != jsonObj.end() && it->is_number()) \
+            var = *it; \
+        else \
+            var = def; \
+    }
+
 #define JSON_ATTEMPT_READ_NUM(var, jsonObj, keyname) \
     { \
     auto it = jsonObj.find(keyname); \

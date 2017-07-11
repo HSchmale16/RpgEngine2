@@ -31,7 +31,9 @@ class RequirementEngine {
 private:
     class RequirementGroup {
     private:
-        std::vector<RequirementItem> m_Requirement;
+        std::vector<RequirementItem> m_requirements;
+
+        void addRequirementItem(json js);
     public:
         RequirementGroup(json js);
         ~RequirementGroup();

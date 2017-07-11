@@ -1,0 +1,9 @@
+{
+    "name": "lockpick",
+    "sellPrice": 10,
+    "buyPrice": 12,
+    "lookTexts": [
+        "This is a lockpick. You can use it to pick locks"
+    ],
+    "type": "tool"
+}

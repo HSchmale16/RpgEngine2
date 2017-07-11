@@ -1,3 +1,7 @@
+# Doxygen
+xml/*
+Doxyfile
+
 *.dia~
 *.autosave
 
