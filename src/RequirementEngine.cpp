@@ -45,8 +45,7 @@ bool RequirementItem::testAttribute(const EntityBase& eb) {
     return between_inc(i, m_min, m_max);
 }
 
-bool RequirementItem::valid(const Ent
-ityBase& eb) {
+bool RequirementItem::valid(const EntityBase& eb) {
     if(m_type == RI_TYPE_ITEM)
         return false;
     return testAttribute(eb);
