@@ -26,14 +26,14 @@ public:
     ~RequirementItem();
 
     bool valid(const EntityBase& i);
-    std::string toString();
+    string toString();
 };
 
 class RequirementEngine {
 private:
     class RequirementGroup {
     private:
-        std::vector<RequirementItem> m_requirements;
+        std::list<RequirementItem> m_requirements;
 
         void addRequirementItem(json js);
     public:
@@ -44,7 +44,7 @@ private:
         void print(std::ostream& out);
     };
 
-    std::vector<RequirementGroup> m_groups;
+    std::list<RequirementGroup> m_groups;
 
     void addGroup(json js);
 public:

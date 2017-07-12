@@ -67,6 +67,14 @@
       "attributes": {
         "strength": 50
       }
+    },
+    {
+      "name": "archer",
+      "attributes":{
+        "archery": 20,
+        "strength": 5,
+        "lockpicking": 10 
+      }
     }
   ]
 }

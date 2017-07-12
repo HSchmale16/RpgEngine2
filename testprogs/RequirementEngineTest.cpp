@@ -17,9 +17,14 @@ int main(int argc, char** argv) {
 
         for(json p : js["players"])
             players.push_back(new Player(p));
-        { auto reng = js["requirementGroups"];
-        for(json::iterator it = reng.begin(); it != reng.end(); ++it)
-            res.insert(std::make_pair(it.key(), RequirementEngine(it.value()))); }
+        auto reng = js["requirementGroups"];
+        for(json::iterator it = reng.begin(); it != reng.end(); ++it) {
+            RequirementEngine re(it.value());
+            std::cerr << it.key() << std::endl;
+            re.printRequirements(std::cerr);
+            std::cerr << std::endl;
+            res.insert(std::make_pair(it.key(), re));
+        }
 
         std::cerr << "REQENG CASES: " << res.size() << std::endl;
         std::cerr << "PLAYER CASES: " << players.size() << std::endl;

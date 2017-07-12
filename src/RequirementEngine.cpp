@@ -69,12 +69,18 @@ bool RequirementItem::valid(const EntityBase& eb) {
     return testAttribute(eb);
 }
 
-std::string RequirementItem::toString() {
-    char buff[100];
-    if(m_type == RI_TYPE_ITEM) {
-        snprintf(buff, sizeof(buff), "has (item)%s", m_name.c_str());
+string RequirementItem::toString() {
+    std::stringstream sstr;
+    sstr << "have (" <<
+        ((m_type == RI_TYPE_ITEM) ? "item)" : "attrib)") <<
+        m_name;
+    if(m_type == RI_TYPE_ATTRIB) {
+        if(m_min < m_max)
+            sstr << " between " << m_min << " and " << m_max;
+        else if(m_min > m_max)
+            sstr << " of at least " << m_min;
     }
-    return buff;
+    return sstr.str();
 }
 
 /////////////////////////////////////////////////////////////////
@@ -115,6 +121,17 @@ bool RequirementEngine::RequirementGroup::valid(const EntityBase& eb) {
     return true;
 }
 
+void RequirementEngine::RequirementGroup::print(std::ostream& out) {
+    auto finalIter = --m_requirements.end();
+    for(auto it = m_requirements.begin(); it != m_requirements.end(); ++it) {
+        string msg = it->toString();
+        out << msg;
+        if(it != finalIter) {
+            out << " AND\n";
+        }
+    }
+}
+
 /////////////////////////////////////////////////////////////////
 // Requirement Engine
 
@@ -143,4 +160,14 @@ bool RequirementEngine::valid(const EntityBase& eb) {
         }
     }
     return false;
+}
+
+void RequirementEngine::printRequirements(std::ostream& out) {
+    auto finalIter = --m_groups.end();
+    for(auto it = m_groups.begin(); it != m_groups.end(); ++it) {
+        it->print(out);
+        if(it != finalIter)
+            out << "\nOR\n";
+    }
+    out << std::endl;
 }
