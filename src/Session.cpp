@@ -76,7 +76,10 @@ bool Session::quit() const {
 template<typename T>
 bool Session::matchOrPrompt(const std::pair<uint64_t,T*>& x) {
     static_assert(std::is_base_of<EntityBase, T>::value);
-    assert(x.second != nullptr);
+    if(x.second == nullptr) {
+        m_outStream << "Target does not exist" << std::endl;
+        return false;
+    }
     return x.first == 0 ||
         promptYesNo(
             DO_YOU_MEAN(x.second->getName()),

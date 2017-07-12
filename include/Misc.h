@@ -110,9 +110,10 @@ std::pair<uint64_t,T*> searchEntitiesByKeywords(std::vector<T*>& ents, const Str
     static_assert(std::is_base_of<EntityBase, T>::value);
 
     std::map<uint64_t,T*> scores;
-    for(auto* ent : ents) {
+    for(auto* ent : ents)
         scores.insert(std::make_pair(ent->getSearchScore(kws), ent));
-    }
+    if(scores.size() == 0)
+        return std::make_pair(UINT64_MAX, nullptr);
     return *scores.begin();
 }
 
