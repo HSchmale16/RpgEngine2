@@ -10,9 +10,11 @@ private:
 
     uint32_t            m_type;
     string              m_name;
-    AttributeInteger    m_min;
-    AttributeInteger    m_max;
+    AttributeInteger    m_min;  /// Lower bound
+    AttributeInteger    m_max;  /// Upper bound
 
+    /** Juggles the type to be a valid int
+     */
     void setType(string type);
 
     bool testAttribute(const EntityBase& eb);
@@ -23,8 +25,8 @@ public:
     RequirementItem(string type, string name);
     ~RequirementItem();
 
-    bool valid(const Inventory& i);
     bool valid(const EntityBase& i);
+    std::string toString();
 };
 
 class RequirementEngine {
@@ -38,8 +40,8 @@ private:
         RequirementGroup(json js);
         ~RequirementGroup();
 
-        bool valid(const Inventory& i);
         bool valid(const EntityBase& i);
+        void print(std::ostream& out);
     };
 
     std::vector<RequirementGroup> m_groups;
@@ -49,8 +51,8 @@ public:
     RequirementEngine(json js);
     ~RequirementEngine();
 
-    bool valid(const Inventory& i);
     bool valid(const EntityBase& i);
+    void printRequirements(std::ostream& out);
 };
 
 #endif // RequirementENGINE__HPP
