@@ -6,7 +6,7 @@
         "A normal regular sword"
     ],
     "attributes": {
-        "base attack": 3
+        "base_attack": 3
     },
     "type": "sword"
 }

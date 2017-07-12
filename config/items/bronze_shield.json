@@ -1,0 +1,12 @@
+{
+    "name": "Bronze Shield",
+    "sellPrice": 10,
+    "buyPrice": 12,
+    "lookTexts": [
+        "A small round shield made out of bronze"
+    ],
+    "attributes": {
+        "defense": 3
+    },
+    "type": "shield"
+}

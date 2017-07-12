@@ -1,9 +1,0 @@
-{
-    "name": "testitem1",
-    "sellPrice": 10,
-    "buyPrice": 12,
-    "lookTexts": [
-        "A test item that is a key"
-    ],
-    "type": "key"
-}
