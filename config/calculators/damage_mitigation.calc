@@ -1,0 +1,9 @@
+# Calculates damage mitigation
+# (attack_result * (100 - defense)) / 100
+100
+defense
+-
+attack_result
+*
+100
+/

@@ -1,0 +1,13 @@
+# Calculates the damage that a player does
+# (base_attack + right_hand_item_damage)
+# * (100 + (attack_skill + attack_bonus)) / 100
+base_attack
+right_hand_item_damage
++
+100
+attack_bonus
++
+attack_skill
++
+100
+/

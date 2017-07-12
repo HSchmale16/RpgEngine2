@@ -15,9 +15,11 @@ std::string loadFile(std::string file) {
 int main(int argc, char** argv) {
     try {
         RpnCalculator c;
-        c.loadOperations("4 5 +");
+        c.loadOperations(loadFile(argv[1]));
+        c.dump(std::cerr);
         VariableMap m = {
-            {"VAR", 3}
+            {"defense", 3},
+            {"attack_result", 4}
         };
         
         int64_t n = c.getResult(m);

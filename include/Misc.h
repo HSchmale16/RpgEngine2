@@ -146,4 +146,6 @@ constexpr uint32_t str2int(const char* str, size_t h = 0) {
     return !str[h] ? 5381 : (str2int(str, h+1) * 33) ^ str[h];
 }
 
+std::string removeComments(std::string input, std::string commentDelim);
+
 #endif // MISC_H_INC

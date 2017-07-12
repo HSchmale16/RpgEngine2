@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cstdint>
 #include "EntityBase.hpp"
+#include "Misc.h"
 
 typedef std::map<std::string,AttributeInteger> VariableMap;
 
@@ -149,7 +150,7 @@ private:
         default:
             break;
         }
-    }#include <hunspell/hunspell.hxx>
+    }
 
 
     void printStack(ValueStack& stack, std::ostream& out) {
@@ -168,6 +169,9 @@ public:
         // clear old ops and required variables
         m_opStack.clear();
         m_requiredVars.clear();
+
+        // perform comment processing
+        operations = removeComments(operations, "#");
 
         // load new ops
         std::stringstream sstr(operations);
