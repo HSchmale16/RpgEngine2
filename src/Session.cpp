@@ -76,10 +76,12 @@ bool Session::quit() const {
 template<typename T>
 bool Session::matchOrPrompt(const std::pair<uint64_t,T*>& x) {
     static_assert(std::is_base_of<EntityBase, T>::value);
+
     if(x.second == nullptr) {
         m_outStream << "Target does not exist" << std::endl;
         return false;
     }
+    
     return x.first == 0 ||
         promptYesNo(
             DO_YOU_MEAN(x.second->getName()),
@@ -113,6 +115,10 @@ void Session::handleGo(const StringVector& rem) {
     }
     Room::DoorScore ds = m_currentRoom->searchDoorByKeywords(rem);
     if(matchOrPrompt(ds)) {
+        if(!ds.second->unlock(m_player)) {
+            ds.second->printRequirements(m_outStream);
+            return;
+        }
         m_currentRoom = m_location->getRoom(ds.second->getLinkTo());
         assert(m_currentRoom != nullptr);
 

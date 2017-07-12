@@ -24,8 +24,8 @@ class Door : public Entity {
         Door(Room* r, json js);
         virtual ~Door();
 
-        std::string getLinkTo ();
-
+        std::string getLinkTo () const;
+        void printRequirements(std::ostream& out);
         /**
          * \brief attempts to unlock the door using passed players inventory aand stats.
          * \param p (in)

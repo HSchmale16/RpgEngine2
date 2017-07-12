@@ -22,19 +22,22 @@ void Door::loadJson(json js) {
     JSON_ATTEMPT_FUNC_OPT(js, "requires", loadRequires);
 }
 
-std::string Door::getLinkTo() {
+std::string Door::getLinkTo() const {
     return m_linkTo;
 }
 
 void Door::loadRequires(json js) {
+    m_isUnlocked = false;
     if(m_reqs != nullptr)
         delete m_reqs;
     m_reqs = new RequirementEngine(js);
 }
 
+void Door::printRequirements(std::ostream& out) {
+    out << "You don't meet the requirements to open this door\n"; 
+    m_reqs->printRequirements(out);
+}
+
 bool Door::unlock(const Player& p) {
-    if(m_isUnlocked)
-        return true;
-    // TODO: Add requirements checking
-    return false;
+    return (m_isUnlocked) ? true : m_reqs->valid(p);
 }
