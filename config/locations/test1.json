@@ -18,12 +18,12 @@
                     "lookTexts": "test for 2 entities with same keyword in names"
                 },
                 {
-                    "name": "Old Locked Door",
-                    "linkTo": "room 3",
-                    "lookTexts": [
-                        "An old door",
-                        "Probably takes you to the third room"
-                    ]
+                    "name": "Locked Door",
+                    "linkTo": "Hidden Room",
+                    "requires": {
+                        "requirementType": "item",
+                        "name": "blue key"
+                    }
                 }
             ],
             "furniture": [
@@ -37,6 +37,16 @@
                         "turkey leg",
                         "turkey leg"
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Hidden Room",
+            "lookTexts": "You had to come through a locked door to get here",
+            "doors": [
+                {
+                    "name": "back the way you came",
+                    "linkTo": "room 1"
                 }
             ]
         },
@@ -60,19 +70,25 @@
                 {
                     "name": "back to room 2",
                     "linkTo": "room 2",
-                    "lookTexts": ["Takes you to the second room"]
+                    "lookTexts": [
+                        "Takes you to the second room"
+                    ]
                 },
                 {
                     "name": "to room 4",
                     "linkTo": "room 4",
-                    "lookTexts": ["takes you to the fourth room"]
+                    "lookTexts": [
+                        "takes you to the fourth room"
+                    ]
                 }
             ],
             "furniture": [
                 {
                     "name": "chest",
                     "lookTexts": "A simple chest",
-                    "items": [45]
+                    "items": [
+                        45
+                    ]
                 }
             ]
         },
@@ -82,7 +98,9 @@
                 {
                     "name": "back to room 2",
                     "linkTo": "room 2",
-                    "lookTexts": ["Takes you to the second room"]
+                    "lookTexts": [
+                        "Takes you to the second room"
+                    ]
                 }
             ],
             "furniture": [

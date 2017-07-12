@@ -3,6 +3,7 @@
 
 #include "Entity.hpp"
 #include "Player.hpp"
+#include "RequirementEngine.hpp"
 
 class Room;
 
@@ -12,13 +13,16 @@ class Door : public Entity {
         /// The name of the room it links to
         std::string m_linkTo;
         bool m_isUnlocked = true;
+        RequirementEngine* m_reqs = nullptr;
 
         /// Parent
         Room* m_room;
     protected :
         virtual void loadJson (json js);
+        void loadRequires(json js);
     public :
         Door(Room* r, json js);
+        virtual ~Door();
 
         std::string getLinkTo ();
 
