@@ -47,6 +47,11 @@
     },
     "files.exclude": {
         "**/*.o": true,
-        "**/*.depend": true
+        "**/*.depend": true,
+        "**/*.so": true,
+        "**/*.out": true,
+        "CMakeFiles": true,
+        "*.cmake": true,
+        "CMakeCache.txt": true
     }
 }
