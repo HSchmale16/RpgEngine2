@@ -42,6 +42,8 @@ Session::Session(Location* loc, std::ostream& out) : m_outStream(out) {
 
     // reset the client console
     resetConsoleDefaults();
+
+    m_player.dump(std::cerr);
 }
 
 Session::~Session() { }

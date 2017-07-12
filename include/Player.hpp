@@ -9,6 +9,8 @@ public:
     Player();
     Player(json js);
     virtual ~Player();
+
+    virtual void dump(std::ostream& out);
 };
 
 #endif // PLAYER_HPP

@@ -11,9 +11,9 @@
  */
 class Attackable : public virtual EntityBase {
 private:
-    const AttributeInteger DEFAULT_HEALTH;
-    const AttributeInteger DEFAULT_BASE_ATTACK;
+    
 protected:
+    Attackable();
     Attackable(AttributeInteger defHealth);
     Attackable(AttributeInteger defHealth, AttributeInteger baseAttack);
 
@@ -22,6 +22,11 @@ public:
 
     AttributeInteger getMaxHealth();
     AttributeInteger getCurrentHealth();
+    void restoreHealth();
+
+    static const AttributeInteger DEFAULT_HEALTH;
+    static const AttributeInteger DEFAULT_BASE_ATTACK;
+    static const AttributeInteger DEFAULT_BASE_DEFENSE;
 };
 
 
