@@ -1,7 +1,13 @@
+/** Implementation of a basic Requirements Engine
+ *  @author Henry J Schmale
+ */
+
 #include "RequirementEngine.hpp"
 #include "Misc.h"
 #include <limits>
+#include <sstream>
 
+// the default value for type attributes
 const AttributeInteger ATTRIB_INT_MIN = 
     std::numeric_limits<AttributeInteger>::min();
 
@@ -12,6 +18,9 @@ const std::map<string,uint32_t> RequirementItem::RI_TYPES = {
     { "attribute", RI_TYPE_ATTRIB },
     { "item", RI_TYPE_ITEM }
 };
+
+/////////////////////////////////////////////////////////////////
+// Requirement Group
 
 RequirementItem::RequirementItem(string type, string name)
     : RequirementItem(type, name, ATTRIB_INT_MIN, ATTRIB_INT_MIN) {}
@@ -38,25 +47,35 @@ bool RequirementItem::testInventory(const Inventory& i) {
 
 bool RequirementItem::testAttribute(const EntityBase& eb) {
     AttributeInteger i = eb.getAttribute(m_name, ATTRIB_INT_MIN);
+    // same test that attrib exists
     if(m_min == m_max)
         return i > ATTRIB_INT_MIN;
-    if(m_max < m_min)
-        return i > m_min;
+    // max < min then only min matters
+    if(m_min > m_max)
+        return i >= m_min;
+    // otherwise test inclusive
     return between_inc(i, m_min, m_max);
 }
 
 bool RequirementItem::valid(const EntityBase& eb) {
-    if(m_type == RI_TYPE_ITEM)
-        return false;
+    if(m_type == RI_TYPE_ITEM) {
+        try {
+            const Inventory& inv = dynamic_cast<const Inventory&>(eb);
+            return testInventory(inv);
+        } catch(const std::bad_cast& e) {
+            return false;
+        }
+    }
     return testAttribute(eb);
 }
 
-bool RequirementItem::valid(const Inventory& i) {
-    if(m_type == RI_TYPE_ATTRIB) {
-        return testAttribute(i);
-    } else {
-        return testInventory(i);
+std::string RequirementItem::toString() {
+    char buff[100];
+    if(m_type == RI_TYPE_ITEM) {
+        snprintf(buff, sizeof(buff), "has (item)%s", m_name.c_str());
+    } els
     }
+    return buff;
 }
 
 /////////////////////////////////////////////////////////////////
@@ -89,12 +108,12 @@ void RequirementEngine::RequirementGroup::addRequirementItem(json js) {
     m_requirements.push_back(RequirementItem(type, name, min, max));
 }
 
-bool RequirementEngine::RequirementGroup::valid(const Inventory& i) {
-    return false;
-}
-
 bool RequirementEngine::RequirementGroup::valid(const EntityBase& eb) {
-    return false;
+    for(auto& req : m_requirements) {
+        if(!req.valid(eb))
+            return false;
+    }
+    return true;
 }
 
 /////////////////////////////////////////////////////////////////
@@ -118,10 +137,11 @@ void RequirementEngine::addGroup(json js) {
     }
 }
 
-bool RequirementEngine::valid(const Inventory& i) {
-    return false;
-}
-
 bool RequirementEngine::valid(const EntityBase& eb) {
+    for(auto& reqGroup : m_groups) {
+        if(reqGroup.valid(eb)) {
+            return true;
+        }
+    }
     return false;
 }

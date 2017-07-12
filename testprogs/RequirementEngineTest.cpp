@@ -21,8 +21,16 @@ int main(int argc, char** argv) {
         for(json::iterator it = reng.begin(); it != reng.end(); ++it)
             res.insert(std::make_pair(it.key(), RequirementEngine(it.value()))); }
 
-        
+        std::cerr << "REQENG CASES: " << res.size() << std::endl;
+        std::cerr << "PLAYER CASES: " << players.size() << std::endl;
 
+        for(Player* p : players) {
+            for(auto& e : res) {
+                std::cout << p->getName()  << " - "
+                    << e.first << " - "  << e.second.valid(*p)
+                    << std::endl;
+            }
+        }
 
     } catch (char const* ch) {
         std::cerr << ch << std::endl;

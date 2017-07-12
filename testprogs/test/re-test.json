@@ -47,7 +47,7 @@
   },
   "players": [
     {
-      "name": "p1",
+      "name": "thief",
       "attributes": {
         "lockpicking": 5
       },
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "name": "p2",
+      "name": "just canned peas",
       "items": [
         "canned peas"
       ]
