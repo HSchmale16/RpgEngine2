@@ -115,6 +115,7 @@ void Session::handleGo(const StringVector& rem) {
     }
     Room::DoorScore ds = m_currentRoom->searchDoorByKeywords(rem);
     if(matchOrPrompt(ds)) {
+        // can't be unlocked
         if(!ds.second->unlock(m_player)) {
             ds.second->printRequirements(m_outStream);
             return;

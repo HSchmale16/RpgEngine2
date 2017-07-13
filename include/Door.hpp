@@ -32,6 +32,8 @@ class Door : public Entity {
          * \return true if p can open
          */
         bool unlock (const Player& p);
+
+        virtual void printLookText (std::ostream& out);
 };
 
 #include "Room.hpp"

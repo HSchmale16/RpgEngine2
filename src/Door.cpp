@@ -41,3 +41,11 @@ void Door::printRequirements(std::ostream& out) {
 bool Door::unlock(const Player& p) {
     return (m_isUnlocked) ? true : m_reqs->valid(p);
 }
+
+void Door::printLookText(std::ostream& out) {
+    Entity::printLookText(out);
+    if(!m_isUnlocked) {
+        out << "This door is locked. You must" << std::endl;
+        m_reqs->printRequirements(out);
+    }
+}
