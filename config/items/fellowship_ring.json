@@ -1,0 +1,12 @@
+{
+    "name": "Fellowship Ring",
+    "sellPrice": 0,
+    "buyPrice": 12,
+    "lookTexts": [
+        "A small gold ring denoting fellowship with others, it provides bonuses"
+    ],
+    "attributes": {
+        "defense": 3
+    },
+    "type": "ring"
+}

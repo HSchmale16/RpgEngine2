@@ -1,15 +1,13 @@
 {
-    "belt": [
-        "strength",
-        "luck"
-    ],
+    "belt": null,
+    "ring": null,
     "food": [
         "health"
     ],
     "key": null,
     "quest key": null,
     "shield": [
-        "defense"
+        "base_defense"
     ],
     "sword": [
         "base_attack"

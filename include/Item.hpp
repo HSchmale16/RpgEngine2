@@ -6,7 +6,7 @@
 
 class Item : public EntityBase {
     // Attributes
-    private :
+    private:
         std::string m_type;
         /// Price to buy from a store
         uint32_t m_buyPrice;
@@ -20,6 +20,5 @@ class Item : public EntityBase {
 
         void printDetailed(std::ostream& out);
 };
-
 
 #endif

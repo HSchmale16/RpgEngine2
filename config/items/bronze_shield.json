@@ -6,7 +6,7 @@
         "A small round shield made out of bronze"
     ],
     "attributes": {
-        "defense": 3
+        "base_defense": 3
     },
     "type": "shield"
 }

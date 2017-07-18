@@ -45,7 +45,7 @@ void ItemFactory::loadValidItemTypes(std::string itemTypesFile) {
     if(!j.is_object())
         throw "ItemTypesFile must contain a json object";
     for(json::iterator it = j.begin(); it != j.end(); ++it) {
-        std::vector<std::string> v;
+        std::vector<std::string> v(it.value().begin(), it.value().end());
         //TODO: add loading of valid attributes for each type
         m_validTypes.insert(std::make_pair((std::string)it.key(), v));
     }
