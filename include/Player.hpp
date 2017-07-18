@@ -3,8 +3,9 @@
 
 #include "Inventory.hpp"
 #include "Attackable.hpp"
+#include "HasEquipment.hpp"
 
-class Player : public Inventory, public Attackable {
+class Player : public Inventory, public Attackable, public HasEquipment {
 public:
     Player();
     Player(json js);

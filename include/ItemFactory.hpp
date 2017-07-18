@@ -13,7 +13,7 @@
 class ItemFactory {
     private:
         static std::vector<Item> m_validItems;
-        static std::map<string,std::vector<string>> m_validTypes;
+        static std::map<string,StringVector> m_validTypes;
 
         static void loadItem(string file);
     public:
@@ -24,11 +24,14 @@ class ItemFactory {
         static void loadDirectory(string itemDir);
 
         /**
-         * \brief decides whether the type listed is valid.
+         * \brief decides whether the type listed is valid and the attributes
+         *        required are present
          * \param name (???)
          * \return bool
          */
         static bool validateType (string type, const AttributeMap& attribs);
+
+        static bool validateType(string type);
 
         /**\return copy of item requested, null if not found.
          */

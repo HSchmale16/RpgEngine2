@@ -34,6 +34,10 @@ bool ItemFactory::validateType(std::string type, const AttributeMap& attribs) {
     return m_validTypes.count(type);
 }
 
+bool ItemFactory::validateType(string type) {
+    return m_validTypes.count(type);
+}
+
 void ItemFactory::listItems(std::ostream& out) {
     for(auto& itm : m_validItems)
         out << itm.getName() << " - " << itm.getType() << std::endl;

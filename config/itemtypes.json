@@ -1,9 +1,14 @@
 {
     "belt": null,
+    "boots": null,
+    "chestplate": null,
     "ring": null,
     "food": [
         "health"
     ],
+    "gloves": null,
+    "greaves": null,
+    "helmet": null,
     "key": null,
     "quest key": null,
     "shield": [
