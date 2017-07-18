@@ -7,10 +7,7 @@
 std::map<std::string,std::vector<std::string>> ItemFactory::m_validTypes = {};
 std::vector<Item> ItemFactory::m_validItems = {};
 
-
-ItemFactory::ItemFactory (std::string itemDir) {
-    this->loadValidItemTypes("config/itemtypes.json");
-
+void ItemFactory::loadDirectory(std::string itemDir) {
     // load valid items
     tinydir_dir dir;
     tinydir_open(&dir, itemDir.c_str());
@@ -18,24 +15,22 @@ ItemFactory::ItemFactory (std::string itemDir) {
         tinydir_file file;
         tinydir_readfile(&dir, &file);
         if(file.is_reg && strcmp(file.extension, "json") == 0) {
-            this->loadItem(file.path);
+            loadItem(file.path);
         }
         tinydir_next(&dir);
     }
     tinydir_close(&dir);
 }
 
-ItemFactory::ItemFactory() { }
-
 void ItemFactory::loadItem(std::string file) {
     json j;
     JSON_FROM_FILE(j, file);
     
-    Item itm(j, this);
+    Item itm(j);
     m_validItems.push_back(itm);
 }
 
-bool ItemFactory::validateType(std::string type) {
+bool ItemFactory::validateType(std::string type, const AttributeMap& attribs) {
     return m_validTypes.count(type);
 }
 

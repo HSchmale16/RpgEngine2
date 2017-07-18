@@ -7,7 +7,8 @@ int main(int argc, char** argv) {
     srand(time(nullptr));
     try {
         // load up the items into static memory
-        ItemFactory ifact("config/items");
+        ItemFactory::loadValidItemTypes("config/itemtypes.json");
+        ItemFactory::loadDirectory("config/items");
         //ifact.listItems(std::cout);
         Location l("config/locations/test1.json");
         //l.dump(std::cout);

@@ -35,8 +35,5 @@ add_executable(RpgEngine.out main.cpp)
 target_link_libraries(RpgEngine.out RpgEngine)
 
 # Executable to fiddle with the requirements engine
-add_executable(RequirementsEngineTest.out testprogs/RequirementEngineTest.cpp)
-target_link_libraries(RequirementsEngineTest.out RpgEngine)
-
-add_executable(RpnCalcTest.out testprogs/rpncalc.cpp)
-target_link_libraries(RpnCalcTest.out RpgEngine)
+#add_executable(RequirementsEngineTest.out testprogs/RequirementEngineTest.cpp)
+#target_link_libraries(RequirementsEngineTest.out RpgEngine)

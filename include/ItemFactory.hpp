@@ -11,31 +11,30 @@
  *        is added by restricting the items to being defined in a directory.
  */
 class ItemFactory {
-    // Attributes
-    private :
+    private:
         static std::vector<Item> m_validItems;
-        static std::map<std::string,std::vector<std::string>> m_validTypes;
+        static std::map<string,std::vector<string>> m_validTypes;
 
-        void loadItem(std::string file);
+        static void loadItem(string file);
+    public:
+        static void init(string itemDir, string typeFile);
 
-        void loadValidItemTypes(std::string itemTypesFile);
-    // Operations
-    public :
-        ItemFactory (std::string itemDir);
-        ItemFactory ();
+        static void loadValidItemTypes(string itemTypesFile);
+
+        static void loadDirectory(string itemDir);
 
         /**
          * \brief decides whether the type listed is valid.
          * \param name (???)
          * \return bool
          */
-        bool validateType (std::string type);
+        static bool validateType (string type, const AttributeMap& attribs);
 
         /**\return copy of item requested, null if not found.
          */
-        Item* getByName (std::string name);
+        static Item* getByName (string name);
 
-        void listItems (std::ostream& out);
+        static void listItems (std::ostream& out);
 };
 
 #endif

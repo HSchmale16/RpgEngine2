@@ -1,10 +1,12 @@
 #include "../include/Item.hpp"
 #include "../include/Misc.h"
+#include "ItemFactory.hpp"
+
 #include <cassert>
 
-Item::Item(json j, ItemFactory* factory) : EntityBase(j) {   
+Item::Item(json j) : EntityBase(j) {   
     JSON_ATTEMPT_READ_STR(m_type, j, "type");
-     if(!factory->validateType(m_type))
+    if(!ItemFactory::validateType(m_type, m_attributes))
         throw "Item has invalid type";
     
     JSON_ATTEMPT_READ_NUM(m_sellPrice, j, "sellPrice");

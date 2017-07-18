@@ -1,5 +1,6 @@
 #include "Inventory.hpp"
 #include "Misc.h"
+#include "ItemFactory.hpp"
 #include "rang.hpp"
 
 Inventory::Inventory(json js) {
@@ -28,8 +29,7 @@ void Inventory::dump(std::ostream& out) {
 }
 
 void Inventory::addItem(std::string name) {
-    ItemFactory itemFactory;
-    Item* item = itemFactory.getByName(name);
+    Item* item = ItemFactory::getByName(name);
     m_items.push_back(item);
 }
 
