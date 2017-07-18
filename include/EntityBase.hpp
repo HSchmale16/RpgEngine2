@@ -84,14 +84,20 @@ class EntityBase {
          * \param defValue default return value if not found
          * \param attrib name of attribute to request
          */
-        AttributeInteger getAttribute(string attrib,
+        virtual AttributeInteger getAttribute(string attrib,
                                       AttributeInteger defValue = 0) const;
         /** 
          *  \brief Calculate name similarity to kws,
          *  \return 0 if a perfect match for given keywords, otherwise a
          *  higher value as it gets worse
          */
-        uint64_t getSearchScore(const StringVector& kws);
+        uint64_t getSearchScore(const StringVector& kws) const;
+
+        /**\returns the attribute map for this Entity after effectors are applied
+         *
+         * Is virtual to allow for effectors to be applied. 
+         */
+        virtual AttributeMap getAttributes() const;
 };
 
 #endif

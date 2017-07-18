@@ -108,7 +108,7 @@ AttributeInteger EntityBase::getAttribute(string attrib,
  *  This is only good for small values of N, as it is O(n^4) with the levenshtein
  *  stuff.
  */
-uint64_t EntityBase::getSearchScore(const StringVector& kws) {
+uint64_t EntityBase::getSearchScore(const StringVector& kws) const {
     uint64_t sum = 0;
     auto kwSize = std::minmax(kws, m_keywords, CompareBySize());
     for (auto& kw1 : kwSize.second) {
@@ -119,4 +119,8 @@ uint64_t EntityBase::getSearchScore(const StringVector& kws) {
         sum += *std::min_element(scores.begin(), scores.end());
     }
     return sum;
+}
+
+AttributeMap EntityBase::getAttributes() const {
+    return m_attributes;
 }
