@@ -18,21 +18,24 @@ public:
      */
     void setRestrictedType(string type);
     void moveItem(Inventory* inventory, Item* item);
-    AttributeMap getAttributes();
+    AttributeMap getAttributes() const;
 };
 
 typedef std::map<string,ItemSlot> SlotMap;
 
+/** Provides ability to have items
+ */
 class HasEquipment {  
     SlotMap m_slots;
 protected:
     HasEquipment();
 
+    void equipItem(Inventory* inv, Item* itm);
 public:
     virtual ~HasEquipment();
     bool hasSlot(string name);
     
-    AttributeMap getAttributeAdjustment();
+    AttributeMap getAttributeAdjustment() const;
 };
 
 #endif // HASEQUIPMENT__HPP

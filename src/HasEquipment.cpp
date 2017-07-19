@@ -18,6 +18,14 @@ void ItemSlot::setRestrictedType(string type) {
     m_restrictedType = type;
 }
 
+void ItemSlot::moveItem(Inventory* inv, Item* item) {
+
+}
+
+AttributeMap ItemSlot::getAttributes() const {
+    return m_item ? m_item->getAttributes() : AttributeMap();
+}
+
 /////////////////////////////////////////////////
 // Implementation of has Equipables
 
@@ -38,4 +46,13 @@ HasEquipment::~HasEquipment() {}
 
 bool HasEquipment::hasSlot(string name) {
     return m_slots.count(name);
+}
+
+void HasEquipment::equipItem(Inventory* inv, Item* itm) {
+
+}
+
+AttributeMap HasEquipment::getAttributeAdjustment() const {
+    AttributeMap tmp;
+    return tmp;
 }
